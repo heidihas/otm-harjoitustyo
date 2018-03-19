@@ -74,6 +74,7 @@ Date:   Mon Mar 19 10:14:55 2018 +0200
                                                     lisää esimerkki.txt
                                                     
                                                      stuff/esimerkki.txt | 0
+                                                     
                                                       1 file changed, 0 insertions(+), 0 deletions(-)
                                                       
                                                       commit 258cc1c8c23b3164ab74da36e450c7e0375a4ba4
