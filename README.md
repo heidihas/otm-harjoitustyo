@@ -1,6 +1,6 @@
 # Ohjelmistotekniikan menetelmät - harjoitustyö
 
-Täältä löytyy kurssilla **Ohjelmistotekniikan menetelmät** tehtyjä tehtäviä *viikkokohtaisina* tiedostoina.
+Täällä ovat kurssilla **Ohjelmistotekniikan menetelmät** tehdyt tehtävät *viikkokohtaisina* tiedostoina.
 
 ## Tehtävät
 
