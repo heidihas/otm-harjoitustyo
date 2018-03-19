@@ -1,0 +1,115 @@
+commit 1e26dbeb94686d8062f9593b8eff0027a8fbf17c
+Author: Heidi <heidi.hassinen@helsinki.fi>
+Date:   Mon Mar 19 10:14:55 2018 +0200
+
+    poistot
+    
+     tiedostoja/file1 | 0
+      tiedostoja/file2 | 0
+       2 files changed, 0 insertions(+), 0 deletions(-)
+       
+       commit 9608abd6cb5a881e7c9a9e861378bcbac2a58ea2
+       Author: Heidi <heidi.hassinen@helsinki.fi>
+       Date:   Mon Mar 19 10:14:08 2018 +0200
+       
+           muutoksia tiedostoihin
+           
+            tiedostoja/file22 | 0
+             1 file changed, 0 insertions(+), 0 deletions(-)
+             
+             commit a301e14a5e54d1f5edf7ebbf076cfdd0730b5da5
+             Author: Heidi <heidi.hassinen@helsinki.fi>
+             Date:   Mon Mar 19 10:11:26 2018 +0200
+             
+                 uusia tiedostoja
+                 
+                  tiedostoja/file1 | 0
+                   tiedostoja/file2 | 0
+                    tiedostoja/file3 | 0
+                     3 files changed, 0 insertions(+), 0 deletions(-)
+                     
+                     commit fe8dbec41878d23d8b961f75dd32d51927830f39
+                     Author: Heidi <heidi.hassinen@helsinki.fi>
+                     Date:   Mon Mar 19 10:05:53 2018 +0200
+                     
+                         uutta tekstiä
+                         
+                          eka.txt      | 4 +++-
+                           kolmas.txt   | 4 +++-
+                            tiedosto.txt | 5 -----
+                             3 files changed, 6 insertions(+), 7 deletions(-)
+                             
+                             commit e4a894508f63450c85a8113f6a1db8b2499444a9
+                             Author: Heidi <heidi.hassinen@helsinki.fi>
+                             Date:   Mon Mar 19 10:03:26 2018 +0200
+                             
+                                 muutoksia
+                                 
+                                  eka.txt    | 5 +++++
+                                   toinen.txt | 1 -
+                                    2 files changed, 5 insertions(+), 1 deletion(-)
+                                    
+                                    commit 94a78508a6e350184e1698873d0508251f396b30
+                                    Author: Heidi <heidi.hassinen@helsinki.fi>
+                                    Date:   Mon Mar 19 09:57:52 2018 +0200
+                                    
+                                        muutoksia lisää tiedosto.txt
+                                        
+                                         tiedosto.txt | 4 +++-
+                                          1 file changed, 3 insertions(+), 1 deletion(-)
+                                          
+                                          commit 57cca85660075acc55e09c210f924085eef76b57
+                                          Author: Heidi <heidi.hassinen@helsinki.fi>
+                                          Date:   Mon Mar 19 09:56:47 2018 +0200
+                                          
+                                              muutoksia tiedoto.txt
+                                              
+                                               tiedosto.txt | 2 ++
+                                                1 file changed, 2 insertions(+)
+                                                
+                                                commit 8a00033dedb3cfa3e07f66dbcedf67bdbd307e74
+                                                Author: Heidi <heidi.hassinen@helsinki.fi>
+                                                Date:   Mon Mar 19 09:49:14 2018 +0200
+                                                
+                                                    lisää esimerkki.txt
+                                                    
+                                                     stuff/esimerkki.txt | 0
+                                                      1 file changed, 0 insertions(+), 0 deletions(-)
+                                                      
+                                                      commit 258cc1c8c23b3164ab74da36e450c7e0375a4ba4
+                                                      Author: Heidi <heidi.hassinen@helsinki.fi>
+                                                      Date:   Mon Mar 19 09:48:10 2018 +0200
+                                                      
+                                                          muutokset
+                                                          
+                                                           kolmas.txt | 1 +
+                                                            toinen.txt | 1 +
+                                                             2 files changed, 2 insertions(+)
+                                                             
+                                                             commit 3fd3f300bd6a24c90719224191de1592f1f67800
+                                                             Author: Heidi <heidi.hassinen@helsinki.fi>
+                                                             Date:   Mon Mar 19 09:46:57 2018 +0200
+                                                             
+                                                                 lisää kolmas
+                                                                 
+                                                                  kolmas.txt | 0
+                                                                   1 file changed, 0 insertions(+), 0 deletions(-)
+                                                                   
+                                                                   commit 74b989adce70e1b8ae407999864cebcd67a7d88c
+                                                                   Author: Heidi <heidi.hassinen@helsinki.fi>
+                                                                   Date:   Mon Mar 19 09:44:12 2018 +0200
+                                                                   
+                                                                       muutos ja lisäys
+                                                                       
+                                                                        tiedosto.txt | 1 +
+                                                                         toinen.txt   | 0
+                                                                          2 files changed, 1 insertion(+)
+                                                                          
+                                                                          commit 692910e7698652c46dc39054fad4d209f80214e9
+                                                                          Author: Heidi <heidi.hassinen@helsinki.fi>
+                                                                          Date:   Mon Mar 19 09:38:48 2018 +0200
+                                                                          
+                                                                              tiedosto.txt luotu
+                                                                              
+                                                                               tiedosto.txt | 0
+                                                                                1 file changed, 0 insertions(+), 0 deletions(-)
