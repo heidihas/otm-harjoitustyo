@@ -6,4 +6,4 @@ Täältä löytyy kurssilla **Ohjelmistotekniikan menetelmät** tehtyjä tehtäv
 
 ### Viikko 1
 
-[GitHub](https://github.com/heidihas/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+[komentorivi.txt](https://github.com/heidihas/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
