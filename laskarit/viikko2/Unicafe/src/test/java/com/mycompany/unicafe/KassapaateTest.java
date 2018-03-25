@@ -1,26 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mycompany.unicafe;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MaksukorttiTest {
-
-    Maksukortti kortti;
+/**
+ *
+ * @author Heidi
+ */
+public class KassapaateTest {
+    
+    Kassapaate paate;
 
     @Before
     public void setUp() {
-        kortti = new Maksukortti(10);
-    }
-
-    @Test
-    public void luotuKorttiOlemassa() {
-        assertTrue(kortti!=null);      
+        paate = new Kassapaate();    
     }
     
     @Test
-    public void saldoOikeinAlussa() {
-        assertEquals("saldo: 0.10", kortti.toString());
+    public void luotuKorttiOlemassa() {
+        assertTrue(paate!=null);      
+    }
+    
+    @Test
+    public void kassaRahaaOlemassa() {
+        assertEquals(1000, paate.kassassaRahaa());
+    }
+
+    @Test
+    public void edullisiaEiAlussa() {
+        assertEquals(0, paate.edullisiaLounaitaMyyty());
+    }
+    
+    @Test
+    public void maukkaitaEiAlussa() {
+        assertEquals(0, paate.maukkaitaLounaitaMyyty());
     }
     
     @Test
