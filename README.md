@@ -13,5 +13,5 @@ Ohessa kurssilla **Ohjelmistotekniikan menetelmät** tehdyt tehtävät *viikkoko
 ### Viikko 2
 
 [Maksukortti](https://github.com/heidihas/otm-harjoitustyo/tree/master/laskarit/viikko2/Maksukortti)
-[Unicafe]
+[Unicafe](https://github.com/heidihas/otm-harjoitustyo/tree/master/laskarit/viikko2/Unicafe)
 [Kattavuusraportti]
