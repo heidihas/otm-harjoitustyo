@@ -28,6 +28,14 @@ Pelin aikana pelaajat pyrkivät osumaan mailallaan liikkuvaan palloon, jolloin p
 
 ### Pelin jälkeen
 
-
+Pelin päätyttyä siirrytään automaattisesti loppusivulle, josta käy ilmi pelaajien menestys juuri pelatulla kierroksella. Loppusivu ilmoittaa voittajan nimen, pelaajien pistemäärät ja kaikkien aikojen parhaiten suoriutuneiden käyttäjänimien top5-listauksen. Loppusivulta on mahdollista siirtyä "Uusi pelikierros" -nappia painamalla uudelle pelikierrokselle. Tällöin käyttäjänimet pysyvät samoina. "Uusi peli" -nappia painamalla siirrytään aloitussivulle, jolloin käyttäjänimiä on mahdollista vaihtaa. "Sulje peli" -nappi puolestaan sammuttaa pelisovelluksen.
 
 ## Jatkokehitysideoita
+
+Perusversion jälkeen järjestelmää täydennetään ajan salliessa esimerkiksi seuraavilla toiminnallisuuksilla:
+
+* Pallon nopeus kasvaa pelikierroksen edetessä
+* Pallon alkunopeuden voi päättää pelin aloitussivulla vaikeusasteen mukaan (helppo, keski, vaikea)
+* Pallon alkunopeuden tulee vaikuttaa mailojen liikkeen nopeuteen
+* Tietokannasta löytyvien käyttäjänimien valitsemisen hienosäätö (miten valinta toteutetaan aloitussivulla)
+* Pelin pelaaminen yksin
