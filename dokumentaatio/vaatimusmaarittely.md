@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksessa on toteutettuna tuttu Pong-peli, jossa mailalaatikoiden avulla pyritään pitämään liikkuva pallo pelialueella. Pallon osuminen mailalaatikon takana olevaan seinään kasvattaa vastapelaajan pistemäärää. Peli päättyy jommankumman pelaajan voittoon eli pelaajan saavuttaessa ennalta määrätyn pistemäärän.
+Sovelluksessa on toteutettuna tuttu Pong-peli, jossa mailojen avulla pyritään pitämään liikkuva pallo pelialueella. Pallon osuminen mailan takana olevaan seinään kasvattaa vastapelaajan pistemäärää. Peli päättyy jommankumman pelaajan voittoon eli pelaajan saavuttaessa ennalta määrätyn pistemäärän.
 
 ## Käyttäjät
 
@@ -24,8 +24,10 @@ Pelin aloitussivulla kysytään pelaajien käyttäjänimiä. Jos pelaaja on pela
 
 ### Pelin aikana
 
-Pelin aikana 
+Pelin aikana pelaajat pyrkivät osumaan mailallaan liikkuvaan palloon, jolloin pallo kimpoaa vastapelaajan pelialueelle. Mikäli pelaajan maila ei ehdi kimmottaa palloa ennen sen osumista mailan takana olevaan seinään, saa vastapelaaja tästä pisteen. Pelin aikana saaduista pisteistä pidetään kirjaa pelisivun ylälaidassa. Kun jompikumpi pelaajista saa ennalta määrätyn pistemäärän, peli päättyy.
 
 ### Pelin jälkeen
+
+
 
 ## Jatkokehitysideoita
