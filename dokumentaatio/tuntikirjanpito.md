@@ -1,6 +1,6 @@
 # Työaikakirjanpito
 
-## Päivä | Aika | Mitä tein
+Päivä | Aika | Mitä tein
 
 ---------|------|----------
 
