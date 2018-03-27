@@ -4,9 +4,12 @@
 
 [Työaikakirjanpito](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
-Ohessa kurssilla **Ohjelmistotekniikan menetelmät** tehdyt tehtävät *viikkokohtaisina* tiedostoina
+[Vaatimusmäärittely](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
 
 ## Tehtävät
+
+Ohessa kurssilla **Ohjelmistotekniikan menetelmät** tehdyt tehtävät *viikkokohtaisina* tiedostoina
 
 ### Viikko 1
 
