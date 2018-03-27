@@ -1,5 +1,9 @@
 # Ohjelmistotekniikan menetelmät - harjoitustyö
 
+## Dokumentaatio
+
+[Työaikakirjanpito](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+
 Ohessa kurssilla **Ohjelmistotekniikan menetelmät** tehdyt tehtävät *viikkokohtaisina* tiedostoina
 
 ## Tehtävät
