@@ -2,7 +2,7 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksessa on toteutettuna tuttu Pong-peli, jossa ohjainlaatikoiden avulla pyritään pitämään liikkuva pallo pelialueella. Pallon osuminen jommankumman ohjainlaatikon viereiseen seinään kasvattaa vastapelaajan pistemäärää. Peli päättyy jommankumman pelaajan voittoon eli pelaajan saavuttaessa ennalta määrätyn pistemäärän.
+Sovelluksessa on toteutettuna tuttu Pong-peli, jossa mailalaatikoiden avulla pyritään pitämään liikkuva pallo pelialueella. Pallon osuminen mailalaatikon takana olevaan seinään kasvattaa vastapelaajan pistemäärää. Peli päättyy jommankumman pelaajan voittoon eli pelaajan saavuttaessa ennalta määrätyn pistemäärän.
 
 ## Käyttäjät
 
@@ -10,7 +10,11 @@ Sovellus ei vaadi erikseen kirjautumista, mutta peliin voi luoda oman käyttäj�
 
 ## Käyttöliittymäsuunnitelma
 
-Käyttöliittymä koostuu kolmesta eri näkymästä: aloitussivusta, itse pelistä ja pelin päättymistä seuraavasta sivusta. Aloitussivulla määritellään pelaajien käyttäjänimet. Pelisivulla tapahtuu pelin toteutus ja pelaajien pisteiden kerrytys, jonka jälkeen siirrytään pelin päätyttyä automaattisesti loppusivulle. Loppusivulla kerrotaan pelin voittaja, molempien pelaajien pistemäärät pelissä ja esitetään top5-lista kaikkien aikojen parhaiten suorituneista pelaajista pistemäärineen.
+Käyttöliittymä koostuu kolmesta eri näkymästä: aloitussivusta, itse pelistä ja pelin päättymistä seuraavasta sivusta. 
+
+* Aloitussivulla määritellään pelaajien käyttäjänimet. 
+* Pelisivulla tapahtuu pelin toteutus ja pelaajien pisteiden kerrytys, jonka jälkeen siirrytään pelin päätyttyä automaattisesti loppusivulle. 
+* Loppusivulla kerrotaan pelikierroksen voittaja, molempien pelaajien pistemäärät edeltäneen pelikierroksen lopussa ja esitetään top5-lista kaikkien aikojen parhaiten suorituneista pelaajista pistemäärineen. Loppusivulta voi siirtyä uudelle pelikierrokselle tai sammuttaa pelin.
 
 ## Perusversion tarjoama toiminnallisuus
 
