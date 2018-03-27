@@ -38,4 +38,5 @@ Perusversion jälkeen järjestelmää täydennetään ajan salliessa esimerkiksi
 * Pallon alkunopeuden voi päättää pelin aloitussivulla vaikeusasteen mukaan (helppo, keski, vaikea)
 * Pallon alkunopeuden tulee vaikuttaa mailojen liikkeen nopeuteen
 * Tietokannasta löytyvien käyttäjänimien valitsemisen hienosäätö (miten valinta toteutetaan aloitussivulla)
+* Miten toimitaan, jos käyttäjänimelle varattu syötekenttä jätetään tyhjäksi - nimetön-käyttäjä
 * Pelin pelaaminen yksin
