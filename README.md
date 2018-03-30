@@ -7,20 +7,20 @@
 [Työaikakirjanpito](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 
-## Tehtävät
+## Komentorivitoiminnot
 
-Ohessa kurssilla **Ohjelmistotekniikan menetelmät** tehdyt tehtävät *viikkokohtaisina* tiedostoina
+### Testaus
 
-### Viikko 1
+Testit suoritetaan komennolla
 
-[komentorivi.txt](https://github.com/heidihas/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+```
+mvn test
+```
 
-[gitlog.txt](https://github.com/heidihas/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+Testikattavuusraportti luodaan komennolla
 
-### Viikko 2
+```
+mvn jacoco:report
+```
 
-[Maksukortti](https://github.com/heidihas/otm-harjoitustyo/tree/master/laskarit/viikko2/Maksukortti)
-
-[Unicafe](https://github.com/heidihas/otm-harjoitustyo/tree/master/laskarit/viikko2/Unicafe)
-
-[Kattavuusraportti](https://github.com/heidihas/otm-harjoitustyo/blob/master/laskarit/viikko2/N%C3%A4ytt%C3%B6kuva%202018-3-25%20kello%2021.12.29.png)
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
