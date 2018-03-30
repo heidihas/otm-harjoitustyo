@@ -7,3 +7,4 @@ Päivä | Aika | Mitä tein
 27.3. | 4 | Aiheen päättäminen, dokumentaatio
 28.3. | 1 | Maven-projektin luominen
 29.3. | 4 | Pong-pelin perustoiminnallisuus
+30.3. | 1 | Ensimmäinen testi ja testikattavuus
