@@ -26,6 +26,30 @@ public class Score {
             rightPlayerScore++;
         }    
     }
+    
+    public void setLeftScore(int leftPlayerScore) {
+        this.leftPlayerScore = leftPlayerScore;
+    }
+    
+    public void setRightScore(int rightPlayerScore) {
+        this.rightPlayerScore = rightPlayerScore;
+    }
+    
+    public int getLeftScore() {
+        return this.leftPlayerScore;
+    }
+    
+    public int getRightScore() {
+        return this.rightPlayerScore;
+    }
+    
+    public String getLeftScoreString() {
+        return String.valueOf(this.leftPlayerScore);
+    }
+    
+    public String getRightScoreString() {
+        return String.valueOf(this.rightPlayerScore);
+    }
 
     @Override
     public String toString() {
