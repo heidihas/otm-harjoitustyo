@@ -8,3 +8,8 @@ Päivä | Aika | Mitä tein
 28.3. | 1 | Maven-projektin luominen
 29.3. | 4 | Pong-pelin perustoiminnallisuus
 30.3. | 1 | Ensimmäinen testi ja testikattavuus
+2.4. | 4 | Pallon nopeuden ja kimpoamisen korjauksia
+6.4. | 3 | AnimationTimeriin tutustuminen ja korjauksia
+8.4. | 5 | Graafinen käyttöliittymä: aloitus- ja lopetussivu
+8.4. | 3 | Buttonien haluttu toiminta, uusi pelikierros
+9.4. | 1 | Lisää testejä
