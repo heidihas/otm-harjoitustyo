@@ -13,3 +13,4 @@ Päivä | Aika | Mitä tein
 8.4. | 5 | Graafinen käyttöliittymä: aloitus- ja lopetussivu
 8.4. | 3 | Buttonien haluttu toiminta, uusi pelikierros
 9.4. | 1 | Lisää testejä
+12.4. | 2 | Loput testit ja Checkstyle
