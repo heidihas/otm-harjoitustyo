@@ -37,7 +37,7 @@ import pong.domain.Score;
  *
  * @author Heidi
  */
-public class PongApplication extends Application{
+public class PongApplication extends Application {
     // 1) Perustoiminta
     // pallo nopeutuu
     // mailojen reunat kimmottavat
@@ -55,11 +55,11 @@ public class PongApplication extends Application{
     // valittavissa pelin päättymispisteet
     
     // 5) Dokumentointi
-    // sovelluslogiikka eri tiedostoissa
-    // testit
+    // VIIKKO4!! sovelluslogiikka eri tiedostoissa: jaa lyhyempiin metodeihin
+    // VIIKKO4!! testit käyttöliittymään?
     // virhetilanteet (kuten ei nimetöntä)
     
-    
+    // start liian pitkä!!
     public void start(Stage stage) {
         final int gameWidth = 640;
         final int gameHeight = 480;
@@ -182,6 +182,7 @@ public class PongApplication extends Application{
         AnimationTimer animationTimer = new AnimationTimer() {
             private long sleepNanoseconds = 1000000000 * 1000000;
             private long prevTime = 0;
+            // handle liian pitkä!!!
             public void handle(long currentNanoTime) {
                 // increase the speed of ball and paddles
                 /*if ((currentNanoTime - prevTime) >= sleepNanoseconds) {
@@ -202,7 +203,7 @@ public class PongApplication extends Application{
                 // draw player names
                 graphics.setFill(Color.INDIANRED);
                 graphics.fillText(player1.getText(), 100, 40);
-                graphics.fillText(player2.getText(), (540-player2.getPreferredSize().getWidth()), 40);
+                graphics.fillText(player2.getText(), (540 - player2.getPreferredSize().getWidth()), 40);
                 
                 // draw left paddle
                 graphics.setFill(leftPaddle.getColor());
@@ -218,19 +219,19 @@ public class PongApplication extends Application{
 
                 // move paddles
                 if (paddleMovements.get(0) == 1) {
-                    leftPaddle.setY(leftPaddle.getY() + (int)movementPaddles.getMovementX());
+                    leftPaddle.setY(leftPaddle.getY() + (int) movementPaddles.getMovementX());
                 }
 
                 if (paddleMovements.get(1) == 1) {
-                    leftPaddle.setY(leftPaddle.getY() - (int)movementPaddles.getMovementX());
+                    leftPaddle.setY(leftPaddle.getY() - (int) movementPaddles.getMovementX());
                 }
 
                 if (paddleMovements.get(2) == 1) {
-                    rightPaddle.setY(rightPaddle.getY() + (int)movementPaddles.getMovementX());
+                    rightPaddle.setY(rightPaddle.getY() + (int) movementPaddles.getMovementX());
                 }
                 
                 if (paddleMovements.get(3) == 1) {
-                    rightPaddle.setY(rightPaddle.getY() - (int)movementPaddles.getMovementX());
+                    rightPaddle.setY(rightPaddle.getY() - (int) movementPaddles.getMovementX());
                 }
 
                 // move ball
@@ -242,7 +243,7 @@ public class PongApplication extends Application{
                     movementBall.setMovementY(-1 * movementBall.getMovementY());
                 }*/
                 
-                if (!leftPaddle.outside((int)ball.getX(), (int)ball.getY())) { 
+                if (!leftPaddle.outside((int) ball.getX(), (int) ball.getY())) { 
                     movementBall.setMovementX(-1 * movementBall.getMovementX()); 
                 } 
                 
@@ -251,7 +252,7 @@ public class PongApplication extends Application{
                     movementBall.setMovementY(-1 * movementBall.getMovementY());
                 }*/
                 
-                if (!rightPaddle.outside((int)ball.getX()+rightPaddle.getWidth(), (int)ball.getY())) { 
+                if (!rightPaddle.outside((int) ball.getX() + rightPaddle.getWidth(), (int) ball.getY())) { 
                     movementBall.setMovementX(-1 * movementBall.getMovementX());
                 } 
                 
@@ -362,7 +363,7 @@ public class PongApplication extends Application{
         
         stage.show();
     }
-
+    // keyboardSetUp liian pitkä!!!
     private void keyboardSetUp(Scene scene, ArrayList<Integer> paddleMovements) {
         scene.setOnKeyPressed((KeyEvent e) -> {
             if (e.getCode() == KeyCode.S) {

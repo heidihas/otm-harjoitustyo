@@ -29,11 +29,11 @@ public class Paddle {
     
     // tells whether the given point is outside of the paddle
     public boolean outside(int x, int y) {
-        if(x < this.x || x > this.x + this.width) {
+        if (x < this.x || x > this.x + this.width) {
             return true;
         }
         
-        if(y < this.y || y > this.y + this.height) {
+        if (y < this.y || y > this.y + this.height) {
             return true;
         }
         
