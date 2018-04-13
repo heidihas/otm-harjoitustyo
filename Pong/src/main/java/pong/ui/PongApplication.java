@@ -6,7 +6,11 @@
 package pong.ui;
 
 
+import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -28,9 +32,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.swing.JLabel;
+import pong.dao.PlayerDao;
+import pong.database.Database;
 import pong.domain.Ball;
 import pong.domain.Movement;
 import pong.domain.Paddle;
+import pong.domain.Player;
 import pong.domain.Score;
 
 /**
@@ -38,41 +45,72 @@ import pong.domain.Score;
  * @author Heidi
  */
 public class PongApplication extends Application {
+    /* Tehtävää:
+    - tee arkkitehtuurikuva
+    - kysy:
+        sovelluslogiikka erillään
+        testit käyttöliittymään
+        liian pitkät metodit
+    - pallo nopeutuu
+    - mailojen reunat
+    - vika sivu visuaalisesti ja tilastointi
+    */
+    
     // 1) Perustoiminta
-    // pallo nopeutuu
-    // mailojen reunat kimmottavat
+    // VIIKKO4!! pallo nopeutuu
+    // VIIKKO4!! mailojen reunat kimmottavat
     
     // 2) Tietokanta
-    // tietokannan käyttöönotto
-    // olemassaolevien käyttäjänimien valinta?
-    // tilastointi
+    // VIIKKO4!! tilastointi
     
     // 3) Hienosäätö visuaalisesti
-    // lopetussivun visuaalinen hienosäätö
+    // VIIKKO4!! lopetussivun visuaalinen hienosäätö
     
     // 4) Jos jää aikaa
     // valittavissa oleva aloitusnopeus
     // valittavissa pelin päättymispisteet
+    // olemassaolevan käyttäjänimen valinta?
     
     // 5) Dokumentointi
     // VIIKKO4!! sovelluslogiikka eri tiedostoissa: jaa lyhyempiin metodeihin
     // VIIKKO4!! testit käyttöliittymään?
-    // virhetilanteet (kuten ei nimetöntä)
     
     // start liian pitkä!!
+    
+    public Database setUpDatabase() throws Throwable {
+        File file = new File("db", "player.db");
+        Database database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
+        return database;
+    }
+    
     public void start(Stage stage) {
+        
+        // set database
+        Database database = new Database();
+        try {
+            database = setUpDatabase();
+        } catch (Throwable ex) {
+            Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PlayerDao dao = new PlayerDao(database);
+        
+        // screen set-up
         final int gameWidth = 640;
         final int gameHeight = 480;
 
         stage.setTitle("Pong");
 
-        // first page scene setup
+        // first page scene set-up
         Image image = new Image("file:pong.png");
         Label text = new Label("Player names");
         Label text1 = new Label("Player 1: ");
         TextField name1 = new TextField();
+        Label error1 = new Label("");
+        error1.setTextFill(Color.INDIANRED);
         Label text2 = new Label("Player 2: ");
         TextField name2 = new TextField();
+        Label error2 = new Label("");
+        error2.setTextFill(Color.INDIANRED);
         Button startButton = new Button("Start");
         
         GridPane gridStart = new GridPane();
@@ -89,8 +127,10 @@ public class PongApplication extends Application {
         grid.add(text, 0, 0);
         grid.add(text1, 0, 1);
         grid.add(name1, 1, 1);
+        grid.add(error1, 2, 1);
         grid.add(text2, 0, 2);
         grid.add(name2, 1, 2);
+        grid.add(error2, 2, 2);
         grid.add(startButton, 1, 5);
         
         grid.setPrefSize(640, 180);
@@ -108,7 +148,7 @@ public class PongApplication extends Application {
         Scene firstScene = new Scene(border);
         stage.setScene(firstScene);
         
-        // last page scene setup
+        // last page scene set-up
         Label winnerName = new Label("");
         winnerName.setTextFill(Color.RED);
         Label lastText = new Label("won the round with the score");
@@ -136,7 +176,7 @@ public class PongApplication extends Application {
         
         Scene lastScene = new Scene(gridLast);
         
-        // game scene setup
+        // game scene set-up
         Group root = new Group();
         Scene gameScene = new Scene(root);
 
@@ -145,11 +185,11 @@ public class PongApplication extends Application {
 
         GraphicsContext graphics = canvas.getGraphicsContext2D();
         
-        // setup player names
+        // set-up player names
         JLabel player1 = new JLabel("");
         JLabel player2 = new JLabel("");
         
-        // setup score
+        // set-up score
         Score score = new Score(0, 0);
 
         // create paddle for right player
@@ -161,10 +201,9 @@ public class PongApplication extends Application {
         // create ball
         Ball ball = new Ball(gameWidth / 2, gameHeight / 2, 10);
         
-        // setup movements
+        // set-up movements
         Movement movementBall = new Movement(2.5, 2.5);
         Movement movementPaddles = new Movement(4.0, 4.0);
-        
         
         ArrayList<Integer> paddleMovements = new ArrayList<>();
         // index 0 and 1 tell whether left paddle moves up or down
@@ -290,24 +329,60 @@ public class PongApplication extends Application {
                 }
                 
                 if (score.getLeftScore() == 2 || score.getRightScore() == 2) {
-                    stop();
-                    if (score.getLeftScore() > score.getRightScore()) {
-                        winnerName.setText(name1.getText());
-                        winnerScore.setText(score.getLeftScoreString());
-                    } else {
-                        winnerName.setText(name2.getText());
-                        winnerScore.setText(score.getRightScoreString());
+                    try {
+                        stop();
+                        if (score.getLeftScore() > score.getRightScore()) {
+                            winnerName.setText(name1.getText());
+                            winnerScore.setText(score.getLeftScoreString());
+                        } else {
+                            winnerName.setText(name2.getText());
+                            winnerScore.setText(score.getRightScoreString());
+                        }
+                        // lisää top5
+                        Player n1 = new Player(0, name1.getText(), score.getLeftScore());
+                        Player n2 = new Player(1, name2.getText(), score.getRightScore());
+                        dao.saveOrUpdate(n1);
+                        dao.saveOrUpdate(n2);
+                        stage.setScene(lastScene);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    stage.setScene(lastScene);
                 }
             }
         };
 
         startButton.setOnAction((event) -> {
-            player1.setText("Player 1: " + name1.getText());
-            player2.setText("Player 2: " + name2.getText());
-            stage.setScene(gameScene);
-            animationTimer.start();
+            if (name1.getText().length() > 8 || name2.getText().length() > 8 
+                    || name1.getText().isEmpty() || name2.getText().isEmpty()) {
+                error1.setText("");
+                error2.setText("");
+                if ((name1.getText().length() > 8 || name1.getText().length() == 0) 
+                    && (name2.getText().length() > 8 || name2.getText().length() == 0)) {
+                    error1.setText("Maximum 8 characters");
+                    error2.setText("Maximum 8 characters");
+                    name1.setText("");
+                    name2.setText("");
+                } else if (name1.getText().length() > 8 || name1.getText().length() == 0) {
+                    error1.setText("Maximum 8 characters");
+                    name1.setText("");
+                } else if (name2.getText().length() > 8 || name2.getText().length() == 0) {
+                    error2.setText("Maximum 8 characters");
+                    name2.setText("");
+                }
+            } else {
+                try {
+                    Player p1 = new Player(0, name1.getText(), 0);
+                    Player p2 = new Player(0, name2.getText(), 0);
+                    dao.saveOrUpdate(p1);
+                    dao.saveOrUpdate(p2);
+                    player1.setText("Player 1: " + name1.getText());
+                    player2.setText("Player 2: " + name2.getText());
+                    stage.setScene(gameScene);
+                    animationTimer.start();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
         });
         
         restartButton.setOnAction((event) -> {
