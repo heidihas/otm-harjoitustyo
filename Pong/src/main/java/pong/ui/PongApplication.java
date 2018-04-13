@@ -9,6 +9,7 @@ package pong.ui;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
@@ -29,7 +30,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javax.swing.JLabel;
 import pong.dao.PlayerDao;
@@ -53,20 +57,14 @@ public class PongApplication extends Application {
         liian pitkät metodit
     - pallo nopeutuu
     - mailojen reunat
-    - vika sivu visuaalisesti ja tilastointi
     */
     
     // 1) Perustoiminta
-    // VIIKKO4!! pallo nopeutuu
     // VIIKKO4!! mailojen reunat kimmottavat
     
-    // 2) Tietokanta
-    // VIIKKO4!! tilastointi
-    
-    // 3) Hienosäätö visuaalisesti
-    // VIIKKO4!! lopetussivun visuaalinen hienosäätö
-    
     // 4) Jos jää aikaa
+    // VIIKKO4!! pallo nopeutuu
+    // pallon alkusuunta on satunnainen
     // valittavissa oleva aloitusnopeus
     // valittavissa pelin päättymispisteet
     // olemassaolevan käyttäjänimen valinta?
@@ -151,30 +149,90 @@ public class PongApplication extends Application {
         // last page scene set-up
         Label winnerName = new Label("");
         winnerName.setTextFill(Color.RED);
-        Label lastText = new Label("won the round with the score");
-        Label winnerScore = new Label("");
-        Label mark = new Label("!");
+        winnerName.setFont(new Font ("Arial", 30));
+        Label lastText = new Label("won the round!");
+        Label top5 = new Label("Top 5 players");
+        Label fir = new Label("1");
+        Label sec = new Label("2");
+        Label thir = new Label("3");
+        Label fou = new Label("4");
+        Label fiv = new Label("5");
+        Label firName = new Label(" - ");
+        Label secName = new Label(" - ");
+        Label thirName = new Label(" - ");
+        Label fouName = new Label(" - ");
+        Label fivName = new Label(" - ");
+        Label firScore = new Label(" - ");
+        Label secScore = new Label(" - ");
+        Label thirScore = new Label(" - ");
+        Label fouScore = new Label(" - ");
+        Label fivScore = new Label(" - ");
         Button restartButton = new Button("Re-start");
         Button newGameButton = new Button("New game");
         Button endGameButton = new Button("End game");
         
-        GridPane gridLast = new GridPane();
+        VBox winnerText = new VBox();
         
-        gridLast.add(winnerName, 1, 0);
-        gridLast.add(lastText, 0, 2);
-        gridLast.add(winnerScore, 1, 3);
-        gridLast.add(mark, 1, 4);
-        gridLast.add(restartButton, 0, 7);
-        gridLast.add(newGameButton, 0, 8);
-        gridLast.add(endGameButton, 0, 9);
+        winnerText.getChildren().add(winnerName);
+        winnerText.getChildren().add(lastText);
         
-        gridLast.setPrefSize(640, 480);
-        gridLast.setAlignment(Pos.CENTER);
-        gridLast.setVgap(10);
-        gridLast.setHgap(10);
-        gridLast.setPadding(new Insets(20, 20, 20, 20));
+        winnerText.setPrefSize(640, 150);
+        winnerText.setSpacing(20);
+        winnerText.setAlignment(Pos.CENTER);
+        winnerText.setPadding(new Insets(20, 20, 20, 20));
         
-        Scene lastScene = new Scene(gridLast);
+        GridPane gridTop = new GridPane();
+        
+        gridTop.add(fir, 0, 0);
+        gridTop.add(sec, 0, 1);
+        gridTop.add(thir, 0, 2);
+        gridTop.add(fou, 0, 3);
+        gridTop.add(fiv, 0, 4);
+        gridTop.add(firName, 1, 0);
+        gridTop.add(secName, 1, 1);
+        gridTop.add(thirName, 1, 2);
+        gridTop.add(fouName, 1, 3);
+        gridTop.add(fivName, 1, 4);
+        gridTop.add(firScore, 2, 0);
+        gridTop.add(secScore, 2, 1);
+        gridTop.add(thirScore, 2, 2);
+        gridTop.add(fouScore, 2, 3);
+        gridTop.add(fivScore, 2, 4);
+        
+        gridTop.setPrefSize(640, 180);
+        gridTop.setAlignment(Pos.CENTER);
+        gridTop.setVgap(10);
+        gridTop.setHgap(30);
+        gridTop.setPadding(new Insets(0, 20, 20, 20));
+        
+        VBox topFive = new VBox();
+        
+        topFive.getChildren().add(top5);
+        topFive.getChildren().add(gridTop);
+        
+        topFive.setPrefSize(640, 200);
+        topFive.setSpacing(20);
+        topFive.setAlignment(Pos.CENTER);
+        topFive.setPadding(new Insets(20, 20, 20, 20));
+        
+        HBox buttons = new HBox();
+        
+        buttons.getChildren().add(restartButton);
+        buttons.getChildren().add(newGameButton);
+        buttons.getChildren().add(endGameButton);
+        
+        buttons.setSpacing(10);
+        buttons.setAlignment(Pos.CENTER);
+        buttons.setPadding(new Insets(58, 20, 30, 20));
+        
+        BorderPane borderLast = new BorderPane();
+        borderLast.prefHeight(gameHeight);
+        borderLast.prefWidth(gameWidth);
+        borderLast.setTop(winnerText);
+        borderLast.setCenter(topFive);
+        borderLast.setBottom(buttons);
+        
+        Scene lastScene = new Scene(borderLast);
         
         // game scene set-up
         Group root = new Group();
@@ -333,16 +391,35 @@ public class PongApplication extends Application {
                         stop();
                         if (score.getLeftScore() > score.getRightScore()) {
                             winnerName.setText(name1.getText());
-                            winnerScore.setText(score.getLeftScoreString());
                         } else {
                             winnerName.setText(name2.getText());
-                            winnerScore.setText(score.getRightScoreString());
                         }
                         // lisää top5
                         Player n1 = new Player(0, name1.getText(), score.getLeftScore());
                         Player n2 = new Player(1, name2.getText(), score.getRightScore());
                         dao.saveOrUpdate(n1);
                         dao.saveOrUpdate(n2);
+                        List<Player> topFivePlayers = dao.findFiveTop();
+                        int i = 0;
+                        while (topFivePlayers.size() > i) {
+                            if (i == 0) {
+                                firName.setText(topFivePlayers.get(0).getName());
+                                firScore.setText(topFivePlayers.get(0).getScoreString());
+                            } else if (i == 1) {
+                                secName.setText(topFivePlayers.get(1).getName());
+                                secScore.setText(topFivePlayers.get(1).getScoreString());
+                            } else if (i == 2) {
+                                thirName.setText(topFivePlayers.get(2).getName());
+                                thirScore.setText(topFivePlayers.get(2).getScoreString());
+                            } else if (i == 3) {
+                                fouName.setText(topFivePlayers.get(3).getName());
+                                fouScore.setText(topFivePlayers.get(3).getScoreString());
+                            } else if (i == 4) {
+                                fivName.setText(topFivePlayers.get(4).getName());
+                                fivScore.setText(topFivePlayers.get(4).getScoreString());
+                            }
+                            i++;
+                        }
                         stage.setScene(lastScene);
                     } catch (SQLException ex) {
                         Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);

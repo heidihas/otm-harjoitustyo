@@ -43,7 +43,7 @@ public class PlayerDao {
         List<Player> players = new ArrayList<>();
         
         try (Connection conn = database.getConnection();
-                ResultSet result = conn.prepareStatement("SELECT id AD id, name AS name, score AS score FROM Player GROUP BY name ORDER BY score DESC LIMIT 5").executeQuery()) {
+                ResultSet result = conn.prepareStatement("SELECT id AS id, name AS name, score AS score FROM Player GROUP BY name ORDER BY score DESC LIMIT 5").executeQuery()) {
             
             while (result.next()) {
                 players.add(new Player(result.getInt("id"), result.getString("name"), result.getInt("score")));

@@ -32,6 +32,10 @@ public class Player {
         return this.score;
     }
     
+    public String getScoreString() {
+        return String.valueOf(this.score);
+    }
+    
     public void increseScore(int score) {
         this.score += score;
     }
