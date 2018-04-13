@@ -14,3 +14,5 @@ Päivä | Aika | Mitä tein
 8.4. | 3 | Buttonien haluttu toiminta, uusi pelikierros
 9.4. | 1 | Lisää testejä
 12.4. | 2 | Loput testit ja Checkstyle
+12.4. | 3 | Tietokannan valmistelu
+13.4. | 2 | Pelaajien tallennus ja pisteiden päivitys tietokantaan
