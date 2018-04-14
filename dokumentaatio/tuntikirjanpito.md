@@ -16,3 +16,5 @@ Päivä | Aika | Mitä tein
 12.4. | 2 | Loput testit ja Checkstyle
 12.4. | 3 | Tietokannan valmistelu
 13.4. | 2 | Pelaajien tallennus ja pisteiden päivitys tietokantaan
+13.4. | 2 | Top5-listan tulostus, loppusivun visuaalisuus
+14.4. | 4 | Sovelluslogiikan eriyttäminen
