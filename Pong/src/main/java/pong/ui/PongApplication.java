@@ -53,6 +53,7 @@ import pong.logics.PongLogics;
 public class PongApplication extends Application {
     /* Tehtävää viikko 4:
     - tee arkkitehtuurikuva
+    - testejä lisää
     */
     
     // 1) Perustoiminta
@@ -64,11 +65,10 @@ public class PongApplication extends Application {
     // valittavissa pelin päättymispisteet
     // olemassaolevan käyttäjänimen valinta
     
-    // 3) Dokumentointi
-    /* 
-    kaikki daoihin liittyvä -> PongLogics pong.logics
-    */
-    // testit sovelluslogiikkaan!!!!
+    // 3) Luettavuus - viikko7
+    // kaikki daoihin liittyvä -> PongLogics pong.logics
+    // tarkista metodien ulkoasu, kirjoita tarvittavia kuvauksia
+    // kaikki englanniksi
     
     
     public void start(Stage stage) {
