@@ -10,6 +10,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
@@ -43,56 +44,45 @@ import pong.domain.Movement;
 import pong.domain.Paddle;
 import pong.domain.Player;
 import pong.domain.Score;
+import pong.logics.PongLogics;
 
 /**
  *
  * @author Heidi
  */
 public class PongApplication extends Application {
-    /* Tehtävää:
+    /* Tehtävää viikko 4:
     - tee arkkitehtuurikuva
-    - kysy:
-        sovelluslogiikka erillään
-        testit käyttöliittymään
-        liian pitkät metodit
-    - pallo nopeutuu
-    - mailojen reunat
     */
     
     // 1) Perustoiminta
-    // VIIKKO4!! mailojen reunat kimmottavat
+    // mailojen reunat kimmottavat
     
-    // 4) Jos jää aikaa
-    // VIIKKO4!! pallo nopeutuu
-    // pallon alkusuunta on satunnainen
+    // 2) Jos jää aikaa
+    // pallo nopeutuu
     // valittavissa oleva aloitusnopeus
     // valittavissa pelin päättymispisteet
-    // olemassaolevan käyttäjänimen valinta?
+    // olemassaolevan käyttäjänimen valinta
     
-    // 5) Dokumentointi
-    // VIIKKO4!! sovelluslogiikka eri tiedostoissa: jaa lyhyempiin metodeihin
-    // VIIKKO4!! testit käyttöliittymään?
+    // 3) Dokumentointi
+    /* 
+    kaikki daoihin liittyvä -> PongLogics pong.logics
+    */
+    // testit sovelluslogiikkaan!!!!
     
-    // start liian pitkä!!
-    
-    public Database setUpDatabase() throws Throwable {
-        File file = new File("db", "player.db");
-        Database database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
-        return database;
-    }
     
     public void start(Stage stage) {
         
-        // set database
+        // database set-up
         Database database = new Database();
         try {
-            database = setUpDatabase();
+            database = databaseSetUp();
         } catch (Throwable ex) {
             Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
         PlayerDao dao = new PlayerDao(database);
         
-        // screen set-up
+        // window set-up
         final int gameWidth = 640;
         final int gameHeight = 480;
 
@@ -152,11 +142,11 @@ public class PongApplication extends Application {
         winnerName.setFont(new Font ("Arial", 30));
         Label lastText = new Label("won the round!");
         Label top5 = new Label("Top 5 players");
-        Label fir = new Label("1");
-        Label sec = new Label("2");
-        Label thir = new Label("3");
-        Label fou = new Label("4");
-        Label fiv = new Label("5");
+        Label fir = new Label("1.");
+        Label sec = new Label("2.");
+        Label thir = new Label("3.");
+        Label fou = new Label("4.");
+        Label fiv = new Label("5.");
         Label firName = new Label(" - ");
         Label secName = new Label(" - ");
         Label thirName = new Label(" - ");
@@ -243,24 +233,27 @@ public class PongApplication extends Application {
 
         GraphicsContext graphics = canvas.getGraphicsContext2D();
         
-        // set-up player names
+        // player names set-up
         JLabel player1 = new JLabel("");
         JLabel player2 = new JLabel("");
         
-        // set-up score
+        // score set-up
         Score score = new Score(0, 0);
 
-        // create paddle for right player
+        // right paddle set-up
         Paddle rightPaddle = new Paddle(615, gameHeight / 2 - 40, 20, 80, Color.BURLYWOOD);
 
-        // create paddle for left player
+        // left paddle set-up
         Paddle leftPaddle = new Paddle(5, gameHeight / 2 - 40, 20, 80, Color.BURLYWOOD);
 
-        // create ball
+        // ball set-up
         Ball ball = new Ball(gameWidth / 2, gameHeight / 2, 10);
         
-        // set-up movements
-        Movement movementBall = new Movement(2.5, 2.5);
+        // movement set-up, random direction for ball
+        Random random = new Random();
+        double p = Math.pow(-1, random.nextInt());
+        
+        Movement movementBall = new Movement(p * 2.5, p * 2.5);
         Movement movementPaddles = new Movement(4.0, 4.0);
         
         ArrayList<Integer> paddleMovements = new ArrayList<>();
@@ -276,10 +269,15 @@ public class PongApplication extends Application {
         // right paddle moves with up and down
         // left paddle moves with w and s 
         
+        // logics and winning score set-up
+        PongLogics logics = new PongLogics(score, leftPaddle, rightPaddle, ball, 
+                movementPaddles, movementBall, paddleMovements, dao, database);
+        logics.setWinningScore(2);
+        
         AnimationTimer animationTimer = new AnimationTimer() {
             private long sleepNanoseconds = 1000000000 * 1000000;
             private long prevTime = 0;
-            // handle liian pitkä!!!
+            
             public void handle(long currentNanoTime) {
                 // increase the speed of ball and paddles
                 /*if ((currentNanoTime - prevTime) >= sleepNanoseconds) {
@@ -315,78 +313,25 @@ public class PongApplication extends Application {
                 graphics.fillOval(ball.getX(), ball.getY(), ball.getRadius() * 2, ball.getRadius() * 2);
 
                 // move paddles
-                if (paddleMovements.get(0) == 1) {
-                    leftPaddle.setY(leftPaddle.getY() + (int) movementPaddles.getMovementX());
-                }
-
-                if (paddleMovements.get(1) == 1) {
-                    leftPaddle.setY(leftPaddle.getY() - (int) movementPaddles.getMovementX());
-                }
-
-                if (paddleMovements.get(2) == 1) {
-                    rightPaddle.setY(rightPaddle.getY() + (int) movementPaddles.getMovementX());
-                }
-                
-                if (paddleMovements.get(3) == 1) {
-                    rightPaddle.setY(rightPaddle.getY() - (int) movementPaddles.getMovementX());
-                }
+                logics.movePaddles();
 
                 // move ball
-                ball.move(movementBall);
+                logics.moveBall();
 
                 // check if ball hits paddle
-                /*if ((((int)ball.getY() >= leftPaddle.getY()) && ((int)ball.getY() <= (leftPaddle.getY()+leftPaddle.getHeight()))) && !leftPaddle.outside((int)ball.getX(), (int)ball.getY())) { 
-                    movementBall.setMovementX(-1 * movementBall.getMovementX());
-                    movementBall.setMovementY(-1 * movementBall.getMovementY());
-                }*/
-                
-                if (!leftPaddle.outside((int) ball.getX(), (int) ball.getY())) { 
-                    movementBall.setMovementX(-1 * movementBall.getMovementX()); 
-                } 
-                
-                /*if (((int)ball.getX() > 615) && !rightPaddle.outside((int)ball.getX(), (int)ball.getY())) { 
-                    movementBall.setMovementX(-1 * movementBall.getMovementX());
-                    movementBall.setMovementY(-1 * movementBall.getMovementY());
-                }*/
-                
-                if (!rightPaddle.outside((int) ball.getX() + rightPaddle.getWidth(), (int) ball.getY())) { 
-                    movementBall.setMovementX(-1 * movementBall.getMovementX());
-                } 
+                logics.ballHitsPaddle();
                 
                 // check if paddles stay on game board
-                if (leftPaddle.getY() < 0) { 
-                    leftPaddle.setY(0);
-                }
-                
-                if ((leftPaddle.getY() + leftPaddle.getHeight()) > gameHeight) {
-                    leftPaddle.setY(gameHeight - leftPaddle.getHeight());
-                }
-                
-                if (rightPaddle.getY() < 0) { 
-                    rightPaddle.setY(0);
-                }
-                
-                if ((rightPaddle.getY() + rightPaddle.getHeight()) > gameHeight) {
-                    rightPaddle.setY(gameHeight - rightPaddle.getHeight());
-                }
+                logics.paddlesOnBoard(gameHeight);
 
                 // check if ball hits the up or down edge of the game board
-                if (ball.getY() < 0 || (ball.getY() + ball.getRadius() * 2) > gameHeight) {
-                    movementBall.setMovementY(-1 * movementBall.getMovementY());
-                }
+                logics.ballHitsUpOrDown(gameHeight);
 
                 // check if ball hits the left or right edge of the game board
-                if (ball.getX() < 0) {
-                    movementBall.setMovementX(-1 * movementBall.getMovementX());
-                    score.increse(0);
-                }
+                logics.ballHitsLeftOrRight(gameWidth);
                 
-                if (ball.getX() + ball.getRadius() * 2 > gameWidth) {
-                    movementBall.setMovementX(-1 * movementBall.getMovementX());
-                    score.increse(1);
-                }
-                
-                if (score.getLeftScore() == 2 || score.getRightScore() == 2) {
+                // update scores and toplist when player wins
+                if (logics.playerWon()) {
                     try {
                         stop();
                         if (score.getLeftScore() > score.getRightScore()) {
@@ -394,32 +339,16 @@ public class PongApplication extends Application {
                         } else {
                             winnerName.setText(name2.getText());
                         }
-                        // lisää top5
+                        
                         Player n1 = new Player(0, name1.getText(), score.getLeftScore());
                         Player n2 = new Player(1, name2.getText(), score.getRightScore());
+                        
                         dao.saveOrUpdate(n1);
                         dao.saveOrUpdate(n2);
-                        List<Player> topFivePlayers = dao.findFiveTop();
-                        int i = 0;
-                        while (topFivePlayers.size() > i) {
-                            if (i == 0) {
-                                firName.setText(topFivePlayers.get(0).getName());
-                                firScore.setText(topFivePlayers.get(0).getScoreString());
-                            } else if (i == 1) {
-                                secName.setText(topFivePlayers.get(1).getName());
-                                secScore.setText(topFivePlayers.get(1).getScoreString());
-                            } else if (i == 2) {
-                                thirName.setText(topFivePlayers.get(2).getName());
-                                thirScore.setText(topFivePlayers.get(2).getScoreString());
-                            } else if (i == 3) {
-                                fouName.setText(topFivePlayers.get(3).getName());
-                                fouScore.setText(topFivePlayers.get(3).getScoreString());
-                            } else if (i == 4) {
-                                fivName.setText(topFivePlayers.get(4).getName());
-                                fivScore.setText(topFivePlayers.get(4).getScoreString());
-                            }
-                            i++;
-                        }
+                        
+                        drawFiveTop(dao, firName, firScore, secName, secScore, 
+                                thirName, thirScore, fouName, fouScore, fivName, fivScore);
+                        
                         stage.setScene(lastScene);
                     } catch (SQLException ex) {
                         Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
@@ -428,22 +357,26 @@ public class PongApplication extends Application {
             }
         };
 
-        startButton.setOnAction((event) -> {
-            if (name1.getText().length() > 8 || name2.getText().length() > 8 
-                    || name1.getText().isEmpty() || name2.getText().isEmpty()) {
+        startButton.setOnAction((event) -> {    
+            // print error messages
+            if (nameError(name1) || nameError(name2)) {
                 error1.setText("");
                 error2.setText("");
-                if ((name1.getText().length() > 8 || name1.getText().length() == 0) 
-                    && (name2.getText().length() > 8 || name2.getText().length() == 0)) {
-                    error1.setText("Maximum 8 characters");
-                    error2.setText("Maximum 8 characters");
+                String errorMessage = "Maximum 8 characters";
+                
+                if (nameError(name1) && nameError(name2)) {
+                    error1.setText(errorMessage);
+                    error2.setText(errorMessage);
+                    
                     name1.setText("");
                     name2.setText("");
-                } else if (name1.getText().length() > 8 || name1.getText().length() == 0) {
-                    error1.setText("Maximum 8 characters");
+                    
+                } else if (nameError(name1)) {
+                    error1.setText(errorMessage);
                     name1.setText("");
-                } else if (name2.getText().length() > 8 || name2.getText().length() == 0) {
-                    error2.setText("Maximum 8 characters");
+                    
+                } else if (nameError(name2)) {
+                    error2.setText(errorMessage);
                     name2.setText("");
                 }
             } else {
@@ -452,10 +385,13 @@ public class PongApplication extends Application {
                     Player p2 = new Player(0, name2.getText(), 0);
                     dao.saveOrUpdate(p1);
                     dao.saveOrUpdate(p2);
+                    
                     player1.setText("Player 1: " + name1.getText());
                     player2.setText("Player 2: " + name2.getText());
+                    
                     stage.setScene(gameScene);
                     animationTimer.start();
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -463,49 +399,19 @@ public class PongApplication extends Application {
         });
         
         restartButton.setOnAction((event) -> {
-            score.setLeftScore(0);
-            score.setRightScore(0);
-            rightPaddle.setX(615);
-            rightPaddle.setY(gameHeight / 2 - 40);
-            leftPaddle.setX(5);
-            leftPaddle.setY(gameHeight / 2 - 40);
-            movementPaddles.setMovementX(4.0);
-            movementPaddles.setMovementY(4.0);
-            ball.setX(gameWidth / 2);
-            ball.setY(gameHeight / 2);
-            movementBall.setMovementX(2.5);
-            movementBall.setMovementY(2.5);
-            paddleMovements.removeAll(paddleMovements);
-            paddleMovements.add(0);
-            paddleMovements.add(0);
-            paddleMovements.add(0);
-            paddleMovements.add(0);
-            keyboardSetUp(gameScene, paddleMovements);
+            resetGame(gameHeight, gameWidth, score, rightPaddle, leftPaddle, 
+                    movementPaddles, ball, movementBall, paddleMovements);
             stage.setScene(gameScene);
             animationTimer.start();
         });
         
         newGameButton.setOnAction((event) -> {
-            score.setLeftScore(0);
-            score.setRightScore(0);
-            rightPaddle.setX(615);
-            rightPaddle.setY(gameHeight / 2 - 40);
-            leftPaddle.setX(5);
-            leftPaddle.setY(gameHeight / 2 - 40);
-            movementPaddles.setMovementX(4.0);
-            movementPaddles.setMovementY(4.0);
-            ball.setX(gameWidth / 2);
-            ball.setY(gameHeight / 2);
-            movementBall.setMovementX(2.5);
-            movementBall.setMovementY(2.5);
-            paddleMovements.removeAll(paddleMovements);
-            paddleMovements.add(0);
-            paddleMovements.add(0);
-            paddleMovements.add(0);
-            paddleMovements.add(0);
-            keyboardSetUp(gameScene, paddleMovements);
+            resetGame(gameHeight, gameWidth, score, rightPaddle, leftPaddle, 
+                    movementPaddles, ball, movementBall, paddleMovements);
             name1.setText("");
             name2.setText("");
+            error1.setText("");
+            error2.setText("");
             stage.setScene(firstScene);
         });
         
@@ -515,7 +421,77 @@ public class PongApplication extends Application {
         
         stage.show();
     }
-    // keyboardSetUp liian pitkä!!!
+    
+    private void resetGame(int gameHeight, int gameWidth, Score score, 
+            Paddle rightPaddle, Paddle leftPaddle, Movement movementPaddles, 
+            Ball ball, Movement movementBall, ArrayList<Integer> paddleMovements) {
+        score.setLeftScore(0);
+        score.setRightScore(0);
+        
+        rightPaddle.setX(615);
+        rightPaddle.setY(gameHeight / 2 - 40);
+        
+        leftPaddle.setX(5);
+        leftPaddle.setY(gameHeight / 2 - 40);
+        
+        movementPaddles.setMovementX(4.0);
+        movementPaddles.setMovementY(4.0);
+        
+        ball.setX(gameWidth / 2);
+        ball.setY(gameHeight / 2);
+        
+        Random random = new Random();
+        double p = Math.pow(-1, random.nextInt());
+        movementBall.setMovementX(p * 2.5);
+        movementBall.setMovementY(p * 2.5);
+        
+        paddleMovements.removeAll(paddleMovements);
+        paddleMovements.add(0);
+        paddleMovements.add(0);
+        paddleMovements.add(0);
+        paddleMovements.add(0);
+    }
+    
+    private boolean nameError(TextField name) {
+        return (name.getText().length() > 8 || name.getText().length() == 0);
+    }
+    
+    private void drawFiveTop(PlayerDao dao, Label firName, Label firScore, 
+            Label secName, Label secScore, Label thirName, Label thirScore, 
+            Label fouName, Label fouScore, Label fivName, Label fivScore) {
+        try {
+            List<Player> topFivePlayers = dao.findFiveTop();
+            int i = 0;
+            while (topFivePlayers.size() > i) {
+                if (i == 0) {
+                    firName.setText(topFivePlayers.get(0).getName());
+                    firScore.setText(topFivePlayers.get(0).getScoreString());
+                } else if (i == 1) {
+                    secName.setText(topFivePlayers.get(1).getName());
+                    secScore.setText(topFivePlayers.get(1).getScoreString());
+                } else if (i == 2) {
+                    thirName.setText(topFivePlayers.get(2).getName());
+                    thirScore.setText(topFivePlayers.get(2).getScoreString());
+                } else if (i == 3) {
+                    fouName.setText(topFivePlayers.get(3).getName());
+                    fouScore.setText(topFivePlayers.get(3).getScoreString());
+                } else if (i == 4) {
+                    fivName.setText(topFivePlayers.get(4).getName());
+                    fivScore.setText(topFivePlayers.get(4).getScoreString());
+                }
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private Database databaseSetUp() throws Throwable {
+        File file = new File("db", "player.db");
+        Database database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
+        return database;
+    }
+    
     private void keyboardSetUp(Scene scene, ArrayList<Integer> paddleMovements) {
         scene.setOnKeyPressed((KeyEvent e) -> {
             if (e.getCode() == KeyCode.S) {
