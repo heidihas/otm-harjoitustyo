@@ -19,4 +19,5 @@ Päivä | Aika | Mitä tein
 13.4. | 2 | Top5-listan tulostus, loppusivun visuaalisuus
 14.4. | 4 | Sovelluslogiikan eriyttäminen
 15.4. | 2 | Lisää testejä
+15.4. | 2 | Luokka- ja pakkauskaaviot
 yht. | 45 | 
