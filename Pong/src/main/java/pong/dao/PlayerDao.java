@@ -67,20 +67,6 @@ public class PlayerDao {
         return null;
     }
     
-    public Player findOne(Integer key) throws SQLException {
-        try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("SELECT id, name, score FROM Player WHERE id = ?");
-            stmt.setInt(1, key);
-            ResultSet result = stmt.executeQuery();
-
-            while (result.next()) {
-                return new Player(result.getInt("id"), result.getString("name"), result.getInt("score"));
-            }
-        }
-
-        return null;
-    }
-    
     public Player saveOrUpdate(Player object) throws SQLException {
         Player byName = findOneByName(object.getName());
 

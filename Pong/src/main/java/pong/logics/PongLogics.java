@@ -47,6 +47,10 @@ public class PongLogics {
         this.winningScore = winningScore;
     }
     
+    public int getWinningScore() {
+        return this.winningScore;
+    }
+    
     public boolean playerWon() {
         return (score.getLeftScore() == winningScore || score.getRightScore() == winningScore);
     }
@@ -57,19 +61,19 @@ public class PongLogics {
     
     public void movePaddles() {
         if (paddleMovements.get(0) == 1) {
-            leftPaddle.setY(leftPaddle.getY() + (int) movementPaddles.getMovementX());
+            leftPaddle.setY(leftPaddle.getY() + (int) movementPaddles.getMovementY());
         }
 
         if (paddleMovements.get(1) == 1) {
-            leftPaddle.setY(leftPaddle.getY() - (int) movementPaddles.getMovementX());
+            leftPaddle.setY(leftPaddle.getY() - (int) movementPaddles.getMovementY());
         }
 
         if (paddleMovements.get(2) == 1) {
-            rightPaddle.setY(rightPaddle.getY() + (int) movementPaddles.getMovementX());
+            rightPaddle.setY(rightPaddle.getY() + (int) movementPaddles.getMovementY());
         }
                 
         if (paddleMovements.get(3) == 1) {
-            rightPaddle.setY(rightPaddle.getY() - (int) movementPaddles.getMovementX());
+            rightPaddle.setY(rightPaddle.getY() - (int) movementPaddles.getMovementY());
         }
     }
     

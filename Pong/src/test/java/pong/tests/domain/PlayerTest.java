@@ -29,6 +29,16 @@ public class PlayerTest {
     }
     
     @Test
+    public void getId() {
+        assertTrue(0 == player.getId());
+    }
+    
+    @Test
+    public void getName() {
+        assertEquals("Matti", player.getName());
+    }
+    
+    @Test
     public void getScoreString() {
         assertEquals("10", player.getScoreString());
     }

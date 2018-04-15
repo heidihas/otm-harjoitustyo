@@ -56,10 +56,10 @@ public class PongApplication extends Application {
     - testejä lisää
     */
     
-    // 1) Perustoiminta
+    // 1) Perustoiminta - viikko5
     // mailojen reunat kimmottavat
     
-    // 2) Jos jää aikaa
+    // 2) Jos jää aikaa - viikko6
     // pallo nopeutuu
     // valittavissa oleva aloitusnopeus
     // valittavissa pelin päättymispisteet

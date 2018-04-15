@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +29,21 @@ public class PlayerDaoTest {
     Database database;
     
     @Before
-    public void setUp() {
-        database = new Database();
+    public void setUp() throws SQLException {
+        File file = new File("db", "player.db");
+        try {
+            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DatabaseTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dao = new PlayerDao(database);
+        Player player = new Player(0, "Testi", 10);
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Player (name, score) VALUES (?, ?)");
+            stmt.setString(1, player.getName());
+            stmt.setInt(2, player.getScore());
+            stmt.executeUpdate();
+        }
     }
     
     @Test
@@ -38,9 +53,8 @@ public class PlayerDaoTest {
     
     @Test
     public void findAllPlayers() {
-        List<Player> players = new ArrayList();
         try {
-            assertEquals(players, dao.findAll());
+            assertFalse(dao.findAll().isEmpty());
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,6 +64,15 @@ public class PlayerDaoTest {
     public void findFivePlayers() {
         try {
             assertTrue(dao.findFiveTop().size() <= 5);
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void findPlayerByNameFalse() {
+        try {
+            assertEquals(null, dao.findOneByName("Matti"));
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
