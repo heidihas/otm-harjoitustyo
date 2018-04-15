@@ -1,6 +1,6 @@
 # Arkkitehtuurikuvaus
 ## Luokkakaavio
-![Luokkakaavion kuva]
+![Luokkakaavion kuva](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_luokkakaavio.png)
 
 ## Pakkauskaavio
 ![Pakkauskaavion kuva]
