@@ -4,8 +4,9 @@
 
 [Vaatimusmäärittely](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[Työaikakirjanpito](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+[Arkkitehtuurikuvaus](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[Työaikakirjanpito](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ## Komentorivitoiminnot
 
