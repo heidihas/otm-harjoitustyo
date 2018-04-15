@@ -18,3 +18,4 @@ Päivä | Aika | Mitä tein
 13.4. | 2 | Pelaajien tallennus ja pisteiden päivitys tietokantaan
 13.4. | 2 | Top5-listan tulostus, loppusivun visuaalisuus
 14.4. | 4 | Sovelluslogiikan eriyttäminen
+15.4. | 2 | Lisää testejä
