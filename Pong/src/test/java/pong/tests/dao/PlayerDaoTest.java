@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package pong.tests.dao;
 
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Before;
@@ -34,9 +33,19 @@ public class PlayerDaoTest {
         try {
             database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DatabaseTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         dao = new PlayerDao(database);
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Player WHERE name = ?");
+            stmt.setString(1, "Testi");
+            stmt.executeUpdate();
+        }
+        try (Connection conn = database.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Player WHERE name = ?");
+            stmt.setString(1, "Matti");
+            stmt.executeUpdate();
+        }
         Player player = new Player(0, "Testi", 10);
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Player (name, score) VALUES (?, ?)");
@@ -44,6 +53,7 @@ public class PlayerDaoTest {
             stmt.setInt(2, player.getScore());
             stmt.executeUpdate();
         }
+        
     }
     
     @Test
@@ -78,4 +88,68 @@ public class PlayerDaoTest {
         }
     }
     
+    @Test
+    public void findPlayerByNameTrue() {
+        try {
+            Player onko = dao.findOneByName("Testi");
+            assertEquals("Testi", onko.getName());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void updateGetName() {
+        try {
+            Player onko = new Player(1, "Testi", 40);
+            dao.saveOrUpdate(onko);
+            assertEquals("Testi", onko.getName());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void updateGetScore() {
+        try {
+            Player onko = new Player(1, "Testi", 40);
+            dao.saveOrUpdate(onko);
+            assertEquals(40, onko.getScore());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void saveGetName() {
+        try {
+            Player onko = new Player(1, "Matti", 40);
+            dao.saveOrUpdate(onko);
+            assertEquals("Matti", onko.getName());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void saveGetScore() {
+        try {
+            Player onko = new Player(1, "Matti", 40);
+            dao.saveOrUpdate(onko);
+            assertEquals(40, onko.getScore());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void saveGetTesti() {
+        try {
+            Player onko = new Player(1, "Matti", 40);
+            dao.saveOrUpdate(onko);
+            assertEquals(10, dao.findOneByName("Testi").getScore());
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

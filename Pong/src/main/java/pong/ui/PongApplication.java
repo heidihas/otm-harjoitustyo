@@ -51,11 +51,13 @@ import pong.logics.PongLogics;
  * @author Heidi
  */
 public class PongApplication extends Application {
-    /* Tehtävää viikko 4:
-    - tee arkkitehtuurikuva
-    - testejä lisää
+    /*
+    Kysy:
+    -toisteinen koodi
+    -mailat
+    -nopeus
     */
-    
+   
     // 1) Perustoiminta - viikko5
     // mailojen reunat kimmottavat
     
@@ -271,8 +273,8 @@ public class PongApplication extends Application {
         
         // logics and winning score set-up
         PongLogics logics = new PongLogics(score, leftPaddle, rightPaddle, ball, 
-                movementPaddles, movementBall, paddleMovements, dao, database);
-        logics.setWinningScore(2);
+                movementPaddles, movementBall, paddleMovements);
+        logics.setWinningScore(10);
         
         AnimationTimer animationTimer = new AnimationTimer() {
             private long sleepNanoseconds = 1000000000 * 1000000;

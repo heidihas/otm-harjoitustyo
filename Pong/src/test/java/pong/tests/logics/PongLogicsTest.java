@@ -25,6 +25,8 @@ import pong.logics.PongLogics;
 public class PongLogicsTest {
     
     PongLogics logics;
+    int gameHeight;
+    int gameWidth;
     Score score;
     Paddle leftPaddle;
     Paddle rightPaddle;
@@ -32,14 +34,14 @@ public class PongLogicsTest {
     Movement movementPaddles;
     Movement movementBall;
     ArrayList<Integer> paddleMovements;
-    PlayerDao dao;
-    Database database;
     
     @Before
     public void setUp() {
+        gameHeight = 480;
+        gameWidth = 640;
         score = new Score(0, 0);
-        leftPaddle = new Paddle(20, 20, 20, 80, Color.RED);
-        rightPaddle = new Paddle(20, 20, 20, 80, Color.RED);
+        leftPaddle = new Paddle(5, 200, 20, 80, Color.RED);
+        rightPaddle = new Paddle(615, 200, 20, 80, Color.RED);
         ball = new Ball(10, 10, 10);
         movementPaddles = new Movement(2, 2);
         movementBall = new Movement(1, 1);
@@ -48,10 +50,8 @@ public class PongLogicsTest {
         paddleMovements.add(0);
         paddleMovements.add(0);
         paddleMovements.add(0);
-        database = new Database();
-        dao = new PlayerDao(database);
         logics = new PongLogics(score, leftPaddle, rightPaddle, ball, 
-                movementPaddles, movementBall, paddleMovements, dao, database);
+                movementPaddles, movementBall, paddleMovements);
     }
     
     @Test
@@ -73,7 +73,23 @@ public class PongLogicsTest {
     
     @Test 
     public void somebodyWon() {
+        logics.setWinningScore(10);
         score.setLeftScore(logics.getWinningScore());
+        score.setRightScore(logics.getWinningScore());
+        assertTrue(logics.playerWon());
+    }
+    
+    @Test 
+    public void leftPlayerWon() {
+        logics.setWinningScore(10);
+        score.setLeftScore(logics.getWinningScore());
+        assertTrue(logics.playerWon());
+    }
+    
+    @Test 
+    public void rightPlayerWon() {
+        logics.setWinningScore(10);
+        score.setRightScore(logics.getWinningScore());
         assertTrue(logics.playerWon());
     }
     
@@ -93,27 +109,168 @@ public class PongLogicsTest {
     public void moveLeftPaddleUp() {
         paddleMovements.set(0, 1);
         logics.movePaddles();
-        assertTrue(leftPaddle.getY() == 22);
+        assertTrue(leftPaddle.getY() == 202);
     }
     
     @Test
     public void moveLeftPaddleDown() {
         paddleMovements.set(1, 1);
         logics.movePaddles();
-        assertTrue(leftPaddle.getY() == 18);
+        assertTrue(leftPaddle.getY() == 198);
     }
     
     @Test
     public void moveRightPaddleUp() {
         paddleMovements.set(2, 1);
         logics.movePaddles();
-        assertTrue(rightPaddle.getY() == 22);
+        assertTrue(rightPaddle.getY() == 202);
     }
     
     @Test
     public void moveRightPaddleDown() {
         paddleMovements.set(3, 1);
         logics.movePaddles();
-        assertTrue(rightPaddle.getY() == 18);
+        assertTrue(rightPaddle.getY() == 198);
+    }
+    
+    @Test
+    public void leftPaddleOffBoardUp() {
+        leftPaddle.setY(-1);
+        logics.paddlesOnBoard(gameHeight);
+        assertEquals(0, leftPaddle.getY());
+    }
+    
+    @Test
+    public void rightPaddleOffBoardUp() {
+        rightPaddle.setY(-1);
+        logics.paddlesOnBoard(gameHeight);
+        assertEquals(0, rightPaddle.getY());
+    }
+    
+    @Test
+    public void leftPaddleOffBoardDown() {
+        leftPaddle.setY(401);
+        logics.paddlesOnBoard(gameHeight);
+        assertEquals(400, leftPaddle.getY());
+    }
+    
+    @Test
+    public void rightPaddleOffBoardDown() {
+        rightPaddle.setY(401);
+        logics.paddlesOnBoard(gameHeight);
+        assertEquals(400, rightPaddle.getY());
+    }
+    
+    @Test
+    public void ballHitsUpNot() {
+        ball.setY(3);
+        logics.ballHitsUpOrDown(gameHeight);
+        assertTrue(movementBall.getMovementY() == 1.0);
+    }
+    
+    @Test
+    public void ballHitsDownNot() {
+        ball.setY(420);
+        logics.ballHitsUpOrDown(gameHeight);
+        assertTrue(movementBall.getMovementY() == 1.0);
+    }
+    
+    @Test
+    public void ballHitsUp() {
+        ball.setY(-1);
+        logics.ballHitsUpOrDown(gameHeight);
+        assertTrue(movementBall.getMovementY() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsDown() {
+        ball.setY(461);
+        logics.ballHitsUpOrDown(gameHeight);
+        assertTrue(movementBall.getMovementY() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsLeft() {
+        ball.setX(-1);
+        logics.ballHitsLeftOrRight(gameWidth);
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsRight() {
+        ball.setX(621);
+        logics.ballHitsLeftOrRight(gameWidth);
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsLeftScore() {
+        ball.setX(-1);
+        logics.ballHitsLeftOrRight(gameWidth);
+        assertTrue(score.getRightScore() == 1);
+    }
+    
+    @Test
+    public void ballHitsRightScore() {
+        ball.setX(621);
+        logics.ballHitsLeftOrRight(gameWidth);
+        assertTrue(score.getLeftScore() == 1);
+    }
+    
+    /*@Test
+    public void ballHitsLeftPaddle1() {
+        ball.setX(10);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsLeftPaddle2() {
+        ball.setX(24);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
+    } */
+    
+    @Test
+    public void ballHitsLeftPaddle3() {
+        ball.setY(201);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsLeftPaddle4() {
+        ball.setY(270);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }
+    
+    /*@Test
+    public void ballHitsRightPaddle1() {
+        ball.setX(596);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsRightPaddle2() {
+        ball.setX(614);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }*/ 
+    
+    @Test
+    public void ballHitsRightPaddle3() {
+        ball.setY(201);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
+    }
+    
+    @Test
+    public void ballHitsRightPaddle4() {
+        ball.setY(270);
+        logics.ballHitsPaddle();
+        assertTrue(movementBall.getMovementX() == -1.0);
     }
 }
+    

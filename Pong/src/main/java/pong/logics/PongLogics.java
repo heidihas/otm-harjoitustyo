@@ -26,12 +26,10 @@ public class PongLogics {
     private Movement movementPaddles;
     private Movement movementBall;
     private ArrayList<Integer> paddleMovements;
-    private PlayerDao dao;
-    private Database database;
     
     public PongLogics(Score score, Paddle leftPaddle, Paddle rightPaddle, 
             Ball ball, Movement movementPaddles, Movement movementBall, 
-            ArrayList<Integer> paddleMovements, PlayerDao dao, Database database) {
+            ArrayList<Integer> paddleMovements) {
         this.score = score;
         this.leftPaddle = leftPaddle;
         this.rightPaddle = rightPaddle;
@@ -39,8 +37,6 @@ public class PongLogics {
         this.movementPaddles = movementPaddles;
         this.movementBall = movementBall;
         this.paddleMovements = paddleMovements;
-        this.dao = dao;
-        this.database = database;
     }
     
     public void setWinningScore(int winningScore) {
@@ -84,6 +80,9 @@ public class PongLogics {
         }*/
                 
         if (!leftPaddle.outside((int) ball.getX(), (int) ball.getY())) { 
+            /*if (ball.getX() < 5 || ball.getX() > 25) {
+                movementBall.setMovementY(-1 * movementBall.getMovementY()); 
+            } */
             movementBall.setMovementX(-1 * movementBall.getMovementX()); 
         } 
                 
