@@ -20,4 +20,5 @@ Päivä | Aika | Mitä tein
 14.4. | 4 | Sovelluslogiikan eriyttäminen
 15.4. | 2 | Lisää testejä
 15.4. | 2 | Luokka- ja pakkauskaaviot
-yht. | 47 | 
+19.4. | 3 | Mailojen säännöt, loput testit
+yht. | 50 | 
