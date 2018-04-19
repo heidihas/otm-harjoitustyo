@@ -6,8 +6,6 @@
 package pong.logics;
 
 import java.util.ArrayList;
-import pong.dao.PlayerDao;
-import pong.database.Database;
 import pong.domain.Ball;
 import pong.domain.Movement;
 import pong.domain.Paddle;

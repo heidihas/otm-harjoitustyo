@@ -53,7 +53,6 @@ import pong.logics.PongLogics;
 public class PongApplication extends Application {
     /*
     Kysy:
-    -toisteinen koodi
     -mailat
     -nopeus
     */
@@ -71,6 +70,7 @@ public class PongApplication extends Application {
     // kaikki daoihin liittyvä -> PongLogics pong.logics
     // tarkista metodien ulkoasu, kirjoita tarvittavia kuvauksia
     // kaikki englanniksi
+    // ei toisteista koodia
     
     
     public void start(Stage stage) {
