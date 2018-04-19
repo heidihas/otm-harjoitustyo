@@ -21,4 +21,5 @@ Päivä | Aika | Mitä tein
 15.4. | 2 | Lisää testejä
 15.4. | 2 | Luokka- ja pakkauskaaviot
 19.4. | 3 | Mailojen säännöt, loput testit
-yht. | 50 | 
+19.4. | 1 | Sekvenssikaavio
+yht. | 51 | 
