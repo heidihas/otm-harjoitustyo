@@ -24,5 +24,6 @@ Päivä | Aika | Mitä tein
 19.4. | 1 | Sekvenssikaavio
 20.4. | 3 | Pallo osuu mailaan, bugien korjaus
 23.4. | 2 | Pallo osuu mailaan, bugien korjaus
-23.4. | 2 | Testien muutokset ja 1. release
-yht. | 58 | 
+23.4. | 2 | Testien muutokset ja jarin generoiminen
+23.4. | 2 | Tietokanta mukaan jariin
+yht. | 61 | 
