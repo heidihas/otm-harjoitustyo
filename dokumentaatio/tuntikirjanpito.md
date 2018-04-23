@@ -22,4 +22,7 @@ Päivä | Aika | Mitä tein
 15.4. | 2 | Luokka- ja pakkauskaaviot
 19.4. | 3 | Mailojen säännöt, loput testit
 19.4. | 1 | Sekvenssikaavio
-yht. | 51 | 
+20.4. | 3 | Pallo osuu mailaan, bugien korjaus
+23.4. | 3 | Pallo osuu mailaan, bugien korjaus
+23.4. | 1 | 1. release
+yht. | 58 | 
