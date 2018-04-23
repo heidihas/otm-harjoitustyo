@@ -27,16 +27,35 @@ public class Paddle {
         this.color = color;
     }
     
-    // tells whether the given point is outside of the paddle
-    public boolean outside(int x, int y) {
-        if (x < this.x || x > this.x + this.width) {
+    public boolean ballHitsVerticalLeft(int x, int y) {
+        if ((x == (this.x + this.width))
+                && ((y > this.y) && (y < (this.y + this.height)))) {
             return true;
         }
-        
-        if (y < this.y || y > this.y + this.height) {
+        return false;
+    }
+    
+    public boolean ballHitsVerticalRight(int x, int y, int radius) {
+        if (((x + 2 * radius) == this.x)
+                && ((y > this.y) && (y < (this.y + this.height)))) {
             return true;
         }
-        
+        return false;
+    }
+    
+    public boolean ballHitsHorizontalLeft(int x, int y, int radius) {
+        if ((x <= (this.x + this.width))
+                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height)))) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean ballHitsHorizontalRight(int x, int y, int radius) {
+        if (((x + 2 * radius) >= this.x)
+                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height)))) {
+            return true;
+        }
         return false;
     }
 

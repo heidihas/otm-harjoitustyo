@@ -51,26 +51,22 @@ import pong.logics.PongLogics;
  * @author Heidi
  */
 public class PongApplication extends Application {
-    /*
-    Kysy:
-    -mailat
-    -nopeus
-    */
-   
-    // 1) Perustoiminta - viikko5
-    // mailojen reunat kimmottavat
     
-    // 2) Jos jää aikaa - viikko6
+    // Jos jää aikaa - viikko6
     // pallo nopeutuu
     // valittavissa oleva aloitusnopeus
     // valittavissa pelin päättymispisteet
     // olemassaolevan käyttäjänimen valinta
     
-    // 3) Luettavuus - viikko7
-    // kaikki daoihin liittyvä -> PongLogics pong.logics
+    // Luettavuus - viikko7
+    // kaikki daoihin liittyvä -> PongLogics pong.logics?
     // tarkista metodien ulkoasu, kirjoita tarvittavia kuvauksia
     // kaikki englanniksi
     // ei toisteista koodia
+    // pallo osuu mailaan - mahdolliset bugit
+    // viimeistele testit
+    // rajattu määrä käyttäjänimiä?
+    // error-viesti ei siirrä aloitussivun sijainteja
     
     
     public void start(Stage stage) {
@@ -277,8 +273,8 @@ public class PongApplication extends Application {
         logics.setWinningScore(10);
         
         AnimationTimer animationTimer = new AnimationTimer() {
-            private long sleepNanoseconds = 1000000000 * 1000000;
-            private long prevTime = 0;
+            //private long sleepNanoseconds = 1000000000 * 1000000;
+            //private long prevTime = 0;
             
             public void handle(long currentNanoTime) {
                 // increase the speed of ball and paddles

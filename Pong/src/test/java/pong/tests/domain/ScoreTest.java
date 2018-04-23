@@ -60,38 +60,38 @@ public class ScoreTest {
     }
     
     @Test
-    public void increseLeft() {
-        score.increse(1);
+    public void increaseLeft() {
+        score.increase(1);
         assertEquals(6, score.getLeftScore());
     }
     
     @Test
-    public void increseLeftRight() {
-        score.increse(1);
+    public void increaseLeftRight() {
+        score.increase(1);
         assertEquals(6, score.getRightScore());
     }
     
     @Test
-    public void increseRight() {
-        score.increse(0);
+    public void increaseRight() {
+        score.increase(0);
         assertEquals(7, score.getRightScore());
     }
     
     @Test
-    public void increseRightLeft() {
-        score.increse(0);
+    public void increaseRightLeft() {
+        score.increase(0);
         assertEquals(5, score.getLeftScore());
     }
     
     @Test
-    public void increseNothing() {
-        score.increse(-2);
+    public void increaseNothing() {
+        score.increase(-2);
         assertEquals("5 : 6", score.toString());
     }
     
     @Test
-    public void increseNothing2() {
-        score.increse(2);
+    public void increaseNothing2() {
+        score.increase(2);
         assertEquals("5 : 6", score.toString());
     }
 }

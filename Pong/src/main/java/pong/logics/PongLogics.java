@@ -71,43 +71,33 @@ public class PongLogics {
         }
     }
     
-    public void ballHitsPaddle() {
-        /*if ((((int)ball.getY() >= leftPaddle.getY()) && ((int)ball.getY() <= (leftPaddle.getY()+leftPaddle.getHeight()))) && !leftPaddle.outside((int)ball.getX(), (int)ball.getY())) { 
+    public void ballHitsPaddle() {     
+        if (leftPaddle.ballHitsVerticalLeft((int) ball.getX(), (int) ball.getY())) {
+            movementBall.setMovementX(-1 * movementBall.getMovementX());
+            
+        } else if (rightPaddle.ballHitsVerticalRight((int) ball.getX(), (int) ball.getY(), (int) ball.getRadius())) {
+            movementBall.setMovementX(-1 * movementBall.getMovementX());
+            
+        } else if (leftPaddle.ballHitsHorizontalLeft((int) ball.getX(), (int) ball.getY(), (int) ball.getRadius())) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
             movementBall.setMovementY(-1 * movementBall.getMovementY());
-        }*/
-                
-        if (!leftPaddle.outside((int) ball.getX(), (int) ball.getY())) { 
-            /*if (ball.getX() < 5 || ball.getX() > 25) {
-                movementBall.setMovementY(-1 * movementBall.getMovementY()); 
-            } */
-            movementBall.setMovementX(-1 * movementBall.getMovementX()); 
-        } 
-                
-        /*if (((int)ball.getX() > 615) && !rightPaddle.outside((int)ball.getX(), (int)ball.getY())) { 
+            
+        } else if (rightPaddle.ballHitsHorizontalRight((int) ball.getX(), (int) ball.getY(), (int) ball.getRadius())) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
             movementBall.setMovementY(-1 * movementBall.getMovementY());
-        }*/
-                
-        if (!rightPaddle.outside((int) ball.getX() + rightPaddle.getWidth(), (int) ball.getY())) { 
-            movementBall.setMovementX(-1 * movementBall.getMovementX());
         }
     }
     
     public void paddlesOnBoard(int gameHeight) {
         if (leftPaddle.getY() < 0) { 
             leftPaddle.setY(0);
-        }
-                
-        if ((leftPaddle.getY() + leftPaddle.getHeight()) > gameHeight) {
+        } else if ((leftPaddle.getY() + leftPaddle.getHeight()) > gameHeight) {
             leftPaddle.setY(gameHeight - leftPaddle.getHeight());
         }
                 
         if (rightPaddle.getY() < 0) { 
             rightPaddle.setY(0);
-        }
-                
-        if ((rightPaddle.getY() + rightPaddle.getHeight()) > gameHeight) {
+        } else if ((rightPaddle.getY() + rightPaddle.getHeight()) > gameHeight) {
             rightPaddle.setY(gameHeight - rightPaddle.getHeight());
         }
     }
@@ -121,12 +111,11 @@ public class PongLogics {
     public void ballHitsLeftOrRight(int gameWidth) {
         if (ball.getX() < 0) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
-            score.increse(0);
-        }
-                
-        if (ball.getX() + ball.getRadius() * 2 > gameWidth) {
+            score.increase(0);
+            
+        } else if (ball.getX() + ball.getRadius() * 2 > gameWidth) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
-            score.increse(1);
+            score.increase(1);
         }
     }
     

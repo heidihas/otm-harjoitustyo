@@ -19,7 +19,7 @@ public class Score {
         this.rightPlayerScore = rightPlayerScore;
     }
     
-    public void increse(int value) {
+    public void increase(int value) {
         if (value == 1) {
             leftPlayerScore++;
         } else if (value == 0) {

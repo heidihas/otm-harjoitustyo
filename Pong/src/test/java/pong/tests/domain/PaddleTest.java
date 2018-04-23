@@ -60,32 +60,72 @@ public class PaddleTest {
     }
     
     @Test
-    public void outside1() {
-        assertEquals(true, paddle.outside(0, 20));
+    public void ballHitsVerticalLeft() {
+        assertEquals(true, paddle.ballHitsVerticalLeft(40, 30));
     }
     
     @Test
-    public void outside2() {
-        assertEquals(true, paddle.outside(21+20, 20));
+    public void ballHitsVerticalLeftNot() {
+        assertEquals(false, paddle.ballHitsVerticalLeft(40, 20));
     }
     
     @Test
-    public void outside3() {
-        assertEquals(true, paddle.outside(20, 19));
+    public void ballHitsVerticalLeftNot1() {
+        assertEquals(false, paddle.ballHitsVerticalLeft(40, 100));
     }
     
     @Test
-    public void outside4() {
-        assertEquals(true, paddle.outside(20, 21+80));
+    public void ballHitsVerticalLeftNot2() {
+        assertEquals(false, paddle.ballHitsVerticalLeft(42, 20));
     }
     
     @Test
-    public void outside5() {
-        assertEquals(false, paddle.outside(39, 20));
+    public void ballHitsVerticalLeftNot3() {
+        assertEquals(false, paddle.ballHitsVerticalLeft(42, 80));
     }
     
     @Test
-    public void outside6() {
-        assertEquals(false, paddle.outside(20, 20));
+    public void ballHitsVerticalRight() {
+        assertEquals(true, paddle.ballHitsVerticalRight(10, 30, 5));
+    }
+    
+    @Test
+    public void ballHitsVerticalRightNot() {
+        assertEquals(false, paddle.ballHitsVerticalRight(10, 20, 5));
+    }
+    
+    @Test
+    public void ballHitsVerticalRightNot1() {
+        assertEquals(false, paddle.ballHitsVerticalRight(10, 100, 5));
+    }
+    
+    @Test
+    public void ballHitsVerticalRightNot2() {
+        assertEquals(false, paddle.ballHitsVerticalRight(8, 20, 5));
+    }
+    
+    @Test
+    public void ballHitsVerticalRightNot3() {
+        assertEquals(false, paddle.ballHitsVerticalRight(8, 80, 5));
+    }
+    
+    @Test
+    public void ballHitsHorizontalLeft() {
+        assertEquals(true, paddle.ballHitsHorizontalLeft(39, 20, 5));
+    }
+    
+    @Test
+    public void ballHitsHorizontalLeftNot() {
+        assertEquals(false, paddle.ballHitsHorizontalLeft(39, 101, 5));
+    }
+    
+    @Test
+    public void ballHitsHorizontalRight() {
+        assertEquals(true, paddle.ballHitsHorizontalRight(20, 20, 5));
+    }
+    
+    @Test
+    public void ballHitsHorizontalRightNot() {
+        assertEquals(false, paddle.ballHitsHorizontalRight(20, 101, 5));
     }
 }
