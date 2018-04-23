@@ -14,6 +14,10 @@ Sovellus on toteutettu osana kevään 2018 Ohjelmistotekniikan menetelmät -kurs
 
 [Työaikakirjanpito](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
+## Releaset
+
+[Viikko 5]
+
 ## Komentorivitoiminnot
 
 ### Testaus
