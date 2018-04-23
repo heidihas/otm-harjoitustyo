@@ -485,8 +485,8 @@ public class PongApplication extends Application {
     }
     
     private Database databaseSetUp() throws Throwable {
-        File file = new File("db", "player.db");
-        Database database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
+        //File file = new File("db", "player.db");
+        Database database = new Database("jdbc:sqlite:db/player.db");
         return database;
     }
     
