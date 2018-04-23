@@ -23,6 +23,6 @@ Päivä | Aika | Mitä tein
 19.4. | 3 | Mailojen säännöt, loput testit
 19.4. | 1 | Sekvenssikaavio
 20.4. | 3 | Pallo osuu mailaan, bugien korjaus
-23.4. | 3 | Pallo osuu mailaan, bugien korjaus
-23.4. | 1 | 1. release
+23.4. | 2 | Pallo osuu mailaan, bugien korjaus
+23.4. | 2 | Testien muutokset ja 1. release
 yht. | 58 | 
