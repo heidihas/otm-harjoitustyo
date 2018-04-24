@@ -20,7 +20,8 @@ Päivä | Aika | Mitä tein
 14.4. | 4 | Sovelluslogiikan eriyttäminen
 15.4. | 2 | Lisää testejä
 15.4. | 2 | Luokka- ja pakkauskaaviot
-19.4. | 3 | Mailojen säännöt, loput testit
+19.4. | 2 | Mailojen ylä/alareuna kimmottaa
+19.4. | 1 | Loput testit
 19.4. | 1 | Sekvenssikaavio
 20.4. | 3 | Pallo osuu mailaan, bugien korjaus
 23.4. | 2 | Pallo osuu mailaan, bugien korjaus
