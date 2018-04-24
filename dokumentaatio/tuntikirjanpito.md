@@ -25,5 +25,6 @@ Päivä | Aika | Mitä tein
 20.4. | 3 | Pallo osuu mailaan, bugien korjaus
 23.4. | 2 | Pallo osuu mailaan, bugien korjaus
 23.4. | 2 | Testien muutokset ja jarin generoiminen
-23.4. | 2 | Tietokanta mukaan jariin
-yht. | 61 | 
+23.4. | 2 | Tietokanta mukaan jariin?
+24.4. | 2 | Tietokanta mukaan jariin?
+yht. | 63 | 
