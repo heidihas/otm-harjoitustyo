@@ -87,7 +87,15 @@ public class PongApplication extends Application {
         stage.setTitle("Pong");
 
         // first page scene set-up
-        Image image = new Image("file:pong.png");
+        
+        // get image from file, two ways
+        // String fileName = "pong/picture/pong.png";
+        // ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        // File file = new File(classLoader.getResource(fileName).getFile());
+        
+        Image image = new Image("file:pong.png"); //new Image(file.toURI().toString());
+                //new Image("file:pong.png");
+                
         Label text = new Label("Player names");
         Label text1 = new Label("Player 1: ");
         TextField name1 = new TextField();
@@ -485,8 +493,14 @@ public class PongApplication extends Application {
     }
     
     private Database databaseSetUp() throws Throwable {
-        //File file = new File("db", "player.db");
-        Database database = new Database("jdbc:sqlite:db/player.db");
+        // set database from file, two ways
+        
+        // String fileName = "pong/db/player.db";
+        // ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        // File file = new File(classLoader.getResource(fileName).getFile());
+        
+        File file = new File("db", "player.db");
+        Database database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
         return database;
     }
     
