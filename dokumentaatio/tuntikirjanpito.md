@@ -28,4 +28,9 @@ Päivä | Aika | Mitä tein
 23.4. | 2 | Testien muutokset ja jarin generoiminen
 23.4. | 2 | Tietokanta mukaan jariin?
 24.4. | 2 | Tietokanta mukaan jariin?
-yht. | 63 | 
+25.4. | 1 | ChoiceBoxin opiskelu
+25.4. | 1 | Valittava "game level" eli pallon aloitusnopeus
+26.4. | 1 | ComboBoxin opiskelu, kirjasto "blankin" käyttäjänimen tarkistamiseen
+26.4. | 3 | Olemassaolevien käyttäjänimien valikot
+26.4. | 1 | Testejä uusille toiminnoille
+yht. | 70 | 
