@@ -49,4 +49,52 @@ public class MovementTest {
         movement.setMovementY(4.5);
         assertEquals(4.5, movement.getMovementY(), 0);      
     }
+    
+    @Test
+    public void randomDirectionX() {
+        movement.randomDirection();
+        assertTrue(movement.getMovementX() == -2.0 || movement.getMovementX() == 2.0);
+    }
+    
+    @Test
+    public void randomDirectionY() {
+        movement.randomDirection();
+        assertTrue(movement.getMovementX() == -2.0 || movement.getMovementX() == 2.0);
+    }
+    
+    @Test
+    public void setLevelEasyX() {
+        movement.setLevel("Easy");
+        assertEquals(2.5, movement.getMovementX(), 0);
+    }
+    
+    @Test
+    public void setLevelEasyY() {
+        movement.setLevel("Easy");
+        assertEquals(2.5, movement.getMovementY(), 0);
+    }
+    
+    @Test
+    public void setLevelMediumX() {
+        movement.setLevel("Medium");
+        assertEquals(4.0, movement.getMovementX(), 0);
+    }
+    
+    @Test
+    public void setLevelMediumY() {
+        movement.setLevel("Medium");
+        assertEquals(4.0, movement.getMovementY(), 0);
+    }
+    
+    @Test
+    public void setLevelHardX() {
+        movement.setLevel("Hard");
+        assertEquals(6.0, movement.getMovementX(), 0);
+    }
+    
+    @Test
+    public void setLevelHardY() {
+        movement.setLevel("Hard");
+        assertEquals(6.0, movement.getMovementY(), 0);
+    }
 }

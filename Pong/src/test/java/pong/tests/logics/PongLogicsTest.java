@@ -285,6 +285,7 @@ public class PongLogicsTest {
         assertTrue(movementBall.getMovementY() == 1.0);
     }
     
+    @Test
     public void ballHitsRightPaddleVertical() {
         ball.setX(595);
         ball.setY(220);

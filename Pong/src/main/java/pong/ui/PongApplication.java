@@ -9,13 +9,15 @@ package pong.ui;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -23,8 +25,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -37,6 +40,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javax.swing.JLabel;
+import org.apache.commons.lang3.StringUtils;
 import pong.dao.PlayerDao;
 import pong.database.Database;
 import pong.domain.Ball;
@@ -52,24 +56,32 @@ import pong.logics.PongLogics;
  */
 public class PongApplication extends Application {
     
-    // Jos jää aikaa - viikko6
+    // Viikko6
     // pallo nopeutuu
-    // valittavissa oleva aloitusnopeus
-    // valittavissa pelin päättymispisteet
-    // olemassaolevan käyttäjänimen valinta
+    // koodikatselmointi
+    // uusi release
+    // javadoc (generoitavissa, kuvaukset vähintään viidelle luokalle)
+    // arkkitehtuurikuvaus
+    // käyttöohje
+    // readmessä käyttöohje, release2, ohjeet javadociin
     
-    // Luettavuus - viikko7
+    // Viikko7
     // kaikki daoihin liittyvä -> PongLogics pong.logics?
     // tarkista metodien ulkoasu, kirjoita tarvittavia kuvauksia
     // kaikki englanniksi
     // ei toisteista koodia
     // pallo osuu mailaan - mahdolliset bugit
-    // viimeistele testit
-    // rajattu määrä käyttäjänimiä?
+    // nopeassa moodissa pallo kimpoaa tulosuuntaan
+    
+    // Jatkokehitysideoita
+    // valittavissa pelin päättymispisteet
+    // aloitusnopeus vaikuttaa mailoihin
+    // rajattu määrä käyttäjänimiä
     // error-viesti ei siirrä aloitussivun sijainteja
+    // yksinpeli
     
     
-    public void start(Stage stage) {
+    public void start(Stage stage) throws SQLException {
         
         // database set-up
         Database database = new Database();
@@ -94,17 +106,31 @@ public class PongApplication extends Application {
         // File file = new File(classLoader.getResource(fileName).getFile());
         
         Image image = new Image("file:pong.png"); //new Image(file.toURI().toString());
-                //new Image("file:pong.png");
                 
         Label text = new Label("Player names");
+        
         Label text1 = new Label("Player 1: ");
-        TextField name1 = new TextField();
+        ComboBox name1 = new ComboBox();
+        name1.setItems(existingPlayers(dao));
+        name1.setVisibleRowCount(3);
+        name1.setEditable(true);
+        name1.setValue("");
         Label error1 = new Label("");
         error1.setTextFill(Color.INDIANRED);
+        
         Label text2 = new Label("Player 2: ");
-        TextField name2 = new TextField();
+        ComboBox name2 = new ComboBox();
+        name2.setItems(existingPlayers(dao));
+        name2.setVisibleRowCount(3);
+        name2.setEditable(true);
+        name2.setValue("");
         Label error2 = new Label("");
         error2.setTextFill(Color.INDIANRED);
+        
+        Label gameLevel = new Label("Game level: ");
+        ChoiceBox level = new ChoiceBox(FXCollections.observableArrayList("Easy", "Medium", "Hard"));
+        Label errorLevel = new Label("");
+        errorLevel.setTextFill(Color.INDIANRED);
         Button startButton = new Button("Start");
         
         GridPane gridStart = new GridPane();
@@ -114,6 +140,7 @@ public class PongApplication extends Application {
         view.setScaleY(0.5);
         
         gridStart.add(view, 0, 0);
+        gridStart.setPrefSize(640, 250);
         gridStart.setAlignment(Pos.CENTER);
         
         GridPane grid = new GridPane();
@@ -125,11 +152,14 @@ public class PongApplication extends Application {
         grid.add(text2, 0, 2);
         grid.add(name2, 1, 2);
         grid.add(error2, 2, 2);
+        grid.add(gameLevel, 0, 3);
+        grid.add(level, 1, 3);
+        grid.add(errorLevel, 2, 3);
         grid.add(startButton, 1, 5);
         
         grid.setPrefSize(640, 180);
         grid.setAlignment(Pos.CENTER);
-        grid.setVgap(10);
+        grid.setVgap(6);
         grid.setHgap(10);
         grid.setPadding(new Insets(0, 20, 20, 20));
         
@@ -146,23 +176,28 @@ public class PongApplication extends Application {
         Label winnerName = new Label("");
         winnerName.setTextFill(Color.RED);
         winnerName.setFont(new Font ("Arial", 30));
+        
         Label lastText = new Label("won the round!");
         Label top5 = new Label("Top 5 players");
+        
         Label fir = new Label("1.");
         Label sec = new Label("2.");
         Label thir = new Label("3.");
         Label fou = new Label("4.");
         Label fiv = new Label("5.");
+        
         Label firName = new Label(" - ");
         Label secName = new Label(" - ");
         Label thirName = new Label(" - ");
         Label fouName = new Label(" - ");
         Label fivName = new Label(" - ");
+        
         Label firScore = new Label(" - ");
         Label secScore = new Label(" - ");
         Label thirScore = new Label(" - ");
         Label fouScore = new Label(" - ");
         Label fivScore = new Label(" - ");
+        
         Button restartButton = new Button("Re-start");
         Button newGameButton = new Button("New game");
         Button endGameButton = new Button("End game");
@@ -255,11 +290,8 @@ public class PongApplication extends Application {
         // ball set-up
         Ball ball = new Ball(gameWidth / 2, gameHeight / 2, 10);
         
-        // movement set-up, random direction for ball
-        Random random = new Random();
-        double p = Math.pow(-1, random.nextInt());
-        
-        Movement movementBall = new Movement(p * 2.5, p * 2.5);
+        // movement set-up
+        Movement movementBall = new Movement(0, 0);
         Movement movementPaddles = new Movement(4.0, 4.0);
         
         ArrayList<Integer> paddleMovements = new ArrayList<>();
@@ -341,13 +373,13 @@ public class PongApplication extends Application {
                     try {
                         stop();
                         if (score.getLeftScore() > score.getRightScore()) {
-                            winnerName.setText(name1.getText());
+                            winnerName.setText(name1.getValue().toString());
                         } else {
-                            winnerName.setText(name2.getText());
+                            winnerName.setText(name2.getValue().toString());
                         }
                         
-                        Player n1 = new Player(0, name1.getText(), score.getLeftScore());
-                        Player n2 = new Player(1, name2.getText(), score.getRightScore());
+                        Player n1 = new Player(0, name1.getValue().toString(), score.getLeftScore());
+                        Player n2 = new Player(1, name2.getValue().toString(), score.getRightScore());
                         
                         dao.saveOrUpdate(n1);
                         dao.saveOrUpdate(n2);
@@ -362,38 +394,55 @@ public class PongApplication extends Application {
                 }
             }
         };
-
+        
         startButton.setOnAction((event) -> {    
             // print error messages
-            if (nameError(name1) || nameError(name2)) {
+            if (nameError(name1) || nameError(name2) || level.getValue() == null || sameName(name1, name2)) {
                 error1.setText("");
                 error2.setText("");
-                String errorMessage = "Maximum 8 characters";
+                errorLevel.setText("");
+                String errorSameName = "Choose different names";
+                String errorWrongType = "Maximum 8 characters";
+                String errorNoLevel = "Choose level";
                 
                 if (nameError(name1) && nameError(name2)) {
-                    error1.setText(errorMessage);
-                    error2.setText(errorMessage);
-                    
-                    name1.setText("");
-                    name2.setText("");
+                    error1.setText(errorWrongType);
+                    error2.setText(errorWrongType);
+                    name1.setValue("");
+                    name2.setValue("");
                     
                 } else if (nameError(name1)) {
-                    error1.setText(errorMessage);
-                    name1.setText("");
+                    error1.setText(errorWrongType);
+                    name1.setValue("");
                     
                 } else if (nameError(name2)) {
-                    error2.setText(errorMessage);
-                    name2.setText("");
+                    error2.setText(errorWrongType);
+                    name2.setValue("");
+                    
+                } else if (sameName(name1, name2)) {
+                    error1.setText(errorSameName);
+                    error2.setText(errorSameName);
+                    name1.setValue("");
+                    name2.setValue("");     
+                } 
+                
+                if (level.getValue() == null){
+                    errorLevel.setText(errorNoLevel);
                 }
             } else {
                 try {
-                    Player p1 = new Player(0, name1.getText(), 0);
-                    Player p2 = new Player(0, name2.getText(), 0);
+                    Player p1 = new Player(0, name1.getValue().toString(), 0);
+                    Player p2 = new Player(0, name2.getValue().toString(), 0);
                     dao.saveOrUpdate(p1);
                     dao.saveOrUpdate(p2);
                     
-                    player1.setText("Player 1: " + name1.getText());
-                    player2.setText("Player 2: " + name2.getText());
+                    comboUpdate(name1, name2, p1, p2);
+                    
+                    player1.setText("Player 1: " + name1.getValue().toString());
+                    player2.setText("Player 2: " + name2.getValue().toString());
+                    
+                    movementBall.setLevel(level.getValue());
+                    movementBall.randomDirection();
                     
                     stage.setScene(gameScene);
                     animationTimer.start();
@@ -414,10 +463,12 @@ public class PongApplication extends Application {
         newGameButton.setOnAction((event) -> {
             resetGame(gameHeight, gameWidth, score, rightPaddle, leftPaddle, 
                     movementPaddles, ball, movementBall, paddleMovements);
-            name1.setText("");
-            name2.setText("");
+            name1.setValue("");
+            name2.setValue("");
             error1.setText("");
             error2.setText("");
+            errorLevel.setText("");
+            level.setValue(null);
             stage.setScene(firstScene);
         });
         
@@ -446,10 +497,7 @@ public class PongApplication extends Application {
         ball.setX(gameWidth / 2);
         ball.setY(gameHeight / 2);
         
-        Random random = new Random();
-        double p = Math.pow(-1, random.nextInt());
-        movementBall.setMovementX(p * 2.5);
-        movementBall.setMovementY(p * 2.5);
+        movementBall.randomDirection();
         
         paddleMovements.removeAll(paddleMovements);
         paddleMovements.add(0);
@@ -458,8 +506,13 @@ public class PongApplication extends Application {
         paddleMovements.add(0);
     }
     
-    private boolean nameError(TextField name) {
-        return (name.getText().length() > 8 || name.getText().length() == 0);
+    private boolean sameName(ComboBox name1, ComboBox name2) {
+        return (name1.getValue().toString().equals(name2.getValue().toString()));
+    }
+    
+    private boolean nameError(ComboBox name) {
+        String nameText = name.getValue().toString();
+        return (nameText.length() > 8 || nameText.length() == 0 || StringUtils.isBlank(nameText));
     }
     
     private void drawFiveTop(PlayerDao dao, Label firName, Label firScore, 
@@ -502,6 +555,44 @@ public class PongApplication extends Application {
         File file = new File("db", "player.db");
         Database database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
         return database;
+    }
+    
+    public class NameComparator  implements Comparator<String> {
+        @Override
+        public int compare(String obj1, String obj2) {
+            return obj1.compareTo(obj2);
+        }
+    }
+    
+    private ObservableList<String> existingPlayers(PlayerDao dao) throws SQLException {
+        ObservableList<String> players = FXCollections.observableArrayList();
+        NameComparator com = new NameComparator();
+        
+        List<Player> allPlayers = dao.findAll();
+        for (Player p : allPlayers) {
+            players.add(p.getName());
+        }
+        players.sort(com);
+        return players;
+    }
+    
+    private void comboUpdate(ComboBox name1, ComboBox name2, Player p1, Player p2) {
+        String playerName1 = p1.getName();
+        String playerName2 = p2.getName();
+        
+        if (!name1.getItems().contains(playerName1)) {
+            name1.getItems().add(playerName1);
+            name2.getItems().add(playerName1);
+        }
+        
+        if (!name1.getItems().contains(playerName2)) {
+            name1.getItems().add(playerName2);
+            name2.getItems().add(playerName2);
+        }
+        
+        NameComparator com = new NameComparator();        
+        name1.getItems().sort(com);
+        name2.getItems().sort(com);
     }
     
     private void keyboardSetUp(Scene scene, ArrayList<Integer> paddleMovements) {
