@@ -11,26 +11,26 @@ Päivä | Aika | Mitä tein
 2.4. | 4 | Pallon nopeuden ja kimpoamisen korjauksia
 6.4. | 3 | AnimationTimeriin tutustuminen ja korjauksia
 8.4. | 5 | Graafinen käyttöliittymä: aloitus- ja lopetussivu
-8.4. | 3 | Buttonien haluttu toiminta, uusi pelikierros
+ | 3 | Buttonien haluttu toiminta, uusi pelikierros
 9.4. | 1 | Lisää testejä
 12.4. | 2 | Loput testit ja Checkstyle
-12.4. | 3 | Tietokannan valmistelu
+ | 3 | Tietokannan valmistelu
 13.4. | 2 | Pelaajien tallennus ja pisteiden päivitys tietokantaan
-13.4. | 2 | Top5-listan tulostus, loppusivun visuaalisuus
+ | 2 | Top5-listan tulostus, loppusivun visuaalisuus
 14.4. | 4 | Sovelluslogiikan eriyttäminen
 15.4. | 2 | Lisää testejä
-15.4. | 2 | Luokka- ja pakkauskaaviot
+ | 2 | Luokka- ja pakkauskaaviot
 19.4. | 2 | Mailojen ylä/alareuna kimmottaa
-19.4. | 1 | Loput testit
-19.4. | 1 | Sekvenssikaavio
+ | 1 | Loput testit
+ | 1 | Sekvenssikaavio
 20.4. | 3 | Pallo osuu mailaan, bugien korjaus
 23.4. | 2 | Pallo osuu mailaan, bugien korjaus
-23.4. | 2 | Testien muutokset ja jarin generoiminen
-23.4. | 2 | Tietokanta mukaan jariin?
+ | 2 | Testien muutokset ja jarin generoiminen
+ | 2 | Tietokanta mukaan jariin?
 24.4. | 2 | Tietokanta mukaan jariin?
 25.4. | 1 | ChoiceBoxin opiskelu
-25.4. | 1 | Valittava "game level" eli pallon aloitusnopeus
+ | 1 | Valittava "game level" eli pallon aloitusnopeus
 26.4. | 1 | ComboBoxin opiskelu, kirjasto "blankin" käyttäjänimen tarkistamiseen
-26.4. | 3 | Olemassaolevien käyttäjänimien valikot
-26.4. | 1 | Testejä uusille toiminnoille
+ | 3 | Olemassaolevien käyttäjänimien valikot
+ | 1 | Testejä uusille toiminnoille
 yht. | 70 | 
