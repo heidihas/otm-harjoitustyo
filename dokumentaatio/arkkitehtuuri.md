@@ -47,12 +47,14 @@ Tietokanta on toteutettu SQLite-tyyppiseen tiedostoon _player.db_, jossa on aino
 
 Ohessa kuvataan sovelluksen toimintalogiikkaa muutaman päätoiminnallisuuden osalta sekvenssikaaviona.
 
-### Käyttäjänimen valinta
+### Uuden pelin aloittaminen
+![Uuden pelin aloittaminen](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Start%20a%20new%20game.png)
 
 ### Vasemman mailan liikuttaminen alas
-![Sekvenssikaavio](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Move%20left%20paddle.png)
+![Vasemman mailan liikuttaminen alas](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Move%20left%20paddle.png)
 
 ### Pallon osuminen oikeaan seinään
+![Pallon osuminen oikeaan seinään](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Ball%20hits%20right%20wall.png)
 
 ### Muut toiminnallisuudet
 
