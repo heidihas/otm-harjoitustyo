@@ -49,16 +49,20 @@ Ohessa kuvataan sovelluksen toimintalogiikkaa muutaman päätoiminnallisuuden os
 
 ### Uuden pelin aloittaminen
 
-Kun aloitussivun pelaajanimien syötekenttiin on joko kirjoitettu tai valittu käyttäjänimet, pelin toivottu vaikeustaso on valittu ja klikataan painiketta _startButton_, etenee sovelluksen kontrolli seuraavasti (huom. sekvenssikaaviosta on jätetty pois käyttäjä ja startButton-painikkeen klikkaaminen):
+Kun aloitussivun pelaajanimien syötekenttiin on joko kirjoitettu tai valittu käyttäjänimet, pelin toivottu vaikeustaso on valittu ja klikataan painiketta _startButton_, etenee sovelluksen kontrolli seuraavasti:
 
 ![Uuden pelin aloittaminen](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Start%20a%20new%20game_longer.png)
 
-
-
 ### Vasemman mailan liikuttaminen alas
+
+Kun käyttäjä painaa näppäintä s eli liikuttaa vasemmanpuoleista mailaa alas, etenee sovelluksen kontrolli seuraavasti:
+
 ![Vasemman mailan liikuttaminen alas](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Move%20left%20paddle.png)
 
 ### Pallon osuminen oikeaan seinään
+
+Kun oikeanpuoleinen pelaaja ei onnistu kimmottamaan palloa omalta pelialueeltaan ja käyttöliittymän [handle-metoti](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L321) havaitsee sen, etenee sovelluksen kontrolli seuraavasti:
+
 ![Pallon osuminen oikeaan seinään](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Ball%20hits%20right%20wall.png)
 
 ### Muut toiminnallisuudet
