@@ -24,11 +24,14 @@ Käyttöliittymä on pyritty eristämään pelilogiikan osalta täysin sovellusl
 
 ## Sovelluslogiikka
 
-Sovelluksen loogisen datamallin muodostavat luokat .
+Sovelluksen loogisen datamallin muodostavat luokat [Ball](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Ball.java), [Movement](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Movement.java), [Paddle](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Paddle.java), [Player](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Player.java) ja [Score](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Score.java). Luokat edustavat pelilogiikkaan kuuluvaa palloa, pelimailoja, sekä pallon että mailojen liikettä, pelikierroksen pistetilannetta ja sovelluksen käytössä olevasta tietokannasta haettavien tai sinne talletettavia pelaajatietoja käst
 
-Toiminnallisista kokonaisuuksista ja pelilogiikan kokoamisesta vastaa luokan PongLogics ainoa olio. Luokka tarjoaa käyttöliittymän pelilogiikkaa koskeville toiminnoille omat metodinsa. Näitä ovat esimerkiksi:
+Toiminnallisista kokonaisuuksista ja pelilogiikan kokoamisesta vastaa luokan [PongLogics](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/logics/PongLogics.java) ainoa olio. Luokka tarjoaa käyttöliittymän pelilogiikkaa koskeville toiminnoille omat metodinsa. Näitä ovat esimerkiksi:
 
-- boolean login(String username)
+- void moveBall()
+- void movePaddles()
+- void ballHitsPaddle()
+- void paddlesOnBoard(int gameHeight)
 
 ## Luokkakaavio
 ![Luokkakaavion kuva](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_luokkakaavio.png)
