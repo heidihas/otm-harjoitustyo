@@ -61,7 +61,7 @@ Kun käyttäjä painaa näppäintä s eli liikuttaa vasemmanpuoleista mailaa ala
 
 ### Pallon osuminen oikeaan seinään
 
-Kun oikeanpuoleinen pelaaja ei onnistu kimmottamaan palloa omalta pelialueeltaan ja käyttöliittymän [handle-metoti](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L321) havaitsee sen, etenee sovelluksen kontrolli seuraavasti:
+Kun oikeanpuoleinen pelaaja ei onnistu kimmottamaan palloa omalta pelialueeltaan ja käyttöliittymän [handle-metodi](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L321) havaitsee sen, etenee sovelluksen kontrolli seuraavasti:
 
 ![Pallon osuminen oikeaan seinään](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Ball%20hits%20right%20wall.png)
 
