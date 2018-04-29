@@ -24,7 +24,7 @@ Käyttöliittymä on pyritty eristämään pelilogiikan osalta täysin sovellusl
 
 ## Sovelluslogiikka
 
-Sovelluksen loogisen datamallin muodostavat luokat [Ball](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Ball.java), [Movement](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Movement.java), [Paddle](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Paddle.java), [Player](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Player.java) ja [Score](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Score.java). Luokat edustavat pelilogiikkaan kuuluvaa palloa, pelimailoja, sekä pallon että mailojen liikettä, pelikierroksen pistetilannetta ja sovelluksen käytössä olevasta tietokannasta haettavien tai sinne talletettavia pelaajatietoja käst
+Sovelluksen loogisen datamallin muodostavat luokat [Ball](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Ball.java), [Movement](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Movement.java), [Paddle](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Paddle.java), [Player](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Player.java) ja [Score](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/domain/Score.java). Luokat edustavat pelilogiikkaan kuuluvaa palloa, pelimailoja, sekä pallon että mailojen liikettä, pelikierroksen pistetilannetta ja sovelluksen käytössä olevasta tietokannasta haettavia tai sinne talletettavia pelaajatietoja.
 
 Toiminnallisista kokonaisuuksista ja pelilogiikan kokoamisesta vastaa luokan [PongLogics](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/logics/PongLogics.java) ainoa olio. Luokka tarjoaa käyttöliittymän pelilogiikkaa koskeville toiminnoille omat metodinsa. Näitä ovat esimerkiksi:
 
@@ -33,17 +33,18 @@ Toiminnallisista kokonaisuuksista ja pelilogiikan kokoamisesta vastaa luokan [Po
 - void ballHitsPaddle()
 - void paddlesOnBoard(int gameHeight)
 
-## Luokkakaavio
+Ohessa on sovelluksen osien relaatioita kuvaava luokkakaavio.
+
 ![Luokkakaavion kuva](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_luokkakaavio.png)
+
+## Tietojen pysyväistallennus
+
+Pakkauksen _pong.dao_ luokka PlayerDao huolehtii käyttäjänimitietojen tallettamisesta sovelluksen käytössä olevaan tietokantaan. Luokka noudattaa [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallia. Koska sovelluksessa on käytössä ainoastaan yksi tietokantataulu ja tätä koskeva yksi DAO-luokka, ei sovellukseen ole luotu erillistä eristettyä rajapintaa DAO-toteutuksen luomiseksi.
 
 ## Päätoiminnallisuudet
 
 ### Vasemman mailan liikuttaminen alas
 ![Sekvenssikaavio](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Move%20left%20paddle.png)
-
-## Tietojen pysyväistallennus
-
-Pakkauksen _pong.dao_ luokka PlayerDao huolehtii käyttäjänimitietojen tallettamisesta sovelluksen käytössä olevaan tietokantaan. Luokka noudattaa [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallia. Koska sovelluksessa on käytössä ainoastaan yksi tietokantataulu ja tätä koskeva yksi DAO-luokka, ei sovellukseen ole luotu erillistä eristettyä rajapintaa DAO-toteutuksen luomiseksi.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
