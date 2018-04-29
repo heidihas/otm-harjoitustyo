@@ -41,7 +41,7 @@ Ohessa on sovelluksen osien relaatioita kuvaava luokkakaavio.
 
 Pakkauksen _pong.dao_ luokka PlayerDao huolehtii käyttäjänimitietojen ja niihin liittyvien pistemäärien tallettamisesta sovelluksen käytössä olevaan tietokantaan. Luokka noudattaa [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallia. Koska sovelluksessa on käytössä ainoastaan yksi tietokantataulu ja tätä koskeva yksi DAO-luokka, ei sovellukseen ole luotu erillistä eristettyä rajapintaa DAO-toteutuksen luomiseksi.
 
-Tietokanta on toteutettu SQLite-tyyppiseen tiedostoon [player.db], jossa on ainoana tietokantatauluna taulu Player. Taulu on luotu komennolla CREATE TABLE Player (id integer PRIMARY KEY, name varchar(8), score integer). Sovellus tallettaa pelaajatietoihin siis sovelluksen automaattisesti luoman tunnisteen eli _id_:n, käyttäjänimen ja tähän käyttäjänimeen liittyvän pistesaldon.
+Tietokanta on toteutettu SQLite-tyyppiseen tiedostoon _player.db_, jossa on ainoana tietokantatauluna taulu Player. Taulu on luotu komennolla CREATE TABLE Player (id integer PRIMARY KEY, name varchar(8), score integer). Sovellus tallettaa pelaajatietoihin siis sovelluksen automaattisesti luoman tunnisteen eli _id_:n, käyttäjänimen ja tähän käyttäjänimeen liittyvän pistesaldon.
 
 ## Päätoiminnallisuudet
 
