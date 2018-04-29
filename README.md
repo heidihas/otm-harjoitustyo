@@ -46,6 +46,16 @@ mvn package
 
 generoi hakemistoon _target_ suoritettavan jar-tiedoston _Pong-1.0-SNAPSHOT.jar_
 
+### JavaDoc
+
+JavaDoc generoidaan komennolla
+
+```
+mvn javadoc:javadoc
+```
+
+JavaDocia voi tarkastella avaamalla selaimella tiedoston _target/site/apidocs/index.html_
+
 ### Checkstyle
 
 Tiedoston [checkstyle.xml](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
