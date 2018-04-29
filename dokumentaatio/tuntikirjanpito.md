@@ -33,4 +33,7 @@ Päivä | Aika | Mitä tein
 26.4. | 1 | ComboBoxin opiskelu, kirjasto "blankin" käyttäjänimen tarkistamiseen
 26.4. | 3 | Olemassaolevien käyttäjänimien valikot
 26.4. | 1 | Testejä uusille toiminnoille
-yht. | 70 | 
+27.4. | 2 | Dokumentoinnin aloitus ja palautusohjeisiin tutustuminen
+28.4. | 2 | Javadoc
+29.4. | 1 | Javadoc
+yht. | 75 | 
