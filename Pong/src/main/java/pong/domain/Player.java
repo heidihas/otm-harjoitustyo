@@ -9,9 +9,12 @@ package pong.domain;
  *
  * @author Heidi
  */
+/**
+ * The class creates a Player object for each entry in the player table of the database.
+ */
 public class Player {
-    private Integer id;
-    private String name;
+    private final Integer id;
+    private final String name;
     private int score;
 
     public Player(Integer id, String name, int score) {
@@ -36,7 +39,12 @@ public class Player {
         return String.valueOf(this.score);
     }
     
-    public void increseScore(int score) {
+    /**
+     * The method increases the player's score with a given amount.
+     * 
+     * @param score score amount to be added, provided by the application
+     */
+    public void increaseScore(int score) {
         this.score += score;
     }
     

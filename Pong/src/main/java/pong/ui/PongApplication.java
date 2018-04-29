@@ -72,6 +72,7 @@ public class PongApplication extends Application {
     // ei toisteista koodia
     // pallo osuu mailaan - mahdolliset bugit
     // nopeassa moodissa pallo kimpoaa tulosuuntaan
+    // vaikeustason alkuoletus
     
     // Jatkokehitysideoita
     // valittavissa pelin päättymispisteet
@@ -80,7 +81,7 @@ public class PongApplication extends Application {
     // error-viesti ei siirrä aloitussivun sijainteja
     // yksinpeli
     
-    
+    @Override
     public void start(Stage stage) throws SQLException {
         
         // database set-up
@@ -316,6 +317,7 @@ public class PongApplication extends Application {
             //private long sleepNanoseconds = 1000000000 * 1000000;
             //private long prevTime = 0;
             
+            @Override
             public void handle(long currentNanoTime) {
                 // increase the speed of ball and paddles
                 /*if ((currentNanoTime - prevTime) >= sleepNanoseconds) {

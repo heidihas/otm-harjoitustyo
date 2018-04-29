@@ -18,13 +18,25 @@ import pong.domain.Player;
  *
  * @author Heidi
  */
+/**
+ * The class manages the interaction with and provides queries to the database.
+ */
 public class PlayerDao {
-    private Database database;
+    private final Database database;
 
     public PlayerDao(Database database) {
         this.database = database;
     }
     
+    /**
+     * The method provides all the existing player data in the database.
+     * 
+     * @see pong.database.Database#getConnection() 
+     * 
+     * @return a List structure with Player objects
+     * 
+     * @throws SQLException 
+     */
     public List<Player> findAll() throws SQLException {
         List<Player> players = new ArrayList<>();
 
@@ -39,6 +51,15 @@ public class PlayerDao {
         return players;
     }
     
+    /**
+     * The method provides the top five of entries in the Player table according to the score.
+     * 
+     * @see pong.database.Database#getConnection() 
+     * 
+     * @return a List structure with Player objects
+     * 
+     * @throws SQLException 
+     */
     public List<Player> findFiveTop() throws SQLException {
         List<Player> players = new ArrayList<>();
         
@@ -52,6 +73,17 @@ public class PlayerDao {
         return players;
     }
     
+    /**
+     * The method provides the player data of the requested player name or null if inexistent.
+     * 
+     * @param name player name provided by the application
+     * 
+     * @see pong.database.Database#getConnection() 
+     * 
+     * @return the found data as Player object or null
+     * 
+     * @throws SQLException 
+     */
     public Player findOneByName(String name) throws SQLException {
 
         try (Connection conn = database.getConnection()) {
@@ -67,6 +99,18 @@ public class PlayerDao {
         return null;
     }
     
+    /**
+     * The method saves or updates an existing entry in the Player table of the database.
+     * 
+     * @param object Player object provided by the application
+     * 
+     * @see pong.dao.PlayerDao#findOneByName(java.lang.String) 
+     * @see pong.database.Database#getConnection() 
+     * 
+     * @return the found or created data as Player object
+     * 
+     * @throws SQLException 
+     */
     public Player saveOrUpdate(Player object) throws SQLException {
         Player byName = findOneByName(object.getName());
 

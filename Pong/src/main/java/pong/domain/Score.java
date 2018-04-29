@@ -9,6 +9,9 @@ package pong.domain;
  *
  * @author Heidi
  */
+/**
+ * The class manages the scores of left and right player during a game round.
+ */
 public class Score {
     
     private int leftPlayerScore;
@@ -19,6 +22,11 @@ public class Score {
         this.rightPlayerScore = rightPlayerScore;
     }
     
+    /**
+     * The method increases the score of the right player according to input value.
+     * 
+     * @param value integer 0 or 1 according to application
+     */
     public void increase(int value) {
         if (value == 1) {
             leftPlayerScore++;

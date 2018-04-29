@@ -44,8 +44,8 @@ public class PlayerTest {
     }
     
     @Test
-    public void increseScore() {
-        player.increseScore(10);
+    public void increaseScore() {
+        player.increaseScore(10);
         assertEquals(20, player.getScore());
     }
     

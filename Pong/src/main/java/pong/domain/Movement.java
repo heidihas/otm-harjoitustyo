@@ -11,6 +11,9 @@ import java.util.Random;
  *
  * @author Heidi
  */
+/**
+ * The class manages the movement and speed of the game objects. 
+ */
 public class Movement {
     
     private double movementX;
@@ -36,7 +39,11 @@ public class Movement {
     public void setMovementY(double yMovement) {
         this.movementY = yMovement;
     }
-    
+    /**
+     * The method sets the beginning speed of the ball according to the chosen game level.
+     * 
+     * @param obj game level name chosen by the user as Object
+     */
     public void setLevel(Object obj) {
         if (obj.equals("Easy")) {
             this.movementX = 2.5;
@@ -50,6 +57,9 @@ public class Movement {
         }
     }
     
+    /**
+     * The method randomly chooses the movement direction of the ball in the beginning of a new game round.
+     */
     public void randomDirection() {
         Random random = new Random();
         double p = Math.pow(-1, random.nextInt());

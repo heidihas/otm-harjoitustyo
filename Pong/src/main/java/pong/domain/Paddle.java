@@ -11,6 +11,9 @@ import javafx.scene.paint.Color;
  *
  * @author Heidi
  */
+/**
+ * The class creates a Paddle object and manages its location in the game.
+ */
 public class Paddle {
     
     private int x;
@@ -25,38 +28,6 @@ public class Paddle {
         this.width = width;
         this.height = height;
         this.color = color;
-    }
-    
-    public boolean ballHitsVerticalLeft(int x, int y) {
-        if ((x == (this.x + this.width))
-                && ((y > this.y) && (y < (this.y + this.height)))) {
-            return true;
-        }
-        return false;
-    }
-    
-    public boolean ballHitsVerticalRight(int x, int y, int radius) {
-        if (((x + 2 * radius) == this.x)
-                && ((y > this.y) && (y < (this.y + this.height)))) {
-            return true;
-        }
-        return false;
-    }
-    
-    public boolean ballHitsHorizontalLeft(int x, int y, int radius) {
-        if ((x <= (this.x + this.width))
-                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height)))) {
-            return true;
-        }
-        return false;
-    }
-    
-    public boolean ballHitsHorizontalRight(int x, int y, int radius) {
-        if (((x + 2 * radius) >= this.x)
-                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height)))) {
-            return true;
-        }
-        return false;
     }
 
     public int getX() {
@@ -97,5 +68,60 @@ public class Paddle {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+    
+    /**
+     * The method checks if the ball hits the left paddle on its vertical side.
+     * 
+     * @param x x coordinate of the ball provided by the application
+     * @param y y coordinate of the ball provided by the application
+     * 
+     * @return true if the ball hits the left paddle or false if not
+     */
+    public boolean ballHitsVerticalLeft(int x, int y) {
+        return ((x == (this.x + this.width))
+                && ((y > this.y) && (y < (this.y + this.height))));    
+    }
+    
+    /**
+     * The method checks if the ball hits the right paddle on its vertical side.
+     * 
+     * @param x x coordinate of the ball provided by the application
+     * @param y y coordinate of the ball provided by the application 
+     * @param radius radius of the ball provided by the application
+     * 
+     * @return true if the ball hits the right paddle or false if not
+     */
+    public boolean ballHitsVerticalRight(int x, int y, int radius) {
+        return (((x + 2 * radius) == this.x)
+                && ((y > this.y) && (y < (this.y + this.height))));
+    }
+    
+    /**
+     * The method checks if the ball hits the left paddle on this horizontal sides.
+     * 
+     * @param x x coordinate of the ball provided by the application
+     * @param y y coordinate of the ball provided by the application
+     * @param radius radius of the ball provided by the application
+     * 
+     * @return true if the ball hits the left paddle or false if not
+     */
+    public boolean ballHitsHorizontalLeft(int x, int y, int radius) {
+        return ((x <= (this.x + this.width))
+                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height))));
+    }
+    
+    /**
+     * The method checks if the ball hits the right paddle on its horizontal sides.
+     * 
+     * @param x x coordinate of the ball provided by the application
+     * @param y y coordinate of the ball provided by the application
+     * @param radius radius of the ball provided by the application
+     * 
+     * @return true if the ball hits the right paddle or false if not
+     */
+    public boolean ballHitsHorizontalRight(int x, int y, int radius) {
+        return (((x + 2 * radius) >= this.x)
+                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height))));
     }
 }

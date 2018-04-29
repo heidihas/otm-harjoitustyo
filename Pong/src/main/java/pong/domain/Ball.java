@@ -9,6 +9,9 @@ package pong.domain;
  *
  * @author Heidi
  */
+/**
+ * The class creates a Ball object and manages its location in the game.
+ */
 public class Ball {
     
     private double x;
@@ -45,6 +48,15 @@ public class Ball {
         this.radius = radius;
     }
 
+    /**
+     * The method moves the ball by increasing or decreasing the coordinates according to the Movement object assigned to the ball.
+     * 
+     * @param movement Movement object provided by the application
+     * 
+     * @see pong.domain.Movement
+     * @see pong.domain.Movement#getMovementX() 
+     * @see pong.domain.Movement#getMovementY() 
+     */
     public void move(Movement movement) {
         this.x += movement.getMovementX();
         this.y += movement.getMovementY();

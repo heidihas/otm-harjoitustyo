@@ -13,6 +13,9 @@ import java.sql.SQLException;
  *
  * @author Heidi
  */
+/**
+ * The class manages the connection with the database.
+ */
 public class Database {
     private String databaseAddress;
 
@@ -23,6 +26,13 @@ public class Database {
         this.databaseAddress = databaseAddress;
     }
 
+    /**
+     * The method requests connection with the assigned database.
+     * 
+     * @return connection as Connection object
+     * 
+     * @throws SQLException 
+     */
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(databaseAddress);
     }

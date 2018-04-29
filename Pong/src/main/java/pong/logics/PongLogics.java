@@ -17,13 +17,13 @@ import pong.domain.Score;
  */
 public class PongLogics {
     private int winningScore;
-    private Score score;
-    private Paddle leftPaddle;
-    private Paddle rightPaddle;
-    private Ball ball;
-    private Movement movementPaddles;
-    private Movement movementBall;
-    private ArrayList<Integer> paddleMovements;
+    private final Score score;
+    private final Paddle leftPaddle;
+    private final Paddle rightPaddle;
+    private final Ball ball;
+    private final Movement movementPaddles;
+    private final Movement movementBall;
+    private final ArrayList<Integer> paddleMovements;
     
     public PongLogics(Score score, Paddle leftPaddle, Paddle rightPaddle, 
             Ball ball, Movement movementPaddles, Movement movementBall, 
