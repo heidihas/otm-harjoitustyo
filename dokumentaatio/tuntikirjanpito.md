@@ -35,5 +35,6 @@ Päivä | Aika | Mitä tein
 26.4. | 1 | Testejä uusille toiminnoille
 27.4. | 2 | Dokumentoinnin aloitus ja palautusohjeisiin tutustuminen
 28.4. | 2 | Javadoc
-29.4. | 1 | Javadoc
-yht. | 75 | 
+29.4. | 3 | Javadoc ja arkkitehtuurikuvaus
+29.4. | 3 | Arkkitehtuurikuvaus
+yht. | 79 | 
