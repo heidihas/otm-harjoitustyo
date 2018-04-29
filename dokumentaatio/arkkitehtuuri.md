@@ -34,6 +34,8 @@ Käyttöliittymä on pyritty eristämään pelilogiikan osalta täysin sovellusl
 
 ## Tietojen pysyväistallennus
 
+Pakkauksen _pong.dao_ luokka PlayerDao huolehtii käyttäjänimitietojen tallettamisesta sovelluksen käytössä olevaan tietokantaan. Luokka noudattaa [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallia. Koska sovelluksessa on käytössä ainoastaan yksi tietokantataulu ja tätä koskeva yksi DAO-luokka, ei sovellukseen ole luotu erillistä eristettyä rajapintaa DAO-toteutuksen luomiseksi.
+
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
 ### Käyttöliittymä
