@@ -57,13 +57,12 @@ import pong.logics.PongLogics;
 public class PongApplication extends Application {
     
     // Viikko6
-    // pallo nopeutuu
-    // koodikatselmointi
-    // uusi release
-    // javadoc (generoitavissa, kuvaukset vähintään viidelle luokalle)
-    // arkkitehtuurikuvaus
-    // käyttöohje
-    // readmessä käyttöohje, release2, ohjeet javadociin
+    // pallo nopeutuu ??
+    // koodikatselmointi keskiviikkona tai torstaina
+    // uusi release 5min
+    // arkkitehtuurikuvaus 30min
+    // käyttöohje 30min
+    // readmessä käyttöohje, release2
     
     // Viikko7
     // kaikki daoihin liittyvä -> PongLogics pong.logics?
@@ -433,6 +432,7 @@ public class PongApplication extends Application {
                 }
             } else {
                 try {
+                    System.out.println(level.getValue());
                     Player p1 = new Player(0, name1.getValue().toString(), 0);
                     Player p2 = new Player(0, name2.getValue().toString(), 0);
                     dao.saveOrUpdate(p1);
