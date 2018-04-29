@@ -48,7 +48,12 @@ Tietokanta on toteutettu SQLite-tyyppiseen tiedostoon _player.db_, jossa on aino
 Ohessa kuvataan sovelluksen toimintalogiikkaa muutaman päätoiminnallisuuden osalta sekvenssikaaviona.
 
 ### Uuden pelin aloittaminen
+
+Kun aloitussivun pelaajanimien syötekenttiin on joko kirjoitettu tai valittu käyttäjänimet, pelin toivottu vaikeustaso on valittu ja klikataan painiketta _startButton_, etenee sovelluksen kontrolli seuraavasti (huom. sekvenssikaaviosta on jätetty pois käyttäjä ja startButton-painikkeen klikkaaminen):
+
 ![Uuden pelin aloittaminen](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Start%20a%20new%20game.png)
+
+
 
 ### Vasemman mailan liikuttaminen alas
 ![Vasemman mailan liikuttaminen alas](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Move%20left%20paddle.png)
