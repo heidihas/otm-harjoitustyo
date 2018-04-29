@@ -16,7 +16,7 @@ Käyttöliittymä käsittää kolme erillistä näkymää
 - pelinäkymä
 - lopetussivu
 
-joista jokainen on toteutettu omana [Scene](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Scene.html)-oliona. Vain yksi näkymä voi olla kerrallaan näkyvänä eli sijoitettuna sovelluksen [stageen](https://docs.oracle.com/javase/8/javafx/api/javafx/stage/Stage.html). Käyttöliittymä on rakennettu ohjelmallisesti luokassa [pong.ui.PongApplication].
+joista jokainen on toteutettu omana [Scene](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Scene.html)-oliona. Vain yksi näkymä voi olla kerrallaan näkyvänä eli sijoitettuna sovelluksen [stageen](https://docs.oracle.com/javase/8/javafx/api/javafx/stage/Stage.html). Käyttöliittymä on rakennettu ohjelmallisesti luokassa [pong.ui.PongApplication](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java).
 
 Näkymistä _aloitussivu_ käsittää pelaajien käyttäjänimien luomisen tai valitsemisen olemassa olevista käyttäjänimistä sekä pelin vaikeustason valinnan. Aloitusnäkymästä päästään _pelinäkymään_, joka pitää sisällään itse pelin logiikkoineen. Pelikierroksen päättyessä jommankumman pelaajan voittoon siirrytään _lopetussivulle_, joka ilmoittaa kierroksen voittaneen pelaajan käyttäjänimen, esittää pistemäärän perusteella viiden parhaan käyttäjänimen listauksen ja mahdollistaa kolmella napilla joko uuden pelikierroksen, uuden pelin tai pelin lopettamisen.
 
