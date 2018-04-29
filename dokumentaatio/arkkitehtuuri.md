@@ -51,7 +51,7 @@ Ohessa kuvataan sovelluksen toimintalogiikkaa muutaman päätoiminnallisuuden os
 
 Kun aloitussivun pelaajanimien syötekenttiin on joko kirjoitettu tai valittu käyttäjänimet, pelin toivottu vaikeustaso on valittu ja klikataan painiketta _startButton_, etenee sovelluksen kontrolli seuraavasti (huom. sekvenssikaaviosta on jätetty pois käyttäjä ja startButton-painikkeen klikkaaminen):
 
-![Uuden pelin aloittaminen](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Start%20a%20new%20game.png)
+![Uuden pelin aloittaminen](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Start%20a%20new%20game_longer.png)
 
 
 
