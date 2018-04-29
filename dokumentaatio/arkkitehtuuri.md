@@ -45,8 +45,18 @@ Tietokanta on toteutettu SQLite-tyyppiseen tiedostoon _player.db_, jossa on aino
 
 ## Päätoiminnallisuudet
 
+Ohessa kuvataan sovelluksen toimintalogiikkaa muutaman päätoiminnallisuuden osalta sekvenssikaaviona.
+
+### Käyttäjänimen valinta
+
 ### Vasemman mailan liikuttaminen alas
 ![Sekvenssikaavio](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Move%20left%20paddle.png)
+
+### Pallon osuminen oikeaan seinään
+
+### Muut toiminnallisuudet
+
+Sama periaate toistuu sovelluksen muissa toiminnallisuuksissa: käyttöliittymän tapahtumakäsittelijä ja _handle_-metodi kutsuu sovelluslogiikan metodeja, ja sovelluslogiikka päivittää tarpeen mukaan sovelluksen/pelin tilaa. Kontrollin palatessa käyttöliittymään päivittynyt tieto korjaantuu visuaalisesti pelin piirtoalustalla käyttöliittymän piirtäessä saamansa datan uudelleen. Toisaalta käyttöliittymällä on suora yhteys pelin käyttämään tietokantaan, sillä käyttöliittymän näkymät tarvitsevat suoraa pääsyä käsiksi tietokantaan talletettuun tietoon esimerkiksi sovelluksen esittäessä _lopetussivulla_ pistemäärällisesti viiden parhaan pelaajan listauksen.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
