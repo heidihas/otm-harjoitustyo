@@ -24,6 +24,12 @@ Käyttöliittymä on pyritty eristämään pelilogiikan osalta täysin sovellusl
 
 ## Sovelluslogiikka
 
+Sovelluksen loogisen datamallin muodostavat luokat .
+
+Toiminnallisista kokonaisuuksista ja pelilogiikan kokoamisesta vastaa luokan PongLogics ainoa olio. Luokka tarjoaa käyttöliittymän pelilogiikkaa koskeville toiminnoille omat metodinsa. Näitä ovat esimerkiksi:
+
+- boolean login(String username)
+
 ## Luokkakaavio
 ![Luokkakaavion kuva](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_luokkakaavio.png)
 
