@@ -37,4 +37,5 @@ Päivä | Aika | Mitä tein
 28.4. | 2 | Javadoc
 29.4. | 3 | Javadoc ja arkkitehtuurikuvaus
 29.4. | 3 | Arkkitehtuurikuvaus
+30.4. | 2 | Käyttöohje
 yht. | 79 | 
