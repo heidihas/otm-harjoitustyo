@@ -40,8 +40,26 @@ Kun virheet on korjattu, kuten alla olevassa kuvassa, voidaan painaa uudelleen _
 
 <img src="https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_pic_5.png" width="600">
 
+## Pelikierros ja pelin eteneminen
+
+Aloitussivulta sovellus etenee pelinäkymään, joka koostuu kahdesta eri puolilla pelikenttää olevista mailoista ja pelialueella liikkuvasta pallosta. Peliruudun yläreunassa ovat esillä pelaavien käyttäjänimet ja senhetkinen pistetilanne.
+
+Pelaajien on tarkoitus mailojaan liikuttamalla estää pallon osuminen oman pelialueen seinään. Vasen maila liikkuu näppäimin w (ylös) ja s (alas), oikea puolestaan nuolinäppäimin up ja down. Alla olevassa kuvassa esitetään tilanne, jossa vasen pelaaja estää pallon pääsyn omalle pelialueelle. 
+
 <img src="https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_pic_6.png" width="600">
+
+Kun maila kimmottaa pallon vastapelaajan suuntaan, ei vastapelaaja saa tästä pistettä. Yllä olevassa kuvassa oikeanpuoleisen pelaajan pistemäärä pysyy luvussa 0. 
+
+Jos käy niin, että pallo osuu ja kimpoaa takaisin pelaajan suojelemasta seinästä, vastapelaaja saa pisteen. Alla olevassa kuvassa vasemmanpuoleinen pelaaja ei ehtinyt kimmottaa palloa, jolloin oikeanpuoleisen pelaajan pistesaldo kasvoi lukuun 1.
 
 <img src="https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_pic_7.png" width="600">
 
+## Pelikierroksen päättyminen
+
+Pelikierros päättyy jommankumman pelaajan voittoon eli siihen, kun jompikumpi pelaajista saa yhteensä 10 pistettä. Sovellus siirtyy tällöin automaattisesti pelinäkymästä loppunäkymään, kuten alla olevassa kuvassa.
+
 <img src="https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_pic_8.png" width="600">
+
+Loppunäkymässä kerrotaan ensin edeltäneen pelikierroksen voittaneen pelaajan käyttäjänimi. Sitä seuraa listaus pelissä ylipäänsä parhaiten menestyneistä käyttäjänimistä. Listaus perustuu sovelluksen käytössä olevassa tietokannassa olevaan tietoon, käyttäjänimien pistesaldoihin. Viisi eniten pisteitä kerännyttä käyttäjänimeä pistesaldoineen tulostetaan Top 5 -listaan. 
+
+Loppunäkymän alareunassa on rivi painikkeita, joista _Re-start_ käynnistää uuden pelikierroksen, _New game_ mahdollistaa uuden pelin eli eri käyttäjänimien ja vaikeustason valinnan, ja _End game_ sulkee sovelluksen.
