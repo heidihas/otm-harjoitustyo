@@ -12,7 +12,7 @@ Ohjelma käynnistetään komennolla
 java -jar pong-1.0.jar
 ```
 
-## Pelaajien käyttäjänimien valinta
+## Pelaajien käyttäjänimien valinta ja pelin vaikeustaso
 
 Sovellus käynnistyy alla olevaan aloitussivunäkymään.
 
