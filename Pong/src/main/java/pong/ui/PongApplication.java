@@ -60,9 +60,7 @@ public class PongApplication extends Application {
     // pallo nopeutuu ??
     // koodikatselmointi keskiviikkona tai torstaina
     // uusi release 5min
-    // arkkitehtuurikuvaus 30min
-    // käyttöohje 30min
-    // readmessä käyttöohje, release2
+    // readmessä release2
     
     // Viikko7
     // kaikki daoihin liittyvä -> PongLogics pong.logics?
