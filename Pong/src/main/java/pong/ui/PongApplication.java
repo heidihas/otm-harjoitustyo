@@ -56,13 +56,8 @@ import pong.logics.PongLogics;
  */
 public class PongApplication extends Application {
     
-    // Viikko6
-    // pallo nopeutuu ??
-    // koodikatselmointi keskiviikkona tai torstaina
-    // uusi release 5min
-    // readmessä release2
-    
     // Viikko7
+    // pallo nopeutuu?
     // kaikki daoihin liittyvä -> PongLogics pong.logics?
     // tarkista metodien ulkoasu, kirjoita tarvittavia kuvauksia
     // kaikki englanniksi
