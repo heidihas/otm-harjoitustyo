@@ -41,7 +41,13 @@ public class DatabaseTest {
     
     @Test
     public void createdDatabaseExists() {
-        assertTrue(database!=null);      
+        assertTrue(database != null);      
+    }
+    
+    @Test
+    public void databaseWithoutAddress() {
+        Database db = new Database();
+        assertTrue(db != null);
     }
     
     @Test

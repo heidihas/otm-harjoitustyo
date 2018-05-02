@@ -19,9 +19,9 @@ import java.sql.SQLException;
 public class Database {
     private String databaseAddress;
 
-    public Database() {
-        
+    public Database() {  
     }
+    
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
     }
