@@ -39,4 +39,5 @@ Päivä | Aika | Mitä tein
 29.4. | 3 | Arkkitehtuurikuvaus
 30.4. | 2 | Käyttöohje
 2.5. | 1 | Uusi release
-yht. | 82 | 
+3.5. | 3 | Koodikatselmointi
+yht. | 85 | 
