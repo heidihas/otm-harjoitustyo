@@ -40,4 +40,5 @@ Päivä | Aika | Mitä tein
 30.4. | 2 | Käyttöohje
 2.5. | 1 | Uusi release
 3.5. | 3 | Koodikatselmointi
-yht. | 85 | 
+9.5. | 4 | Pallon kimpoamisbugit ja sovelluksen luoma tietokanta
+yht. | 89 | 
