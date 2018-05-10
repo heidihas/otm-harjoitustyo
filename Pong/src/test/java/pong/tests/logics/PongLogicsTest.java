@@ -135,28 +135,28 @@ public class PongLogicsTest {
     public void leftPaddleOffBoardUp() {
         leftPaddle.setY(-1);
         logics.paddlesOnBoard(gameHeight);
-        assertEquals(0, leftPaddle.getY());
+        assertEquals(0, leftPaddle.getY(), 0);
     }
     
     @Test
     public void rightPaddleOffBoardUp() {
         rightPaddle.setY(-1);
         logics.paddlesOnBoard(gameHeight);
-        assertEquals(0, rightPaddle.getY());
+        assertEquals(0, rightPaddle.getY(), 0);
     }
     
     @Test
     public void leftPaddleOffBoardDown() {
         leftPaddle.setY(401);
         logics.paddlesOnBoard(gameHeight);
-        assertEquals(400, leftPaddle.getY());
+        assertEquals(400, leftPaddle.getY(), 0);
     }
     
     @Test
     public void rightPaddleOffBoardDown() {
         rightPaddle.setY(401);
         logics.paddlesOnBoard(gameHeight);
-        assertEquals(400, rightPaddle.getY());
+        assertEquals(400, rightPaddle.getY(), 0);
     }
     
     @Test

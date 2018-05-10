@@ -6,7 +6,6 @@
 package pong.ui;
 
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -55,34 +54,32 @@ import pong.logics.PongLogics;
  * @author Heidi
  */
 public class PongApplication extends Application {
+    // javadoc loppuun, testausdokumentti, testi databasen initille 1h
     
-    // Viikko7
-    // pallo nopeutuu?
+    // kun uusi käyttäjänimi, ei löydy tieto nimiruudusta... miten tallennetaan
+    
     // kaikki daoihin liittyvä -> PongLogics pong.logics?
     // tarkista metodien ulkoasu, kirjoita tarvittavia kuvauksia
     // kaikki englanniksi
     // ei toisteista koodia
-    // pallo osuu mailaan - mahdolliset bugit
-    // nopeassa moodissa pallo kimpoaa tulosuuntaan
-    // vaikeustason alkuoletus
+    // tarkista dokumentointi 2h
     
-    // Jatkokehitysideoita
+    // Jatkokehitysideoita:
     // valittavissa pelin päättymispisteet
     // aloitusnopeus vaikuttaa mailoihin
     // rajattu määrä käyttäjänimiä
     // error-viesti ei siirrä aloitussivun sijainteja
     // yksinpeli
+    // pallo nopeutuu
+    // vaikeustason alkuoletus
     
     @Override
     public void start(Stage stage) throws SQLException {
         
         // database set-up
-        Database database = new Database();
-        try {
-            database = databaseSetUp();
-        } catch (Throwable ex) {
-            Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Database database = new Database("jdbc:sqlite:player.db");
+        database.getConnection();
+        database.init();
         PlayerDao dao = new PlayerDao(database);
         
         // window set-up
@@ -92,13 +89,7 @@ public class PongApplication extends Application {
         stage.setTitle("Pong");
 
         // first page scene set-up
-        
-        // get image from file, two ways
-        // String fileName = "pong/picture/pong.png";
-        // ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        // File file = new File(classLoader.getResource(fileName).getFile());
-        
-        Image image = new Image("file:pong.png"); //new Image(file.toURI().toString());
+        Image image = new Image("file:pong.png");
                 
         Label text = new Label("Player names");
         
@@ -185,11 +176,25 @@ public class PongApplication extends Application {
         Label fouName = new Label(" - ");
         Label fivName = new Label(" - ");
         
+        Label[] printNames = new Label[5];
+        printNames[0] = firName;
+        printNames[1] = secName;
+        printNames[2] = thirName;
+        printNames[3] = fouName;
+        printNames[4] = fivName;
+        
         Label firScore = new Label(" - ");
         Label secScore = new Label(" - ");
         Label thirScore = new Label(" - ");
         Label fouScore = new Label(" - ");
         Label fivScore = new Label(" - ");
+        
+        Label[] printScores = new Label[5];
+        printScores[0] = firScore;
+        printScores[1] = secScore;
+        printScores[2] = thirScore;
+        printScores[3] = fouScore;
+        printScores[4] = fivScore;
         
         Button restartButton = new Button("Re-start");
         Button newGameButton = new Button("New game");
@@ -378,8 +383,7 @@ public class PongApplication extends Application {
                         dao.saveOrUpdate(n1);
                         dao.saveOrUpdate(n2);
                         
-                        drawFiveTop(dao, firName, firScore, secName, secScore, 
-                                thirName, thirScore, fouName, fouScore, fivName, fivScore);
+                        drawFiveTop(dao, printNames, printScores);
                         
                         stage.setScene(lastScene);
                     } catch (SQLException ex) {
@@ -432,8 +436,8 @@ public class PongApplication extends Application {
                     
                     comboUpdate(name1, name2, p1, p2);
                     
-                    player1.setText("Player 1: " + name1.getValue().toString());
-                    player2.setText("Player 2: " + name2.getValue().toString());
+                    player1.setText("Player 1: " + p1.getName());
+                    player2.setText("Player 2: " + p2.getName());
                     
                     movementBall.setLevel(level.getValue());
                     movementBall.randomDirection();
@@ -509,46 +513,18 @@ public class PongApplication extends Application {
         return (nameText.length() > 8 || nameText.length() == 0 || StringUtils.isBlank(nameText));
     }
     
-    private void drawFiveTop(PlayerDao dao, Label firName, Label firScore, 
-            Label secName, Label secScore, Label thirName, Label thirScore, 
-            Label fouName, Label fouScore, Label fivName, Label fivScore) {
+    private void drawFiveTop(PlayerDao dao, Label[] printNames, Label[] printScores) {
         try {
             List<Player> topFivePlayers = dao.findFiveTop();
-            int i = 0;
-            while (topFivePlayers.size() > i) {
-                if (i == 0) {
-                    firName.setText(topFivePlayers.get(0).getName());
-                    firScore.setText(topFivePlayers.get(0).getScoreString());
-                } else if (i == 1) {
-                    secName.setText(topFivePlayers.get(1).getName());
-                    secScore.setText(topFivePlayers.get(1).getScoreString());
-                } else if (i == 2) {
-                    thirName.setText(topFivePlayers.get(2).getName());
-                    thirScore.setText(topFivePlayers.get(2).getScoreString());
-                } else if (i == 3) {
-                    fouName.setText(topFivePlayers.get(3).getName());
-                    fouScore.setText(topFivePlayers.get(3).getScoreString());
-                } else if (i == 4) {
-                    fivName.setText(topFivePlayers.get(4).getName());
-                    fivScore.setText(topFivePlayers.get(4).getScoreString());
-                }
-                i++;
+            
+            for (int i = 0; i < topFivePlayers.size(); i++) {
+                printNames[i].setText(topFivePlayers.get(i).getName());
+                printScores[i].setText(topFivePlayers.get(i).getScoreString());
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(PongApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    private Database databaseSetUp() throws Throwable {
-        // set database from file, two ways
-        
-        // String fileName = "pong/db/player.db";
-        // ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        // File file = new File(classLoader.getResource(fileName).getFile());
-        
-        File file = new File("db", "player.db");
-        Database database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
-        return database;
     }
     
     public class NameComparator  implements Comparator<String> {

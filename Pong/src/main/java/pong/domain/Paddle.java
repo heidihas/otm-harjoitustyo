@@ -16,13 +16,13 @@ import javafx.scene.paint.Color;
  */
 public class Paddle {
     
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    private double x;
+    private double y;
+    private double width;
+    private double height;
     private Color color;
 
-    public Paddle(int x, int y, int width, int height, Color color) {
+    public Paddle(double x, double y, double width, double height, Color color) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -30,35 +30,35 @@ public class Paddle {
         this.color = color;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
@@ -75,12 +75,13 @@ public class Paddle {
      * 
      * @param x x coordinate of the ball provided by the application
      * @param y y coordinate of the ball provided by the application
+     * @param radius radius of the ball provided by the application
      * 
      * @return true if the ball hits the left paddle or false if not
      */
-    public boolean ballHitsVerticalLeft(int x, int y) {
-        return ((x == (this.x + this.width))
-                && ((y > this.y) && (y < (this.y + this.height))));    
+    public boolean ballHitsVerticalLeft(double x, double y, double radius) {
+        return ((x <= (this.x + this.width)) && (x > (this.x + this.width - radius)))
+                && ((y > this.y) && (y < (this.y + this.height)));    
     }
     
     /**
@@ -92,9 +93,9 @@ public class Paddle {
      * 
      * @return true if the ball hits the right paddle or false if not
      */
-    public boolean ballHitsVerticalRight(int x, int y, int radius) {
-        return (((x + 2 * radius) == this.x)
-                && ((y > this.y) && (y < (this.y + this.height))));
+    public boolean ballHitsVerticalRight(double x, double y, double radius) {
+        return (((x + 2 * radius) >= this.x) && ((x + 2 * radius) < (this.x + radius)))
+                && ((y > this.y) && (y < (this.y + this.height)));
     }
     
     /**
@@ -106,9 +107,9 @@ public class Paddle {
      * 
      * @return true if the ball hits the left paddle or false if not
      */
-    public boolean ballHitsHorizontalLeft(int x, int y, int radius) {
-        return ((x <= (this.x + this.width))
-                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height))));
+    public boolean ballHitsHorizontalLeft(double x, double y, double radius) {
+        return (x <= (this.x + this.width))
+                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height)));
     }
     
     /**
@@ -120,8 +121,8 @@ public class Paddle {
      * 
      * @return true if the ball hits the right paddle or false if not
      */
-    public boolean ballHitsHorizontalRight(int x, int y, int radius) {
-        return (((x + 2 * radius) >= this.x)
-                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height))));
+    public boolean ballHitsHorizontalRight(double x, double y, double radius) {
+        return ((x + 2 * radius) >= this.x)
+                && (((y + 2 * radius) >= this.y) && (y <= (this.y + this.height)));
     }
 }

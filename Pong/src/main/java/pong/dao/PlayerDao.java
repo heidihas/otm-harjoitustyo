@@ -46,6 +46,9 @@ public class PlayerDao {
             while (result.next()) {
                 players.add(new Player(result.getInt("id"), result.getString("name"), result.getInt("score")));
             }
+            
+            result.close();
+            conn.close();
         }
 
         return players;
@@ -68,8 +71,12 @@ public class PlayerDao {
             
             while (result.next()) {
                 players.add(new Player(result.getInt("id"), result.getString("name"), result.getInt("score")));
-            }      
+            } 
+            
+            result.close();
+            conn.close();
         }
+        
         return players;
     }
     
@@ -94,8 +101,10 @@ public class PlayerDao {
             while (result.next()) {
                 return new Player(result.getInt("id"), result.getString("name"), result.getInt("score"));
             }
+            
+            conn.close();
         }
-
+        
         return null;
     }
     
@@ -120,7 +129,10 @@ public class PlayerDao {
                 stmt.setInt(1, object.getScore() + byName.getScore());
                 stmt.setString(2, object.getName());
                 stmt.executeUpdate();
+                
+                conn.close();
             }
+            
             return byName;
         } 
 
@@ -129,6 +141,8 @@ public class PlayerDao {
             stmt.setString(1, object.getName());
             stmt.setInt(2, object.getScore());
             stmt.executeUpdate();
+            
+            conn.close();
         }
 
         return findOneByName(object.getName());

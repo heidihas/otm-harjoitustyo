@@ -8,6 +8,7 @@ package pong.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -19,10 +20,7 @@ import java.sql.SQLException;
 public class Database {
     private String databaseAddress;
 
-    public Database() {  
-    }
-    
-    public Database(String databaseAddress) throws ClassNotFoundException {
+    public Database(String databaseAddress) {
         this.databaseAddress = databaseAddress;
     }
 
@@ -35,5 +33,18 @@ public class Database {
      */
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(databaseAddress);
+    } 
+    
+    public void init() {
+        String statement = "CREATE TABLE Player (id integer PRIMARY KEY, name varchar(8), score integer);";
+        
+        try (Connection conn = getConnection()) {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(statement);
+            
+            conn.close();
+            
+        } catch (Throwable t) {
+        }
     }
 }

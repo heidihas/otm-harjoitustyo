@@ -31,23 +31,12 @@ public class DatabaseTest {
     
     @Before
     public void setUp() {
-        File file = new File("db", "player.db");
-        try {
-            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DatabaseTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        database = new Database("jdbc:sqlite:player.db");
     }
     
     @Test
     public void createdDatabaseExists() {
         assertTrue(database != null);      
-    }
-    
-    @Test
-    public void databaseWithoutAddress() {
-        Database db = new Database();
-        assertTrue(db != null);
     }
     
     @Test

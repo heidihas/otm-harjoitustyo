@@ -32,25 +32,25 @@ public class PaddleTest {
     @Test
     public void setX() {
        paddle.setX(0);
-       assertEquals(0, paddle.getX());
+       assertEquals(0, paddle.getX(), 0);
     }
     
     @Test
     public void setY() {
        paddle.setY(10);
-       assertEquals(10, paddle.getY());
+       assertEquals(10, paddle.getY(), 0);
     }
     
     @Test
     public void setWidth() {
        paddle.setWidth(100);
-       assertEquals(100, paddle.getWidth());
+       assertEquals(100, paddle.getWidth(), 0);
     }
     
     @Test
     public void setHeight() {
        paddle.setHeight(26);
-       assertEquals(26, paddle.getHeight());
+       assertEquals(26, paddle.getHeight(), 0);
     }
     
     @Test
@@ -61,27 +61,27 @@ public class PaddleTest {
     
     @Test
     public void ballHitsVerticalLeft() {
-        assertEquals(true, paddle.ballHitsVerticalLeft(40, 30));
+        assertEquals(true, paddle.ballHitsVerticalLeft(40, 30, 5));
     }
     
     @Test
     public void ballHitsVerticalLeftNot() {
-        assertEquals(false, paddle.ballHitsVerticalLeft(40, 20));
+        assertEquals(false, paddle.ballHitsVerticalLeft(40, 20, 5));
     }
     
     @Test
     public void ballHitsVerticalLeftNot1() {
-        assertEquals(false, paddle.ballHitsVerticalLeft(40, 100));
+        assertEquals(false, paddle.ballHitsVerticalLeft(40, 100, 5));
     }
     
     @Test
     public void ballHitsVerticalLeftNot2() {
-        assertEquals(false, paddle.ballHitsVerticalLeft(42, 20));
+        assertEquals(false, paddle.ballHitsVerticalLeft(42, 20, 5));
     }
     
     @Test
     public void ballHitsVerticalLeftNot3() {
-        assertEquals(false, paddle.ballHitsVerticalLeft(42, 80));
+        assertEquals(false, paddle.ballHitsVerticalLeft(42, 80, 5));
     }
     
     @Test

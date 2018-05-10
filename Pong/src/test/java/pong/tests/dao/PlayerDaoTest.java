@@ -5,7 +5,6 @@
  */
 package pong.tests.dao;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -29,13 +28,9 @@ public class PlayerDaoTest {
     
     @Before
     public void setUp() throws SQLException {
-        File file = new File("db", "player.db");
-        try {
-            database = new Database("jdbc:sqlite:" + file.getAbsolutePath());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        database = new Database("jdbc:sqlite:player.db");
         dao = new PlayerDao(database);
+        
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Player WHERE name = ?");
             stmt.setString(1, "Testi");

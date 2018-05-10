@@ -55,34 +55,34 @@ public class PongLogics {
     
     public void movePaddles() {
         if (paddleMovements.get(0) == 1) {
-            leftPaddle.setY(leftPaddle.getY() + (int) movementPaddles.getMovementY());
+            leftPaddle.setY(leftPaddle.getY() + movementPaddles.getMovementY());
         }
 
         if (paddleMovements.get(1) == 1) {
-            leftPaddle.setY(leftPaddle.getY() - (int) movementPaddles.getMovementY());
+            leftPaddle.setY(leftPaddle.getY() - movementPaddles.getMovementY());
         }
 
         if (paddleMovements.get(2) == 1) {
-            rightPaddle.setY(rightPaddle.getY() + (int) movementPaddles.getMovementY());
+            rightPaddle.setY(rightPaddle.getY() + movementPaddles.getMovementY());
         }
                 
         if (paddleMovements.get(3) == 1) {
-            rightPaddle.setY(rightPaddle.getY() - (int) movementPaddles.getMovementY());
+            rightPaddle.setY(rightPaddle.getY() - movementPaddles.getMovementY());
         }
     }
     
     public void ballHitsPaddle() {     
-        if (leftPaddle.ballHitsVerticalLeft((int) ball.getX(), (int) ball.getY())) {
+        if (leftPaddle.ballHitsVerticalLeft(ball.getX(), ball.getY(), ball.getRadius())) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
             
-        } else if (rightPaddle.ballHitsVerticalRight((int) ball.getX(), (int) ball.getY(), (int) ball.getRadius())) {
+        } else if (rightPaddle.ballHitsVerticalRight(ball.getX(), ball.getY(), ball.getRadius())) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
             
-        } else if (leftPaddle.ballHitsHorizontalLeft((int) ball.getX(), (int) ball.getY(), (int) ball.getRadius())) {
+        } else if (leftPaddle.ballHitsHorizontalLeft(ball.getX(), ball.getY(), ball.getRadius())) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
             movementBall.setMovementY(-1 * movementBall.getMovementY());
             
-        } else if (rightPaddle.ballHitsHorizontalRight((int) ball.getX(), (int) ball.getY(), (int) ball.getRadius())) {
+        } else if (rightPaddle.ballHitsHorizontalRight(ball.getX(), ball.getY(), ball.getRadius())) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
             movementBall.setMovementY(-1 * movementBall.getMovementY());
         }
