@@ -67,10 +67,12 @@ Kun oikeanpuoleinen pelaaja ei onnistu kimmottamaan palloa omalta pelialueeltaan
 
 ### Muut toiminnallisuudet
 
-Sama periaate toistuu sovelluksen muissa toiminnallisuuksissa: käyttöliittymän tapahtumakäsittelijä ja [handle-metodi](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L321) kutsuu sovelluslogiikan metodeja, ja sovelluslogiikka päivittää tarpeen mukaan sovelluksen/pelin tilaa. Kontrollin palatessa käyttöliittymään päivittynyt tieto korjaantuu visuaalisesti pelin piirtoalustalla käyttöliittymän piirtäessä saamansa datan uudelleen. Toisaalta käyttöliittymällä on suora yhteys pelin käyttämään tietokantaan, sillä käyttöliittymän näkymät tarvitsevat suoraa pääsyä käsiksi tietokantaan talletettuun tietoon esimerkiksi sovelluksen esittäessä _lopetussivulla_ pistemäärällisesti viiden parhaan pelaajan listauksen.
+Sama periaate toistuu sovelluksen muissa toiminnallisuuksissa: käyttöliittymän tapahtumakäsittelijä ja [handle-metodi](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L321) kutsuu sopivia sovelluslogiikan metodeja, ja sovelluslogiikka päivittää tarpeen mukaan sovelluksen/pelin tilaa. Kontrollin palatessa käyttöliittymään päivittynyt tieto korjaantuu visuaalisesti pelin piirtoalustalla käyttöliittymän piirtäessä saamansa datan uudelleen. Toisaalta käyttöliittymällä on suora yhteys pelin käyttämään tietokantaan, sillä käyttöliittymän näkymät tarvitsevat suoraa pääsyä käsiksi tietokantaan talletettuun tietoon esimerkiksi sovelluksen esittäessä _lopetussivulla_ pistemäärällisesti viiden parhaan pelaajan listauksen.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
 ### Käyttöliittymä
 
 Sovelluksen graafinen käyttöliittymä on toteutettu määrittelemällä lähes koko käyttöliittymän rakenne luokan [PongApplication](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java) metodissa [start](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L85). Sovelluksen eri näkymät rakentava koodi kannattaisi erottaa kutakin näkymää vastaaviksi metodeiksi tai luokiksi.
+
+Toisaalta pelin aloitussivulla näkyvän kuvan olisi parasta olla osana sovellusta, tällä hetkellä sovellus olettaa kuvatiedoston löytyvän sovelluksen käynnistysvalikosta.
