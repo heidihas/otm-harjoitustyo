@@ -12,7 +12,7 @@ Sovellusta on testattu niin automatisoiduin yksikkö- ja integraatiotestein JUni
 
 Sovelluksen käyttöliittymäluokkaa lukuun ottamatta testauksen rivi- ja haarautumakattavuus on vastaavanlainen:
 
-<img src="" width="800">
+<img src="https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_testikattavuus.png" width="800">
 
 ## Järjestelmätestaus
 
