@@ -1,8 +1,8 @@
 # Käyttöohje
 
-Lataa tiedosto [pong-1.0.jar](https://github.com/heidihas/otm-harjoitustyo/releases/tag/viikko5).
+Lataa tiedosto UUSI JAR! [pong-1.0.jar](https://github.com/heidihas/otm-harjoitustyo/releases/tag/viikko5).
 
-Ohjelma olettaa, että sen käynnistyshakemistossa ovat tiedostot _pong.png_ ja _player.db_, joista ensimmäinen käsittää sovelluksen aloitussivulla olevan kuvan ja jälkimmäinen sovelluksen käyttämän tietokannan.
+Ohjelma olettaa, että sen käynnistyshakemistossa on tiedosto _pong.png_ eli sovelluksen aloitussivulla näytettävä kuva.
 
 ## Ohjelman käynnistäminen
 
