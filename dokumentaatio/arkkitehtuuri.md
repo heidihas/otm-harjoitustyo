@@ -39,7 +39,7 @@ Ohessa on sovelluksen osien relaatioita kuvaava luokkakaavio.
 
 ## Tietojen pysyväistallennus
 
-Pakkauksen _pong.dao_ luokka PlayerDao huolehtii käyttäjänimitietojen ja niihin liittyvien pistemäärien tallettamisesta sovelluksen käytössä olevaan tietokantaan. Luokka noudattaa [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallia. Koska sovelluksessa on käytössä ainoastaan yksi tietokantataulu ja tätä koskeva yksi DAO-luokka, ei sovellukseen ole luotu erillistä eristettyä rajapintaa DAO-toteutuksen luomiseksi.
+Pakkauksen _pong.dao_ luokka [PlayerDao](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/dao/PlayerDao.java) huolehtii käyttäjänimitietojen ja niihin liittyvien pistemäärien tallettamisesta sovelluksen käytössä olevaan tietokantaan. Luokka noudattaa [Data Access Object](https://en.wikipedia.org/wiki/Data_access_object) -suunnittelumallia. Koska sovelluksessa on käytössä ainoastaan yksi tietokantataulu ja tätä koskeva yksi DAO-luokka, ei sovellukseen ole luotu erillistä eristettyä rajapintaa DAO-toteutuksen luomiseksi.
 
 Tietokanta on toteutettu SQLite-tyyppiseen tiedostoon _player.db_, jossa on ainoana tietokantatauluna taulu Player. Taulu on luotu komennolla CREATE TABLE Player (id integer PRIMARY KEY, name varchar(8), score integer). Sovellus tallettaa pelaajatietoihin siis sovelluksen automaattisesti luoman tunnisteen eli _id_:n, käyttäjänimen ja tähän käyttäjänimeen liittyvän pistesaldon.
 
@@ -63,18 +63,18 @@ Kun käyttäjä painaa näppäintä s eli liikuttaa vasemmanpuoleista mailaa ala
 
 ### Pallon osuminen oikeaan seinään
 
-Kun oikeanpuoleinen pelaaja ei onnistu kimmottamaan palloa omalta pelialueeltaan ja käyttöliittymän [handle-metodi](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L321) havaitsee sen, etenee sovelluksen kontrolli seuraavasti:
+Kun oikeanpuoleinen pelaaja ei onnistu kimmottamaan palloa omalta pelialueeltaan ja käyttöliittymän [handle-metodi](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L327) havaitsee sen, etenee sovelluksen kontrolli seuraavasti:
 
 ![Pallon osuminen oikeaan seinään](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Ball%20hits%20right%20wall.png)
 
 ### Muut toiminnallisuudet
 
-Sama periaate toistuu sovelluksen muissa toiminnallisuuksissa: käyttöliittymän tapahtumakäsittelijä ja [handle-metodi](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L321) kutsuu sopivia sovelluslogiikan metodeja, ja sovelluslogiikka päivittää tarpeen mukaan sovelluksen/pelin tilaa. Kontrollin palatessa käyttöliittymään päivittynyt tieto korjaantuu visuaalisesti pelin piirtoalustalla käyttöliittymän piirtäessä saamansa datan uudelleen. Toisaalta käyttöliittymällä on suora yhteys pelin käyttämään tietokantaan, sillä käyttöliittymän näkymät tarvitsevat suoraa pääsyä käsiksi tietokantaan talletettuun tietoon esimerkiksi sovelluksen esittäessä _lopetussivulla_ pistemäärällisesti viiden parhaan pelaajan listauksen.
+Sama periaate toistuu sovelluksen muissa toiminnallisuuksissa: käyttöliittymän tapahtumakäsittelijä ja [handle-metodi](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L327) kutsuu sopivia sovelluslogiikan metodeja, ja sovelluslogiikka päivittää tarpeen mukaan sovelluksen/pelin tilaa. Kontrollin palatessa käyttöliittymään päivittynyt tieto korjaantuu visuaalisesti pelin piirtoalustalla käyttöliittymän piirtäessä saamansa datan uudelleen. Toisaalta käyttöliittymällä on suora yhteys pelin käyttämään tietokantaan, sillä käyttöliittymän näkymät tarvitsevat suoraa pääsyä käsiksi tietokantaan talletettuun tietoon esimerkiksi sovelluksen esittäessä _lopetussivulla_ pistemäärällisesti viiden parhaan pelaajan listauksen.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
 ### Käyttöliittymä
 
-Sovelluksen graafinen käyttöliittymä on toteutettu määrittelemällä lähes koko käyttöliittymän rakenne luokan [PongApplication](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java) metodissa [start](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L85). Sovelluksen eri näkymät rakentava koodi kannattaisi erottaa kutakin näkymää vastaaviksi metodeiksi tai luokiksi.
+Sovelluksen graafinen käyttöliittymä on toteutettu määrittelemällä lähes koko käyttöliittymän rakenne luokan [PongApplication](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java) metodissa [start](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L78). Sovelluksen eri näkymät rakentava koodi kannattaisi erottaa kutakin näkymää vastaaviksi metodeiksi tai luokiksi.
 
 Toisaalta pelin aloitussivulla näkyvän kuvan olisi parasta olla osana sovellusta, tällä hetkellä sovellus olettaa kuvatiedoston löytyvän sovelluksen käynnistyshakemistosta.
