@@ -28,7 +28,7 @@ Pelin aikana pelaajat pyrkivät osumaan mailallaan liikkuvaan palloon, jolloin p
 
 ### Pelin jälkeen
 
-Pelin päätyttyä siirrytään automaattisesti loppusivulle, josta käy ilmi pelaajien menestys juuri pelatulla kierroksella. Loppusivu ilmoittaa voittajan nimen ja kaikkien aikojen parhaiten suoriutuneiden käyttäjänimien Top 5 -listauksen. Loppusivulta on mahdollista siirtyä "Re-start" -nappia painamalla uudelle pelikierrokselle. Tällöin käyttäjänimet pysyvät samoina. "New game" -nappia painamalla siirrytään aloitussivulle, jolloin käyttäjänimiä ja pelin vaikeustasoa on mahdollista vaihtaa. "End game" -nappi puolestaan sammuttaa pelisovelluksen.
+Pelin päätyttyä siirrytään automaattisesti loppusivulle, josta käy ilmi pelaajien menestys juuri pelatulla kierroksella. Loppusivu ilmoittaa voittajan nimen ja kaikkien aikojen parhaiten suoriutuneiden käyttäjänimien Top 5 -listauksen. Loppusivulta on mahdollista siirtyä _Re-start_ -nappia painamalla uudelle pelikierrokselle. Tällöin käyttäjänimet pysyvät samoina. _New game_ -nappia painamalla siirrytään aloitussivulle, jolloin käyttäjänimiä ja pelin vaikeustasoa on mahdollista vaihtaa. _End game_ -nappi puolestaan sammuttaa pelisovelluksen.
 
 ## Jatkokehitysideoita
 
