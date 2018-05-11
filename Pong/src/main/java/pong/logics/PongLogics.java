@@ -15,6 +15,9 @@ import pong.domain.Score;
  *
  * @author Heidi
  */
+/**
+ * The class manages the game logics and rules in Pong.
+ */
 public class PongLogics {
     private int winningScore;
     private final Score score;
@@ -45,14 +48,45 @@ public class PongLogics {
         return this.winningScore;
     }
     
+    /**
+     * The method tells whether a player has won the game.
+     *
+     * @see pong.domain.Score#getLeftScore() 
+     * @see pong.domain.Score#getRightScore() 
+     * 
+     * @return true if a player's score equals the winning score or false if not
+     */
     public boolean playerWon() {
         return (score.getLeftScore() == winningScore || score.getRightScore() == winningScore);
     }
     
+    /**
+     * The method moves the ball according to the ball movement.
+     * 
+     * @see pong.domain.Ball#move(pong.domain.Movement) 
+     */
     public void moveBall() {
         ball.move(movementBall);
     }
     
+    /**
+     * The method increases the ball speed according to current time and thread conditions.
+     * 
+     * @see pong.domain.Movement
+     */
+    public void increaseBallSpeed() {
+        movementBall.setMovementX(movementBall.getMovementX() 
+                + 0.002 * (1 / movementBall.getMovementX()));
+        movementBall.setMovementY(movementBall.getMovementY() 
+                + 0.002 * (1 / movementBall.getMovementY()));
+    }
+    
+    /**
+     * The method moves the paddles according to the paddle movement and action in the player keys.
+     * 
+     * @see pong.domain.Paddle
+     * @see pong.domain.Movement
+     */
     public void movePaddles() {
         if (paddleMovements.get(0) == 1) {
             leftPaddle.setY(leftPaddle.getY() + movementPaddles.getMovementY());
@@ -71,6 +105,16 @@ public class PongLogics {
         }
     }
     
+    /**
+     * The method checks whether the ball hits a paddle. If yes, the movement of the ball is set to the opposite direction.
+     * 
+     * @see pong.domain.Paddle#ballHitsVerticalLeft(double, double, double) 
+     * @see pong.domain.Paddle#ballHitsVerticalRight(double, double, double) 
+     * @see pong.domain.Paddle#ballHitsHorizontalLeft(double, double, double) 
+     * @see pong.domain.Paddle#ballHitsHorizontalRight(double, double, double) 
+     * @see pong.domain.Ball
+     * @see pong.domain.Movement
+     */
     public void ballHitsPaddle() {     
         if (leftPaddle.ballHitsVerticalLeft(ball.getX(), ball.getY(), ball.getRadius())) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());
@@ -88,6 +132,13 @@ public class PongLogics {
         }
     }
     
+    /**
+     * The method checks whether the paddles stay on the defined game board.
+     * 
+     * @param gameHeight defined integer value for the game board height provided by the application
+     * 
+     * @see pong.domain.Paddle
+     */
     public void paddlesOnBoard(int gameHeight) {
         if (leftPaddle.getY() < 0) { 
             leftPaddle.setY(0);
@@ -102,12 +153,29 @@ public class PongLogics {
         }
     }
     
+    /**
+     * The method checks whether the ball hits the up or down edge of the game board.
+     * 
+     * @param gameHeight defined integer value for the game board height provided by the application
+     * 
+     * @see pong.domain.Ball
+     * @see pong.domain.Movement
+     */
     public void ballHitsUpOrDown(int gameHeight) {
         if (ball.getY() < 0 || (ball.getY() + ball.getRadius() * 2) > gameHeight) {
             movementBall.setMovementY(-1 * movementBall.getMovementY());
         }
     }
     
+    /**
+     * The method checks whether the ball hits the left or right edge of the game board.
+     * 
+     * @param gameWidth defined integer value for the game board width provided by the application
+     * 
+     * @see pong.domain.Ball
+     * @see pong.domain.Movement
+     * @see pong.domain.Score#increase(int) 
+     */
     public void ballHitsLeftOrRight(int gameWidth) {
         if (ball.getX() < 0) {
             movementBall.setMovementX(-1 * movementBall.getMovementX());

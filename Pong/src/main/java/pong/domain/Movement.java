@@ -49,11 +49,11 @@ public class Movement {
             this.movementX = 2.5;
             this.movementY = 2.5;
         } else if (obj.equals("Medium")) {
-            this.movementX = 4;
-            this.movementY = 4;
+            this.movementX = 3.8;
+            this.movementY = 3.8;
         } else {
-            this.movementX = 6;
-            this.movementY = 6;
+            this.movementX = 5.5;
+            this.movementY = 5.5;
         }
     }
     

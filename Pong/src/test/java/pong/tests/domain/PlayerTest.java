@@ -20,7 +20,7 @@ public class PlayerTest {
     
     @Before
     public void setUp() {
-        player = new Player(0, "Matti", 10);
+        player = new Player(0, "Matt", 10);
     }
     
     @Test
@@ -35,7 +35,7 @@ public class PlayerTest {
     
     @Test
     public void getName() {
-        assertEquals("Matti", player.getName());
+        assertEquals("Matt", player.getName());
     }
     
     @Test

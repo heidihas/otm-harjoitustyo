@@ -33,22 +33,22 @@ public class PlayerDaoTest {
         
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Player WHERE name = ?");
-            stmt.setString(1, "Testi");
+            stmt.setString(1, "Test");
             stmt.executeUpdate();
         }
         try (Connection conn = database.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Player WHERE name = ?");
-            stmt.setString(1, "Matti");
+            stmt.setString(1, "Matt");
             stmt.executeUpdate();
         }
-        Player player = new Player(0, "Testi", 10);
+        Player player = new Player(0, "Test", 10);
         try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Player (name, score) VALUES (?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Player (name, score) "
+                    + "VALUES (?, ?)");
             stmt.setString(1, player.getName());
             stmt.setInt(2, player.getScore());
             stmt.executeUpdate();
-        }
-        
+        }  
     }
     
     @Test
@@ -77,7 +77,7 @@ public class PlayerDaoTest {
     @Test
     public void findPlayerByNameFalse() {
         try {
-            assertEquals(null, dao.findOneByName("Matti"));
+            assertEquals(null, dao.findOneByName("Matt"));
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,8 +86,8 @@ public class PlayerDaoTest {
     @Test
     public void findPlayerByNameTrue() {
         try {
-            Player onko = dao.findOneByName("Testi");
-            assertEquals("Testi", onko.getName());
+            Player p = dao.findOneByName("Test");
+            assertEquals("Test", p.getName());
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,9 +96,9 @@ public class PlayerDaoTest {
     @Test
     public void updateGetName() {
         try {
-            Player onko = new Player(1, "Testi", 40);
-            dao.saveOrUpdate(onko);
-            assertEquals("Testi", onko.getName());
+            Player p = new Player(1, "Test", 40);
+            dao.saveOrUpdate(p);
+            assertEquals("Test", p.getName());
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,9 +107,9 @@ public class PlayerDaoTest {
     @Test
     public void updateGetScore() {
         try {
-            Player onko = new Player(1, "Testi", 40);
-            dao.saveOrUpdate(onko);
-            assertEquals(40, onko.getScore());
+            Player p = new Player(1, "Test", 40);
+            dao.saveOrUpdate(p);
+            assertEquals(40, p.getScore());
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,9 +118,9 @@ public class PlayerDaoTest {
     @Test
     public void saveGetName() {
         try {
-            Player onko = new Player(1, "Matti", 40);
-            dao.saveOrUpdate(onko);
-            assertEquals("Matti", onko.getName());
+            Player p = new Player(1, "Matt", 40);
+            dao.saveOrUpdate(p);
+            assertEquals("Matt", p.getName());
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,20 +129,20 @@ public class PlayerDaoTest {
     @Test
     public void saveGetScore() {
         try {
-            Player onko = new Player(1, "Matti", 40);
-            dao.saveOrUpdate(onko);
-            assertEquals(40, onko.getScore());
+            Player p = new Player(1, "Matt", 40);
+            dao.saveOrUpdate(p);
+            assertEquals(40, p.getScore());
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @Test
-    public void saveGetTesti() {
+    public void saveGetAnother() {
         try {
-            Player onko = new Player(1, "Matti", 40);
-            dao.saveOrUpdate(onko);
-            assertEquals(10, dao.findOneByName("Testi").getScore());
+            Player p = new Player(1, "Matt", 40);
+            dao.saveOrUpdate(p);
+            assertEquals(10, dao.findOneByName("Test").getScore());
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }

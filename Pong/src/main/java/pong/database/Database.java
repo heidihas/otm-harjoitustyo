@@ -7,6 +7,8 @@ package pong.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -33,18 +35,33 @@ public class Database {
      */
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(databaseAddress);
-    } 
+    }
     
-    public void init() {
-        String statement = "CREATE TABLE Player (id integer PRIMARY KEY, name varchar(8), score integer);";
+    /**
+     * The method creates the table Player to the database if it doesn't already exist.
+     * 
+     * @param table table name as String provided by the application
+     * 
+     * @return executed initialization statement
+     * 
+     * @throws java.sql.SQLException
+     */
+    public Statement init(String table) throws SQLException {
         
         try (Connection conn = getConnection()) {
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(statement);
-            
-            conn.close();
-            
-        } catch (Throwable t) {
-        }
-    }
+            PreparedStatement stmt1 = conn.prepareStatement("SELECT * FROM "
+                    + "sqlite_master WHERE type = 'table'");
+            ResultSet result = stmt1.executeQuery();
+                
+            if (!result.next()) {
+                PreparedStatement stmt2 = conn.prepareStatement("CREATE TABLE " 
+                        + table + " (id integer PRIMARY KEY, name varchar(8), score integer);");
+                stmt2.executeUpdate();
+                
+                return stmt2;
+            }
+            return null;
+        }  
+    } 
 }
+

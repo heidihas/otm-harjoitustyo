@@ -104,6 +104,18 @@ public class PongLogicsTest {
     }
     
     @Test
+    public void increaseBallSpeedX() {
+        logics.increaseBallSpeed();
+        assertTrue(movementBall.getMovementX() == 1.002);
+    }
+    
+    @Test
+    public void increaseBallSpeedY() {
+        logics.increaseBallSpeed();
+        assertTrue(movementBall.getMovementY() == 1.002);
+    }
+       
+    @Test
     public void moveLeftPaddleUp() {
         paddleMovements.set(0, 1);
         logics.movePaddles();

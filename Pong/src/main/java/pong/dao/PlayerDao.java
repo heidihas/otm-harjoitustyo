@@ -41,10 +41,12 @@ public class PlayerDao {
         List<Player> players = new ArrayList<>();
 
         try (Connection conn = database.getConnection();
-                ResultSet result = conn.prepareStatement("SELECT id, name, score FROM Player").executeQuery()) {
+                ResultSet result = conn.prepareStatement("SELECT id, name, "
+                        + "score FROM Player").executeQuery()) {
 
             while (result.next()) {
-                players.add(new Player(result.getInt("id"), result.getString("name"), result.getInt("score")));
+                players.add(new Player(result.getInt("id"), result.getString("name"), 
+                        result.getInt("score")));
             }
             
             result.close();
@@ -67,10 +69,13 @@ public class PlayerDao {
         List<Player> players = new ArrayList<>();
         
         try (Connection conn = database.getConnection();
-                ResultSet result = conn.prepareStatement("SELECT id AS id, name AS name, score AS score FROM Player GROUP BY name ORDER BY score DESC LIMIT 5").executeQuery()) {
+                ResultSet result = conn.prepareStatement("SELECT id AS id, name "
+                        + "AS name, score AS score FROM Player GROUP BY name "
+                        + "ORDER BY score DESC LIMIT 5").executeQuery()) {
             
             while (result.next()) {
-                players.add(new Player(result.getInt("id"), result.getString("name"), result.getInt("score")));
+                players.add(new Player(result.getInt("id"), result.getString("name"), 
+                        result.getInt("score")));
             } 
             
             result.close();
@@ -94,12 +99,14 @@ public class PlayerDao {
     public Player findOneByName(String name) throws SQLException {
 
         try (Connection conn = database.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement("SELECT id, name, score FROM Player WHERE name = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT id, name, score "
+                    + "FROM Player WHERE name = ?");
             stmt.setString(1, name);
             ResultSet result = stmt.executeQuery();
 
             while (result.next()) {
-                return new Player(result.getInt("id"), result.getString("name"), result.getInt("score"));
+                return new Player(result.getInt("id"), result.getString("name"), 
+                        result.getInt("score"));
             }
             
             conn.close();
@@ -129,8 +136,6 @@ public class PlayerDao {
                 stmt.setInt(1, object.getScore() + byName.getScore());
                 stmt.setString(2, object.getName());
                 stmt.executeUpdate();
-                
-                conn.close();
             }
             
             return byName;
@@ -141,8 +146,6 @@ public class PlayerDao {
             stmt.setString(1, object.getName());
             stmt.setInt(2, object.getScore());
             stmt.executeUpdate();
-            
-            conn.close();
         }
 
         return findOneByName(object.getName());

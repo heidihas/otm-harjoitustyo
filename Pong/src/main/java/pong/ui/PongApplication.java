@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
@@ -53,15 +54,11 @@ import pong.logics.PongLogics;
  *
  * @author Heidi
  */
+/**
+ * The class provides the game application with all its functions and scenes.
+ */
 public class PongApplication extends Application {
-    // javadoc loppuun, testausdokumentti, testi databasen initille 1h
-    
-    // kun uusi käyttäjänimi, ei löydy tieto nimiruudusta... miten tallennetaan
-    
-    // kaikki daoihin liittyvä -> PongLogics pong.logics?
-    // tarkista metodien ulkoasu, kirjoita tarvittavia kuvauksia
-    // kaikki englanniksi
-    // ei toisteista koodia
+    // testausdokumentti 1h
     // tarkista dokumentointi 2h
     
     // Jatkokehitysideoita:
@@ -70,16 +67,33 @@ public class PongApplication extends Application {
     // rajattu määrä käyttäjänimiä
     // error-viesti ei siirrä aloitussivun sijainteja
     // yksinpeli
-    // pallo nopeutuu
     // vaikeustason alkuoletus
+    // kulmien kimmottaminen, mahdolliset bugit (jää kiinni mailaan)
+    // kuvan integroiminen sovellukseen
     
+    /**
+     * The method builds the application layout properties, takes care of the scene shifts and collects all parameters and events in the game. 
+     * 
+     * @param stage a Stage object to set the current application scene
+     * 
+     * @see pong.dao.PlayerDao
+     * @see pong.database.Database
+     * @see pong.domain.Ball
+     * @see pong.domain.Movement
+     * @see pong.domain.Paddle
+     * @see pong.domain.Player
+     * @see pong.domain.Score
+     * @see pong.logics.PongLogics
+     * 
+     * @throws SQLException 
+     */
     @Override
     public void start(Stage stage) throws SQLException {
         
         // database set-up
         Database database = new Database("jdbc:sqlite:player.db");
         database.getConnection();
-        database.init();
+        database.init("Player");
         PlayerDao dao = new PlayerDao(database);
         
         // window set-up
@@ -112,7 +126,8 @@ public class PongApplication extends Application {
         error2.setTextFill(Color.INDIANRED);
         
         Label gameLevel = new Label("Game level: ");
-        ChoiceBox level = new ChoiceBox(FXCollections.observableArrayList("Easy", "Medium", "Hard"));
+        ChoiceBox level = new ChoiceBox(FXCollections.observableArrayList("Easy", 
+                "Medium", "Hard"));
         Label errorLevel = new Label("");
         errorLevel.setTextFill(Color.INDIANRED);
         Button startButton = new Button("Start");
@@ -311,20 +326,18 @@ public class PongApplication extends Application {
         logics.setWinningScore(10);
         
         AnimationTimer animationTimer = new AnimationTimer() {
-            //private long sleepNanoseconds = 1000000000 * 1000000;
-            //private long prevTime = 0;
+            private final long sleepDelay = TimeUnit.NANOSECONDS.convert(40, TimeUnit.SECONDS);
+            private final long sleepNanoseconds = TimeUnit.NANOSECONDS.convert(2, TimeUnit.SECONDS);
+            private final long startTime = System.nanoTime();
+            private long prevTime = System.nanoTime();
             
+            /**
+             * The AnimationTimer method draws the current game scene according to the progress and checks the events taking place in the game.
+             * 
+             * @param currentNanoTime 
+             */
             @Override
             public void handle(long currentNanoTime) {
-                // increase the speed of ball and paddles
-                /*if ((currentNanoTime - prevTime) >= sleepNanoseconds) {
-                    movementBall.setMovementX(movementBall.getMovementX()+1);
-                    movementBall.setMovementY(movementBall.getMovementY()+1);
-                    movementPaddles.setMovementX(movementPaddles.getMovementX()*1.1);
-                    movementPaddles.setMovementY(movementPaddles.getMovementY()*1.1);
-                    prevTime = currentNanoTime;
-                }*/
-                
                 // draw game board
                 graphics.clearRect(0, 0, gameWidth, gameHeight);
                 
@@ -339,15 +352,18 @@ public class PongApplication extends Application {
                 
                 // draw left paddle
                 graphics.setFill(leftPaddle.getColor());
-                graphics.fillRect(leftPaddle.getX(), leftPaddle.getY(), leftPaddle.getWidth(), leftPaddle.getHeight());
+                graphics.fillRect(leftPaddle.getX(), leftPaddle.getY(), 
+                        leftPaddle.getWidth(), leftPaddle.getHeight());
 
                 // draw right paddle
                 graphics.setFill(rightPaddle.getColor());
-                graphics.fillRect(rightPaddle.getX(), rightPaddle.getY(), rightPaddle.getWidth(), rightPaddle.getHeight());
+                graphics.fillRect(rightPaddle.getX(), rightPaddle.getY(), 
+                        rightPaddle.getWidth(), rightPaddle.getHeight());
 
                 // draw ball
                 graphics.setFill(Color.INDIANRED);
-                graphics.fillOval(ball.getX(), ball.getY(), ball.getRadius() * 2, ball.getRadius() * 2);
+                graphics.fillOval(ball.getX(), ball.getY(), ball.getRadius() * 2, 
+                        ball.getRadius() * 2);
 
                 // move paddles
                 logics.movePaddles();
@@ -355,6 +371,14 @@ public class PongApplication extends Application {
                 // move ball
                 logics.moveBall();
 
+                // increase the ball speed
+                if ((currentNanoTime - startTime) >= sleepDelay) {
+                    if ((currentNanoTime - prevTime) >= sleepNanoseconds) {
+                        logics.increaseBallSpeed();
+                        prevTime = currentNanoTime;
+                    }
+                }
+                
                 // check if ball hits paddle
                 logics.ballHitsPaddle();
                 
@@ -371,14 +395,18 @@ public class PongApplication extends Application {
                 if (logics.playerWon()) {
                     try {
                         stop();
+                        
+                        String playerName1 = player1.getText().substring(10);
+                        String playerName2 = player2.getText().substring(10);
+                        
                         if (score.getLeftScore() > score.getRightScore()) {
-                            winnerName.setText(name1.getValue().toString());
+                            winnerName.setText(playerName1);
                         } else {
-                            winnerName.setText(name2.getValue().toString());
+                            winnerName.setText(playerName2);
                         }
                         
-                        Player n1 = new Player(0, name1.getValue().toString(), score.getLeftScore());
-                        Player n2 = new Player(1, name2.getValue().toString(), score.getRightScore());
+                        Player n1 = new Player(0, playerName1, score.getLeftScore());
+                        Player n2 = new Player(1, playerName2, score.getRightScore());
                         
                         dao.saveOrUpdate(n1);
                         dao.saveOrUpdate(n2);
@@ -395,7 +423,8 @@ public class PongApplication extends Application {
         
         startButton.setOnAction((event) -> {    
             // print error messages
-            if (nameError(name1) || nameError(name2) || level.getValue() == null || sameName(name1, name2)) {
+            if (nameError(name1) || nameError(name2) || level.getValue() == null 
+                    || sameName(name1, name2)) {
                 error1.setText("");
                 error2.setText("");
                 errorLevel.setText("");
@@ -427,6 +456,7 @@ public class PongApplication extends Application {
                 if (level.getValue() == null){
                     errorLevel.setText(errorNoLevel);
                 }
+                
             } else {
                 try {
                     Player p1 = new Player(0, name1.getValue().toString(), 0);
@@ -453,14 +483,14 @@ public class PongApplication extends Application {
         
         restartButton.setOnAction((event) -> {
             resetGame(gameHeight, gameWidth, score, rightPaddle, leftPaddle, 
-                    movementPaddles, ball, movementBall, paddleMovements);
+                    movementPaddles, ball, movementBall, paddleMovements, level);
             stage.setScene(gameScene);
             animationTimer.start();
         });
         
         newGameButton.setOnAction((event) -> {
             resetGame(gameHeight, gameWidth, score, rightPaddle, leftPaddle, 
-                    movementPaddles, ball, movementBall, paddleMovements);
+                    movementPaddles, ball, movementBall, paddleMovements, level);
             name1.setValue("");
             name2.setValue("");
             error1.setText("");
@@ -478,8 +508,8 @@ public class PongApplication extends Application {
     }
     
     private void resetGame(int gameHeight, int gameWidth, Score score, 
-            Paddle rightPaddle, Paddle leftPaddle, Movement movementPaddles, 
-            Ball ball, Movement movementBall, ArrayList<Integer> paddleMovements) {
+            Paddle rightPaddle, Paddle leftPaddle, Movement movementPaddles, Ball ball, 
+            Movement movementBall, ArrayList<Integer> paddleMovements, ChoiceBox level) {
         score.setLeftScore(0);
         score.setRightScore(0);
         
@@ -495,6 +525,7 @@ public class PongApplication extends Application {
         ball.setX(gameWidth / 2);
         ball.setY(gameHeight / 2);
         
+        movementBall.setLevel(level.getValue());
         movementBall.randomDirection();
         
         paddleMovements.removeAll(paddleMovements);
@@ -547,6 +578,7 @@ public class PongApplication extends Application {
     }
     
     private void comboUpdate(ComboBox name1, ComboBox name2, Player p1, Player p2) {
+        //adds new player names to the combobox selection if needed
         String playerName1 = p1.getName();
         String playerName2 = p2.getName();
         
@@ -603,6 +635,11 @@ public class PongApplication extends Application {
         });
     }
 
+    /**
+     * The main method for the application.
+     * 
+     * @param args 
+     */
     public static void main(String[] args) {
         launch(PongApplication.class);
     }

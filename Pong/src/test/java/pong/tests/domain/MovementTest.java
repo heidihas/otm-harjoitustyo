@@ -8,7 +8,6 @@ package pong.tests.domain;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pong.domain.Ball;
 import pong.domain.Movement;
 /**
  *
@@ -77,24 +76,24 @@ public class MovementTest {
     @Test
     public void setLevelMediumX() {
         movement.setLevel("Medium");
-        assertEquals(4.0, movement.getMovementX(), 0);
+        assertEquals(3.8, movement.getMovementX(), 0);
     }
     
     @Test
     public void setLevelMediumY() {
         movement.setLevel("Medium");
-        assertEquals(4.0, movement.getMovementY(), 0);
+        assertEquals(3.8, movement.getMovementY(), 0);
     }
     
     @Test
     public void setLevelHardX() {
         movement.setLevel("Hard");
-        assertEquals(6.0, movement.getMovementX(), 0);
+        assertEquals(5.5, movement.getMovementX(), 0);
     }
     
     @Test
     public void setLevelHardY() {
         movement.setLevel("Hard");
-        assertEquals(6.0, movement.getMovementY(), 0);
+        assertEquals(5.5, movement.getMovementY(), 0);
     }
 }
