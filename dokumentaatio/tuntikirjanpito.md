@@ -41,4 +41,8 @@ Päivä | Aika | Mitä tein
 2.5. | 1 | Uusi release
 3.5. | 3 | Koodikatselmointi
 9.5. | 4 | Pallon kimpoamisbugit ja sovelluksen luoma tietokanta
-yht. | 89 | 
+9.5. | 2 | ComboBox-korjaus ja sovelluksen luoma tietokanta
+10.5. | 5 | Vähitellen nopeutuva pallo, AnimationTimer ja ajanotto
+10.5. | 3 | Vähitellen nopeutuva pallo, AnimationTimer ja ajanotto
+10.5. | 3 | Puuttuvia testejä, Javadocin täydennys, koodin tarkistus
+yht. | 102 | 
