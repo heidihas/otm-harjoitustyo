@@ -53,7 +53,7 @@ Kun aloitussivun pelaajanimien syötekenttiin on joko kirjoitettu tai valittu k�
 
 ![Uuden pelin aloittaminen](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_%20Start%20a%20new%20game_longer.png)
 
-Huomionarvoista lienee, että esitetty kuva edustaa sovelluksen edellistä versiota. Päivittyneen version osalta toiminta on muilta osin täysin identtinen, paitsi metodin _comboUpdate_ kutsun jälkeen kenttiin _player1_ ja _player2_ laitettavat pelaajanimet haetaan uudessa versiossa pari riviä aiemmin luoduista Player-luokan olioista, ei ComboBox-rakenteen nimikentistä.
+Huomionarvoista lienee, että esitetty kuva edustaa sovelluksen edellistä versiota. Päivittyneen version osalta toiminta on muilta osin täysin identtinen, paitsi metodin [comboUpdate](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/ui/PongApplication.java#L454) kutsun jälkeen kenttiin _player1_ ja _player2_ laitettavat pelaajanimet haetaan uudessa versiossa pari riviä aiemmin luoduista Player-luokan olioista, ei ComboBox-rakenteen nimikentistä.
 
 ### Vasemman mailan liikuttaminen alas
 
