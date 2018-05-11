@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto UUSI JAR! [pong-1.0.jar](https://github.com/heidihas/otm-harjoitustyo/releases/tag/viikko5).
+Lataa tiedosto [pong-3.0.jar](https://github.com/heidihas/otm-harjoitustyo/releases/tag/viikko7).
 
 Ohjelma olettaa, että sen käynnistyshakemistossa on tiedosto _pong.png_ eli sovelluksen aloitussivulla näytettävä kuva.
 
@@ -9,7 +9,7 @@ Ohjelma olettaa, että sen käynnistyshakemistossa on tiedosto _pong.png_ eli so
 Ohjelma käynnistetään komennolla
 
 ```
-java -jar pong-1.0.jar
+java -jar pong-3.0.jar
 ```
 
 ## Pelaajien käyttäjänimien valinta ja pelin vaikeustaso
