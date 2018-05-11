@@ -24,7 +24,7 @@ Sovellus on toteutettu osana kevään 2018 Ohjelmistotekniikan menetelmät -kurs
 
 [Viikko 6](https://github.com/heidihas/otm-harjoitustyo/releases/tag/viikko6)
 
-[Loppupalautus]()
+[Loppupalautus](https://github.com/heidihas/otm-harjoitustyo/releases/tag/viikko7)
 
 ## Komentorivitoiminnot
 
