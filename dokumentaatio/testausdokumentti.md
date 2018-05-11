@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Sovellusta on testattu niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä.
+Sovellusta testattiin niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä.
 
 ## Yksikkö- ja integraatiotestaus
 
@@ -22,8 +22,16 @@ Sovelluksen käyttöliittymäpakkausta ja siihen kuuluvaa PongApplication-luokka
 
 ## Järjestelmätestaus
 
+Sovelluksen järjestelmätestaus suoritettiin manuaalisesti seuraamalla sovelluksen asennus- ja käyttöohjeita sekä vaatimusmäärittelyn tietoja ohjelman tarjoamasta sovelluslogiikasta.
+
 ### Asennus ja konfigurointi
+
+Sovelluksen käyttöönottoa testattiin sekä OSX- että Linux-pohjaisessa ympäristössä noudattamalla sovelluksesta esitettyjä asennus- ja käyttöohjeita. Alun perin ohjelman suorittamisen edellytyksenä oli, että suoritettavan ohjelman käynnistyshakemistossa oli oltava valmis tietokantatiedosto ja aloitussivulla näytettävä kuvatiedosto. Lopullisessa versiossa tietokantatiedoston olemassaolo ei ole enää vaatimuksena, vaan sovellus luo ja alustaa sen tarvittaessa. Käyttöönottoa testattiin molemmissa edellä mainituissa tapauksissa.
 
 ### Toiminnallisuudet
 
-## Sovellukseen jääneet laatuongelmat
+Vaatimusmäärittelyssä 
+
+## Testauksen tulos jatkokehittelystä
+
+Vaikka pitkälti pyrittiin toimimaan niin, että testauksen saatossa esiin tulleet epäkohdat ratkaistiin, jäi sovellukseen vielä jotain kehitettävää. Tämä koskee eritoten pelinäkymän sovelluslogiikkaa, pallon ja mailojen vuorovaikutusta. Koska pallon ja mailojen välisen sovelluslogiikan toteuttaminen ei aluksi ollut koodikielen tasolla niin ilmeistä, tapahtui pelisääntöjen realisoiminen pitkälti käsi kädessä kokeilun ja testaamisen kanssa. Lopullisessa versiossa pallo kimpoaa niin horisontaalisesti kuin vertikaalisesti vastakkaiseen suuntaan pallon lähestyessä mailaa ylä- tai alapuolelta ja ainoastaan horisontaalisesti vastakkaiseen suuntaan pallon osuessa mailan pystysuoraan sivuun. Kuitenkin testaamisen lomassa kävi ilmi, että säännönmukainen kimpoaminen ei tapahdu kaikissa tilanteissa, vaan pallo ikään kuin jää hetkeksi jumiin mailan kohdalle. Kyseistä bugia pyrittiin moneen kertaan ratkaisemaan, mutta se on edelleen aika ajoin läsnä. Bugin taustalla saattaisi olla toisaalta jokin virhetapahtuma, joka syntyy sovelluksen käytön (mailojen liikuttaminen) ja pelin piirto-ominaisuuksien välisestä kommunikaatioviiveestä.
