@@ -28,7 +28,9 @@ public class PlayerDaoTest {
     
     @Before
     public void setUp() throws SQLException {
-        database = new Database("jdbc:sqlite:player.db");
+        database = new Database("jdbc:sqlite:test.db");
+        database.getConnection();
+        database.init("Player");
         dao = new PlayerDao(database);
         
         try (Connection conn = database.getConnection()) {
