@@ -58,19 +58,6 @@ import pong.logics.PongLogics;
  * The class provides the game application with all its functions and scenes.
  */
 public class PongApplication extends Application {
-    // testausdokumentti 1h
-    // tarkista dokumentointi 2h
-    
-    // Jatkokehitysideoita:
-    // valittavissa pelin päättymispisteet
-    // aloitusnopeus vaikuttaa mailoihin
-    // rajattu määrä käyttäjänimiä
-    // error-viesti ei siirrä aloitussivun sijainteja
-    // yksinpeli
-    // vaikeustason alkuoletus
-    // kulmien kimmottaminen, mahdolliset bugit (jää kiinni mailaan)
-    // kuvan integroiminen sovellukseen
-    
     /**
      * The method builds the application layout properties, takes care of the scene shifts and collects all parameters and events in the game. 
      * 
