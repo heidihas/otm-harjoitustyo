@@ -45,4 +45,5 @@ Päivä | Aika | Mitä tein
 10.5. | 5 | Vähitellen nopeutuva pallo, AnimationTimer ja ajanotto
 10.5. | 3 | Vähitellen nopeutuva pallo, AnimationTimer ja ajanotto
 10.5. | 3 | Puuttuvia testejä, Javadocin täydennys, koodin tarkistus
-yht. | 102 | 
+11.5. | 4 | Testausdokumentti ja muun dokumentaation läpikäynti
+yht. | 106 | 
